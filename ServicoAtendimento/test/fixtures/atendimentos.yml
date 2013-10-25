@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  nome: MyString
+  registro: MyString
+  dataHora: 2013-10-25 16:54:17
+  publicoAlvo: MyString
+  TipoAtendimento: 
+  LocalAtendimento: 
+
+two:
+  nome: MyString
+  registro: MyString
+  dataHora: 2013-10-25 16:54:17
+  publicoAlvo: MyString
+  TipoAtendimento: 
+  LocalAtendimento: 

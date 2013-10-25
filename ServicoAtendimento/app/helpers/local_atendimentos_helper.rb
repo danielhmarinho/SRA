@@ -1,0 +1,2 @@
+module LocalAtendimentosHelper
+end

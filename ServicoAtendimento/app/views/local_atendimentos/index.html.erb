@@ -1,0 +1,23 @@
+<h1>Listing local_atendimentos</h1>
+
+<table>
+  <tr>
+    <th>Nome</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @local_atendimentos.each do |local_atendimento| %>
+  <tr>
+    <td><%= local_atendimento.nome %></td>
+    <td><%= link_to 'Show', local_atendimento %></td>
+    <td><%= link_to 'Edit', edit_local_atendimento_path(local_atendimento) %></td>
+    <td><%= link_to 'Destroy', local_atendimento, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Local atendimento', new_local_atendimento_path %>

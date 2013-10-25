@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nome:</b>
+  <%= @atendimento.nome %>
+</p>
+
+<p>
+  <b>Registro:</b>
+  <%= @atendimento.registro %>
+</p>
+
+<p>
+  <b>Datahora:</b>
+  <%= @atendimento.dataHora %>
+</p>
+
+<p>
+  <b>Publicoalvo:</b>
+  <%= @atendimento.publicoAlvo %>
+</p>
+
+<p>
+  <b>Tipoatendimento:</b>
+  <%= @atendimento.TipoAtendimento %>
+</p>
+
+<p>
+  <b>Localatendimento:</b>
+  <%= @atendimento.LocalAtendimento %>
+</p>
+
+
+<%= link_to 'Edit', edit_atendimento_path(@atendimento) %> |
+<%= link_to 'Back', atendimentos_path %>

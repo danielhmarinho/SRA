@@ -1,0 +1,41 @@
+<%= form_for(@atendimento) do |f| %>
+  <% if @atendimento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@atendimento.errors.count, "error") %> prohibited this atendimento from being saved:</h2>
+
+      <ul>
+      <% @atendimento.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nome %><br />
+    <%= f.text_field :nome %>
+  </div>
+  <div class="field">
+    <%= f.label :registro %><br />
+    <%= f.text_field :registro %>
+  </div>
+  <div class="field">
+    <%= f.label :dataHora %><br />
+    <%= f.datetime_select :dataHora %>
+  </div>
+  <div class="field">
+    <%= f.label :publicoAlvo %><br />
+    <%= f.select :publicoAlvo, (["Aluno", "Servidor", "Outros"]) %>
+  </div>
+  <div class="field">
+    <%= f.label :TipoAtendimento %><br />
+    <%= f.select :TipoAtendimento, @tipoAtendimento.collect { |a| [ a.nome, a.id ] }  %>
+  </div>
+  <div class="field">
+    <%= f.label :LocalAtendimento %><br />
+    <%= f.select :LocalAtendimento, @localAtendimento.collect { |c| [ c.nome, c.id ] } %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
