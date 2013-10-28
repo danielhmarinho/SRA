@@ -1,13 +1,4 @@
 ServicoAtendimento::Application.routes.draw do
-  resources :atendimentos
-
-
-  resources :local_atendimentos
-
-
-  resources :tipo_atendimentos
-
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
