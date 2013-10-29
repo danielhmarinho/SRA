@@ -1,0 +1,39 @@
+<%= form_for(@atendimento) do |f| %>
+  <% if @atendimento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@atendimento.errors.count, "error") %> prohibited this atendimento from being saved:</h2>
+
+      <ul>
+      <% @atendimento.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :pessoa %><br />
+    <%= f.select :pessoa_id,  Pessoa.all.collect {|p| [p.name, p.id]} %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :"Público Alvo" %><br />
+    <%= f.select :pessoa_id,  Pessoa.all.collect {|p| [p.as_pessoa_type, p.id]} %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :data %><br />
+    <%= f.datetime_select :data %>
+  </div>
+  <div class="field">
+    <%= f.label "Local de Atendimento" %><br />
+   <%= f.select :place_id,  Place.all.collect {|p| [p.name, p.id]} %>
+  </div>
+  <div class="actions">
+    <%= f.submit  :class => 'btn-success btn-large' %> 
+  </ul>
+</div>
+  </div>
+<% end %>

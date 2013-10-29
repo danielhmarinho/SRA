@@ -1,4 +1,13 @@
-ServicoAtendimento::Application.routes.draw do
+SRA::Application.routes.draw do
+  resources :atendimentos
+
+
+  resources :types
+
+
+  resources :places
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

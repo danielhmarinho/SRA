@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-ServicoAtendimento::Application.load_tasks
+SRA::Application.load_tasks

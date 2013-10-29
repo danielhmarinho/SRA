@@ -11,33 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131028203434) do
-
-  create_table "alunos", :force => true do |t|
-    t.string   "matricula"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
+ActiveRecord::Schema.define(:version => 20131029175655) do
 
   create_table "atendimentos", :force => true do |t|
-    t.string   "nome"
-    t.string   "registro"
-    t.datetime "dataHora"
-    t.string   "publicoAlvo"
-    t.integer  "TipoAtendimento_id"
-    t.integer  "LocalAtendimento_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-  end
-
-  add_index "atendimentos", ["LocalAtendimento_id"], :name => "index_atendimentos_on_LocalAtendimento_id"
-  add_index "atendimentos", ["TipoAtendimento_id"], :name => "index_atendimentos_on_TipoAtendimento_id"
-
-  create_table "local_atendimentos", :force => true do |t|
-    t.string   "nome"
+    t.integer  "pessoa_id"
+    t.datetime "data"
+    t.integer  "place_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "atendimentos", ["pessoa_id"], :name => "index_atendimentos_on_pessoa_id"
+  add_index "atendimentos", ["place_id"], :name => "index_atendimentos_on_place_id"
 
   create_table "pessoas", :force => true do |t|
     t.integer  "as_pessoa_id"
@@ -47,16 +32,25 @@ ActiveRecord::Schema.define(:version => 20131028203434) do
     t.datetime "updated_at",     :null => false
   end
 
+  create_table "places", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "professors", :force => true do |t|
     t.string   "matricula"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "tipo_atendimentos", :force => true do |t|
-    t.string   "nome"
+  create_table "types", :force => true do |t|
+    t.string   "name"
+    t.integer  "place_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "types", ["place_id"], :name => "index_types_on_place_id"
 
 end
