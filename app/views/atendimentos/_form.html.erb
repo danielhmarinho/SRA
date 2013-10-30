@@ -1,7 +1,7 @@
 <%= form_for(@atendimento) do |f| %>
   <% if @atendimento.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@atendimento.errors.count, "error") %> prohibited this atendimento from being saved:</h2>
+      <h2><%= pluralize(@atendimento.errors.count, "Erro") %> Cadastro de Atendimento invalido:</h2>
 
       <ul>
       <% @atendimento.errors.full_messages.each do |msg| %>

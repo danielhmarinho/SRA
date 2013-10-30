@@ -44,7 +44,7 @@ class AtendimentosController < ApplicationController
 
     respond_to do |format|
       if @atendimento.save
-        format.html { redirect_to @atendimento, notice: 'Atendimento was successfully created.' }
+        format.html { redirect_to @atendimento, notice: 'Atendimento criado com sucesso.' }
         format.json { render json: @atendimento, status: :created, location: @atendimento }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class AtendimentosController < ApplicationController
 
     respond_to do |format|
       if @atendimento.update_attributes(params[:atendimento])
-        format.html { redirect_to @atendimento, notice: 'Atendimento was successfully updated.' }
+        format.html { redirect_to @atendimento, notice: 'Atendimento alterado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
