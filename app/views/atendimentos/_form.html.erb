@@ -11,29 +11,34 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :pessoa %><br />
-    <%= f.select :pessoa_id,  Pessoa.all.collect {|p| [p.name, p.id]} %>
-  </div>
+
+  <table>
+  <tr>
+    <th><%= f.label :pessoa %><br /></th>
+    <th><%= f.label :"Público Alvo" %><br /></th>
+    <th><%= f.label :data %><br /></th>
+    <th><%= f.label "Local de Atendimento" %><br /></th>
 
 
-  <div class="field">
-    <%= f.label :"Público Alvo" %><br />
-    <%= f.select :pessoa_id,  Pessoa.all.collect {|p| [p.as_pessoa_type, p.id]} %>
-  </div>
 
+  </br>
+  <tr>
+    <td><%= f.select :pessoa_id,  Pessoa.all.collect {|p| [p.name, p.id]} %></td>
+    <td><%= f.select :pessoa_id,  Pessoa.all.collect {|p| [p.as_pessoa_type, p.id]} %></td>
+    <td><%= f.datetime_select :data %></td>
+    <td><%= f.select :place_id,  Place.all.collect {|p| [p.name, p.id]} %></td>
 
-  <div class="field">
-    <%= f.label :data %><br />
-    <%= f.datetime_select :data %>
-  </div>
-  <div class="field">
-    <%= f.label "Local de Atendimento" %><br />
-   <%= f.select :place_id,  Place.all.collect {|p| [p.name, p.id]} %>
-  </div>
+  </tr>
+</table>
+
   <div class="actions">
-    <%= f.submit  :class => 'btn-success btn-large' %> 
+  <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"), 
+          atendimentos_path , 
+          class: "btn  btn-warning"%>
+    <%= f.submit  :class => 'btn-success btn' %>
+    
   </ul>
 </div>
-  </div>
+
+
 <% end %>
