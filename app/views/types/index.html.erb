@@ -1,4 +1,4 @@
-<h1>Lista de Tipos de Atendimentos</h1>
+<h1>Tipos de Atendimentos</h1>
 
 <table>
   <tr>
@@ -12,7 +12,7 @@
 <% @types.each do |type| %>
   <tr>
     <td><%= type.name %></td>
-    <td><%= type.place %></td>
+    <td><%= type.place.name %></td>
     <td><%= link_to 'Mostrar', type %></td>
     <td><%= link_to 'Editar', edit_type_path(type) %></td>
     <td><%= link_to 'Excluir', type, method: :delete, data: { confirm: 'Deseja confirmar?' } %></td>
