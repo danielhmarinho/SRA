@@ -14,8 +14,16 @@
     <td><%= type.name %></td>
     <td><%= type.place.name %></td>
     <td><%= link_to 'Mostrar', type %></td>
-    <td><%= link_to 'Editar', edit_type_path(type) %></td>
-    <td><%= link_to 'Excluir', type, method: :delete, data: { confirm: 'Deseja confirmar?' } %></td>
+    <td><%= link_to raw("<i class=\"icon-white icon-pencil\"> Editar </i>"), 
+          edit_type_path(type), 
+          class: "btn btn-small btn-primary",
+          method: :get %></td>
+    <td><%= link_to raw("<i class=\"icon-white icon-trash\"> Deletar </i>"), 
+          type, 
+          class: "btn btn-small btn-danger",
+          method: :delete, data: { confirm: 'Deseja confirmar?'} %></td></td>
+  </tr>
+    
   </tr>
 <% end %>
 </table>
