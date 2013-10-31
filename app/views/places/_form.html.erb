@@ -13,7 +13,13 @@
     <%= f.label "Nome" %><br />
     <%= f.text_field :name %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="actions">
+  <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"), 
+          places_path , 
+          class: "btn  btn-warning"%>
+    <%= f.submit  :class => 'btn-success btn' %>
+    
+  </ul>
+</div>
+
 <% end %>

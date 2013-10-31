@@ -13,7 +13,7 @@
   <tr>
     <td><%= type.name %></td>
     <td><%= type.place.name %></td>
-    <td><%= link_to 'Mostrar', type %></td>
+    
     <td><%= link_to raw("<i class=\"icon-white icon-pencil\"> Editar </i>"), 
           edit_type_path(type), 
           class: "btn btn-small btn-primary",
@@ -30,4 +30,7 @@
 
 <br />
 
-<%= link_to 'Novo tipo', new_type_path %>
+<%=link_to raw("<i class=\"icon-white icon-plus\"> Criar Tipo de Atendimento </i>"), 
+          new_type_path, 
+          class: "btn btn-success  btn-small"%>
+

@@ -20,7 +20,14 @@
     <%= f.label "Local" %><br />
     <%= f.select :place_id,  Place.all.collect {|p| [p.name, p.id]} %>
   </div>
+ 
   <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"), 
+          types_path , 
+          class: "btn  btn-warning"%>
+    <%= f.submit  :class => 'btn-success btn'  %>
+    
+  </ul>
+</div>
+
 <% end %>

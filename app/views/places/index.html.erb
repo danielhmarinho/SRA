@@ -11,12 +11,21 @@
 <% @places.each do |place| %>
   <tr>
     <td><%= place.name %></td>
-    <td><%= link_to 'Editar', edit_place_path(place) %></td>
-    <td><%= link_to 'Excluir', place, method: :delete, data: { confirm: 'Deseja confirmar?' } %></td>
+    <td><%= link_to raw("<i class=\"icon-white icon-pencil\"> Editar </i>"), 
+          edit_place_path(place), 
+          class: "btn btn-small btn-primary",
+          method: :get %></td>
+    <td><%= link_to raw("<i class=\"icon-white icon-trash\"> Deletar </i>"), 
+          place, 
+          class: "btn btn-small btn-danger",
+          method: :delete, data: { confirm: 'Deseja confirmar?'} %></td></td>
+  </tr>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'Novo local', new_place_path %>
+<%=link_to raw("<i class=\"icon-white icon-plus\"> Criar Local de Atendimento </i>"), 
+          new_place_path, 
+          class: "btn btn-success  btn-small"%>
