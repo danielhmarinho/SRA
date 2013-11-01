@@ -44,7 +44,7 @@ class AtendimentosController < ApplicationController
 
     respond_to do |format|
       if @atendimento.save
-        format.html { redirect_to @atendimento, notice: 'Atendimento criado com sucesso.' }
+        format.html { redirect_to atendimentos_url, notice: 'Atendimento criado com sucesso.' }
         format.json { render json: @atendimento, status: :created, location: @atendimento }
       else
         format.html { render action: "new" }
