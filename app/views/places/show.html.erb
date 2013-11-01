@@ -7,5 +7,8 @@
 </p>
 
 
-<%= link_to 'Editar', edit_place_path(@place) %> |
-<%= link_to 'Voltar', places_path %>
+<div class="actions">
+  <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"), 
+          places_path , 
+          class: "btn  btn-warning"%>
+</div>
