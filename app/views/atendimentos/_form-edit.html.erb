@@ -1,5 +1,3 @@
-
-    <%= render "navbar" %>
 <div class="page-header">
 <%= form_for(@atendimento) do |f| %>
 
@@ -43,7 +41,7 @@
   <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"), 
           atendimentos_path , 
           class: "btn  btn-warning"%>
-    <%= f.submit  :class => 'btn-success btn' %>
+    <%= f.submit "Atualizar atendimento", :class => 'btn-success btn' %>
     
   </ul>
 </div>

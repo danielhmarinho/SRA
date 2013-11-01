@@ -60,7 +60,7 @@ class AtendimentosController < ApplicationController
 
     respond_to do |format|
       if @atendimento.update_attributes(params[:atendimento])
-        format.html { redirect_to @atendimento, notice: 'Atendimento alterado com sucesso.' }
+        format.html { redirect_to atendimentos_url, notice: 'Atendimento alterado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

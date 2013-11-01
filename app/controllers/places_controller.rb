@@ -44,7 +44,7 @@ class PlacesController < ApplicationController
 
     respond_to do |format|
       if @place.save
-        format.html { redirect_to @place, notice: 'Local criado com sucesso.' }
+        format.html { redirect_to places_url, notice: 'Local criado com sucesso.' }
         format.json { render json: @place, status: :created, location: @place }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class PlacesController < ApplicationController
 
     respond_to do |format|
       if @place.update_attributes(params[:place])
-        format.html { redirect_to @place, notice: 'Local alterado com sucesso.' }
+        format.html { redirect_to places_url, notice: 'Local alterado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

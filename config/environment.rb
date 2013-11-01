@@ -6,4 +6,3 @@ SRA::Application.initialize!
 
 
 
-Time::DATE_FORMATS[:data] = "%bb, %m %Y - %I:%M%p"
