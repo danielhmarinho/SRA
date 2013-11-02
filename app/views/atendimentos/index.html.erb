@@ -31,9 +31,9 @@
 <% @atendimentos.each do |atendimento| %>
   <tr>
     <td><%= atendimento.pessoa.name %></td>
-    <td><%= atendimento.data.to_formatted_s(:data) %></td>
+    <td><%= l(atendimento.data, :format => :short) if atendimento.data %></td>
     <td><%= atendimento.place.name %></td>
-    <td><%= atendimento.type %></td>
+    <td><%= atendimento.type.try(:name) %></td>
 <td><%= link_to raw("<i class=\"icon-white icon-pencil\"> Editar </i>"), 
           edit_atendimento_path(atendimento), 
           class: "btn btn-small btn-primary",
