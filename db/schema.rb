@@ -23,12 +23,14 @@ ActiveRecord::Schema.define(:version => 20131101013145) do
     t.integer  "pessoa_id"
     t.datetime "data"
     t.integer  "place_id"
+    t.integer  "type_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   add_index "atendimentos", ["pessoa_id"], :name => "index_atendimentos_on_pessoa_id"
   add_index "atendimentos", ["place_id"], :name => "index_atendimentos_on_place_id"
+  add_index "atendimentos", ["type_id"], :name => "index_atendimentos_on_type_id"
 
   create_table "pessoas", :force => true do |t|
     t.integer  "as_pessoa_id"

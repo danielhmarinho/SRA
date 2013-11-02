@@ -20,9 +20,10 @@
 
 <table>
   <tr>
-    <th>Pessoa</th>
+    <th>Nome</th>
     <th>Data</th>
     <th>Local de Atendimento</th>
+    <th>Tipo de Atendimento</th>
     <th></th>
     <th></th>
 
@@ -32,6 +33,7 @@
     <td><%= atendimento.pessoa.name %></td>
     <td><%= atendimento.data.to_formatted_s(:data) %></td>
     <td><%= atendimento.place.name %></td>
+    <td><%= atendimento.type %></td>
 <td><%= link_to raw("<i class=\"icon-white icon-pencil\"> Editar </i>"), 
           edit_atendimento_path(atendimento), 
           class: "btn btn-small btn-primary",
