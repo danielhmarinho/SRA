@@ -2,6 +2,8 @@ SRA::Application.routes.draw do
 
   resources :atendimentos
 
+  resources :professors
+
 
   resources :types
 
