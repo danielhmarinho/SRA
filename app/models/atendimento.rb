@@ -8,4 +8,6 @@ class Atendimento < ActiveRecord::Base
   validates_presence_of :place 
   validates_presence_of :pessoa
   
+
+
 end

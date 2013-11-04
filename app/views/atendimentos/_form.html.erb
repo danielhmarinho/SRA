@@ -2,9 +2,6 @@
     <%= render "navbar" %>
 <div class="page-header">
 <script type="text/javascript">
-  $(function() {
-  $('input.datepicker').datepicker();
-});
 
 
 </script>
@@ -32,7 +29,6 @@
   <table>
   <tr>
     <th><%= f.label "Nome" %><br /></th>
-    <th><%= f.label :"Público Alvo" %><br /></th>
     <th><%= f.label :data %><br /></th>
     <th><%= f.label "Local de Atendimento" %><br /></th>
       <th><%= f.label "Tipo de Atendimento" %><br /></th>
@@ -42,7 +38,6 @@
   </br>
   <tr>
     <td><%= f.select :pessoa_id,  Pessoa.all.collect {|p| [p.name, p.id]} %></td>
-    <td><%= f.select :pessoa_id,  Pessoa.all.collect {|p| [p.as_pessoa_type, p.id]} %></td>
     <td><%= f.input :data, label: false, :as => :datetime_picker%></td>
     <td><%= f.select :place_id,  Place.all.collect {|p| [p.name, p.id]} %></td>
     <td><%= f.select :type_id,  Type.all.collect {|t| [t.name, t.id]} %></td>
