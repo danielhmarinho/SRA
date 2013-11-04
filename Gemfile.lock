@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/thiagovsk/datetimepicker-rails.git
+  revision: f0316e55d6a46794e56d5e636ea838c9eaef34cb
+  specs:
+    datetimepicker-rails (0.0.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -121,6 +127,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_relation (~> 0.1)
   coffee-rails (~> 3.2.1)
+  datetimepicker-rails!
   execjs
   jquery-rails
   jquery-ui-rails
