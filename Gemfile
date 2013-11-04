@@ -10,8 +10,6 @@ gem 'execjs'
 gem 'therubyracer'
 gem 'acts_as_relation', '~> 0.1'
 gem "twitter-bootstrap-rails"
-gem 'datetimepicker-rails', :require => 'datetimepicker-rails', :git => 'git://github.com/zpaulovics/datetimepicker-rails.git'
-
 gem 'simple_form'
 
 
