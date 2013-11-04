@@ -54,7 +54,6 @@ ActiveRecord::Schema.define(:version => 20131104174208) do
   end
 
   create_table "servidors", :force => true do |t|
-    t.string   "matricula"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
