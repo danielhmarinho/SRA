@@ -2,7 +2,7 @@
 <div class="page-header">
 <%= form_for(@servidor) do |f| %>
 </div>
-  <% if @servidor.errors.any? %>
+  <% if @professor.errors.any? %>
      <div class="alert alert-danger">
       <ul>
       <% @servidor.errors.full_messages.each do |msg| %>
@@ -25,7 +25,7 @@
   <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"), 
           servidors_path , 
           class: "btn  btn-warning"%>
-    <%= f.submit "Criar Servidor UnB", :class => 'btn-success btn' %>
+    <%= f.submit "Atualizar Servidor", :class => 'btn-success btn' %>
     
   </ul>
 </div>
