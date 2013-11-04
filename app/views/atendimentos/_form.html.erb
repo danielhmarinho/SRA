@@ -100,13 +100,12 @@ $(document).ready(function() {
       <div class="modal-body">
     	<div class="tabbable"> <!-- Only required for left/right tabs -->
     		<ul class="nav nav-tabs">
-    			<li class="active"><a href="#tab1" data-toggle="tab">Bem Vindo</a>
     			<li><a href="#tab2" data-toggle="tab">Professor</a></li>
 			<li><a href="#tab3" data-toggle="tab">Servidor</a></li>
 			<li><a href="#tab4" data-toggle="tab">Aluno</a></li>
     		</ul>
     	<div class="tab-content">
-    		<div class="tab-pane active" id="tab1">
+    		<div class="tab-pane " id="tab1">
 			
     			<p><%= render "alunos/form", :remote => true , :@aluno => Aluno.new %> </p>
     		</div>
