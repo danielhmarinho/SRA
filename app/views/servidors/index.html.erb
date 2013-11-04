@@ -1,0 +1,21 @@
+<h1>Listing servidors</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @servidors.each do |servidor| %>
+  <tr>
+    <td><%= link_to 'Show', servidor %></td>
+    <td><%= link_to 'Edit', edit_servidor_path(servidor) %></td>
+    <td><%= link_to 'Destroy', servidor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Servidor', new_servidor_path %>
