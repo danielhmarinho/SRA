@@ -1,0 +1,33 @@
+<%= render "navbar" %>
+<div class="page-header">
+<%= form_for(@aluno) do |f| %>
+</div>
+  <% if @aluno.errors.any? %>
+     <div class="alert alert-danger">
+      <ul>
+      <% @aluno.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label "Nome" %><br />
+    <%= f.text_field :name %>
+
+
+    <%= f.label "Matricula" %><br />
+    <%= f.text_field :matricula %>
+
+  </div>
+    <div class="actions">
+  <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"), 
+          professors_path , 
+          class: "btn  btn-warning"%>
+    <%= f.submit "Atualizar Professor", :class => 'btn-success btn' %>
+    
+  </ul>
+</div>
+
+<% end %>

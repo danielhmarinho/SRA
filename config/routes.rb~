@@ -9,8 +9,6 @@ SRA::Application.routes.draw do
 
 
   resources :places
-  
-  resources :alunos
 
 
   # The priority is based upon order of creation:
