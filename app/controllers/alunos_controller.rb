@@ -44,7 +44,7 @@ class AlunosController < ApplicationController
 
     respond_to do |format|
       if @aluno.save
-        format.html { redirect_to @aluno, notice: 'Aluno was successfully created.' }
+        format.html { redirect_to alunos_url, notice: 'Aluno was successfully created.' }
         format.json { render json: @aluno, status: :created, location: @aluno }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class AlunosController < ApplicationController
 
     respond_to do |format|
       if @aluno.update_attributes(params[:aluno])
-        format.html { redirect_to @aluno, notice: 'Aluno was successfully updated.' }
+        format.html { redirect_to alunos_url, notice: 'Aluno was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
