@@ -13,6 +13,7 @@ gem "twitter-bootstrap-rails"
 gem 'datetimepicker-rails', :require => 'datetimepicker-rails', :git => 'https://github.com/thiagovsk/datetimepicker-rails.git'
 
 gem 'simple_form'
+gem 'rails3-jquery-autocomplete'
 
 
 # Gems used only for assets and not required

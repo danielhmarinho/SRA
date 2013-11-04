@@ -14,7 +14,6 @@ class TypesController < ApplicationController
   # GET /types/1.json
   def show
     @type = Type.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @type }
@@ -78,6 +77,14 @@ class TypesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to types_url }
       format.json { head :no_content }
+    end
+  end
+
+  def type_by_place
+    @type = Type.where(:place_id=>params[:id])
+
+    respond_to do |format|
+     format.js { render json: @type }
     end
   end
 end

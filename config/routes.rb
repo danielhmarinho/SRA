@@ -1,16 +1,22 @@
 SRA::Application.routes.draw do
 
-  resources :atendimentos
+  resources :atendimentos do 
 
-  resources :professors
-
-
-  resources :types
+     get :autocomplete_pessoa_name, :on => :collection
+  end
 
 
+
+
+  resources :professors 
+ 
+  resources :types do
+    get 'type_by_place', :on => :collection
+  end
   resources :places
   
   resources :alunos
+
 
 
   # The priority is based upon order of creation:
