@@ -44,7 +44,7 @@ class ServidorsController < ApplicationController
 
     respond_to do |format|
       if @servidor.save
-        format.html { redirect_to servidors_url, notice: 'Servidor was successfully created.' }
+        format.html { redirect_to servidors_url, notice: 'Servidor criado com sucesso.' }
         format.json { render json: @servidor, status: :created, location: @servidor }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class ServidorsController < ApplicationController
 
     respond_to do |format|
       if @servidor.update_attributes(params[:servidor])
-        format.html { redirect_to servidors_url, notice: 'Servidor was successfully updated.' }
+        format.html { redirect_to servidors_url, notice: 'Servidor alterado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

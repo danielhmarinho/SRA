@@ -44,7 +44,7 @@ class ComunidadesController < ApplicationController
 
     respond_to do |format|
       if @comunidade.save
-        format.html { redirect_to comunidades_url, notice: 'Comunidade was successfully created.' }
+        format.html { redirect_to comunidades_url, notice: 'Pessoa Externa criada com sucesso' }
         format.json { render json: @comunidade, status: :created, location: @comunidade }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class ComunidadesController < ApplicationController
 
     respond_to do |format|
       if @comunidade.update_attributes(params[:comunidade])
-        format.html { redirect_to comunidades_url, notice: 'Comunidade was successfully updated.' }
+        format.html { redirect_to comunidades_url, notice: 'Pessoa Externa atualizada com sucesso' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
