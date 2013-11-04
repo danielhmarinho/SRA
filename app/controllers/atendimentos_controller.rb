@@ -1,4 +1,8 @@
 class AtendimentosController < ApplicationController
+
+  autocomplete :pessoa, :name
+
+
   # GET /atendimentos
   # GET /atendimentos.json
   def index

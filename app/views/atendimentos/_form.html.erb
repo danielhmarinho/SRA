@@ -3,6 +3,37 @@
 <div class="page-header">
 <script type="text/javascript">
 
+$(document).ready(function() {
+  // Ajax to create the options for the type select
+  function get_types(value) { // value = place id
+    $.ajax({
+      url : "/types/type_by_place",
+      type: "GET",
+      dataType: "json",
+      data : {"id":value},
+      success: function(response){
+        var select = $("#type select");
+        select.html("");
+
+        for(var i=0; i < response.length; i++) {
+          select.append("<option value="+response[i].id+">"+response[i].name+"</option>");
+        }
+      },
+      error: function() {
+        console.log("Erro ao buscar type");
+      }
+    });
+  }
+
+  $('#place select').change(function () {
+    var value = $(this).val();
+
+    get_types(value); 
+  });
+  
+  // When the page html is already, set the select option for type base on the first value of the place 
+  get_types($('#place select option')[0].value);
+});
 
 </script>
 
@@ -39,13 +70,14 @@
   <tr>
     <td><%= f.select :pessoa_id,  Pessoa.all.collect {|p| [p.name, p.id]} %></td>
     <td><%= f.input :data, label: false, :as => :datetime_picker%></td>
-    <td><%= f.select :place_id,  Place.all.collect {|p| [p.name, p.id]} %></td>
-    <td><%= f.select :type_id,  Type.all.collect {|t| [t.name, t.id]} %></td>
+    <td id='place'>
+      <%= f.select :place_id,  Place.all.collect {|p| [p.name, p.id]} %></td>
+    <td id="type"><%= f.select :type_id,  Type.all.collect {|t| [t.name, t.id]} %></td>
 
 
   </tr>
 </table>
-
+</tr>
   <div class="actions">
   <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"), 
           atendimentos_path , 
@@ -57,3 +89,4 @@
 
 
 <% end %>
+

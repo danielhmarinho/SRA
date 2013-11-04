@@ -16,3 +16,4 @@
 //= require twitter/bootstrap
 //= require_tree .
 //= require bootstrap-datetimepicker
+//= require autocomplete-rails

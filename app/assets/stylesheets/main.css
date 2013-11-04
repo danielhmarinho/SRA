@@ -3,3 +3,9 @@
 	padding: 10px 0px 10px;
 }
 
+#registros {
+	max-height: 420px;
+	overflow: auto;
+
+}
+
