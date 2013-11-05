@@ -29,9 +29,9 @@
 
 <% @atendimentos.each do |atendimento| %>
   <tr>
-    <td><%= atendimento.pessoa.name %></td>
-    <td><%= l(atendimento.data, :format => :long) if atendimento.data %></td>
-    <td><%= atendimento.place.name %></td>
+    <td><%= atendimento.pessoa.try(:name) %></td>
+    <td><%= l(atendimento.try(:data), :format => :long) if atendimento.data %></td>
+    <td><%= atendimento.place.try(:name) %></td>
     <td><%= atendimento.type.try(:name) %></td>
 <td><%= link_to raw("<i class=\"icon-white icon-pencil\"> Editar </i>"), 
           edit_atendimento_path(atendimento), 

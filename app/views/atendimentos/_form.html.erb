@@ -103,6 +103,7 @@ $(document).ready(function() {
     			<li><a href="#tab2" data-toggle="tab">Professor</a></li>
 			<li><a href="#tab3" data-toggle="tab">Servidor</a></li>
 			<li><a href="#tab4" data-toggle="tab">Aluno</a></li>
+            <li><a href="#tab5" data-toggle="tab">Comunidade Externa</a></li>
     		</ul>
     	<div class="tab-content">
     		<div class="tab-pane " id="tab1">
@@ -121,6 +122,11 @@ $(document).ready(function() {
 		<div class="tab-pane " id="tab4">
     			<p><%= render "alunos/form", :remote => true , :@aluno => Aluno.new %> </p>
     		</div>
+                <div class="tab-pane " id="tab5">
+          <p><%= render "comunidades/form", :remote => true , :@comunidade => Comunidade.new %> </p>
+        </div>
+
+
 
     
     	</div>

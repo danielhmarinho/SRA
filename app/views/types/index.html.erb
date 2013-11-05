@@ -25,8 +25,8 @@
 
 <% @types.each do |type| %>
   <tr>
-    <td><%= type.name %></td>
-    <td><%= type.place.name %></td>
+    <td><%= type.try(:name) %></td>
+    <td><%= type.place.try(:name) %></td>
     
     <td><%= link_to raw("<i class=\"icon-white icon-pencil\"> Editar </i>"), 
           edit_type_path(type), 
