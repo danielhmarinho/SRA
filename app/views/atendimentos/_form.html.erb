@@ -1,5 +1,4 @@
 
-    <%= render "navbar" %>
 <div class="page-header">
 <script type="text/javascript">
 
@@ -36,11 +35,14 @@ $(document).ready(function() {
 });
 
 </script>
+<div align='left'>
+  <%= autocomplete_field_tag :replacement_id, '', autocomplete_pessoa_name_atendimentos_path,:id_element => "#atendimento_pessoa_id", placeholder: "Procurar pelo Nome"%>
+</div>
+
 
 <%= simple_form_for(@atendimento, :html => {:class => 'form-horizontal' }) do |f| %>
 
 
-  
 </div>
 
   <% if @atendimento.errors.any? %>
@@ -57,6 +59,7 @@ $(document).ready(function() {
   <% end %>
 
 
+
   <table>
   <tr>
     <th><%= f.label "Nome" %><br /></th>
@@ -68,7 +71,7 @@ $(document).ready(function() {
 
   </br>
   <tr>
-    <td><%= f.select :pessoa_id,  Pessoa.all.collect {|p| [p.name, p.id]} %></td>
+    <td><%= f.input :pessoa_id, label: false, collection: Pessoa.all.collect {|p| [p.name, p.id]} %></td>
     <td><%= f.input :data, label: false, :as => :datetime_picker, error: false, label: false%></td>
     <td id='place'>
       <%= f.select :place_id,  Place.all.collect {|p| [p.name, p.id]} %></td>

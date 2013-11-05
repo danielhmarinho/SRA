@@ -21,6 +21,7 @@
   <tr>
     <th>Nome</th>
     <th>Data</th>
+    <th>Público Alvo</th>
     <th>Local de Atendimento</th>
     <th>Tipo de Atendimento</th>
     <th></th>
@@ -31,6 +32,7 @@
   <tr>
     <td><%= atendimento.pessoa.try(:name) %></td>
     <td><%= l(atendimento.try(:data), :format => :long) if atendimento.data %></td>
+    <td><%= atendimento.pessoa.try(:as_pessoa_type) %></td>
     <td><%= atendimento.place.try(:name) %></td>
     <td><%= atendimento.type.try(:name) %></td>
 <td><%= link_to raw("<i class=\"icon-white icon-pencil\"> Editar </i>"), 
