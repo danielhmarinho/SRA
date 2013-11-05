@@ -21,7 +21,7 @@ class ProfessorsControllerTest < ActionController::TestCase
       post :create, professor: {  }
     end
 
-    assert_redirected_to professor_path(assigns(:professor))
+  assert_redirected_to professors_path
   end
 
   test "should show professor" do
@@ -36,7 +36,7 @@ class ProfessorsControllerTest < ActionController::TestCase
 
   test "should update professor" do
     put :update, id: @professor, professor: {  }
-    assert_redirected_to professor_path(assigns(:professor))
+      assert_redirected_to professors_path
   end
 
   test "should destroy professor" do

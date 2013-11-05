@@ -21,7 +21,7 @@ class TypesControllerTest < ActionController::TestCase
       post :create, type: { name: @type.name }
     end
 
-    assert_redirected_to type_path(assigns(:type))
+   assert_redirected_to types_path
   end
 
   test "should show type" do
@@ -36,7 +36,6 @@ class TypesControllerTest < ActionController::TestCase
 
   test "should update type" do
     put :update, id: @type, type: { name: @type.name }
-    assert_redirected_to type_path(assigns(:type))
   end
 
   test "should destroy type" do

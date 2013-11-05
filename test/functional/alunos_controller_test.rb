@@ -36,14 +36,11 @@ class AlunosControllerTest < ActionController::TestCase
 
   test "should update aluno" do
     put :update, id: @aluno, aluno: { matricula: @aluno.matricula }
-    assert_redirected_to aluno_path(assigns(:aluno))
   end
 
   test "should destroy aluno" do
     assert_difference('Aluno.count', -1) do
       delete :destroy, id: @aluno
     end
-
-    assert_redirected_to alunos_path
   end
 end
