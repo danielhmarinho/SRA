@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 SRA::Application.routes.draw do
 
   resources :atendimentos do 

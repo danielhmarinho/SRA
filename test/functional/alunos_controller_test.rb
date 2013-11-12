@@ -1,8 +1,9 @@
+# -*- encoding : utf-8 -*-
 require 'test_helper'
 
 class AlunosControllerTest < ActionController::TestCase
   setup do
-    @aluno = alunos(:one)
+    @aluno = Aluno.create name: "Guilherme", matricula: "282332"
   end
 
   test "should get index" do
@@ -21,7 +22,7 @@ class AlunosControllerTest < ActionController::TestCase
       post :create, aluno: { matricula: @aluno.matricula }
     end
 
-    assert_redirected_to aluno_path(assigns(:aluno))
+    assert_redirected_to alunos_path
   end
 
   test "should show aluno" do

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateAtendimentos < ActiveRecord::Migration
   def change
     create_table :atendimentos do |t|

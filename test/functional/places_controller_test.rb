@@ -1,8 +1,9 @@
+# -*- encoding : utf-8 -*-
 require 'test_helper'
 
 class PlacesControllerTest < ActionController::TestCase
   setup do
-    @place = places(:one)
+    @place = Place.create name:"Bibiblioteca"
   end
 
   test "should get index" do
@@ -20,8 +21,7 @@ class PlacesControllerTest < ActionController::TestCase
     assert_difference('Place.count') do
       post :create, place: { name: @place.name }
     end
-
-    assert_redirected_to place_path(assigns(:place))
+    assert_redirected_to places_path
   end
 
   test "should show place" do
@@ -36,8 +36,9 @@ class PlacesControllerTest < ActionController::TestCase
 
   test "should update place" do
     put :update, id: @place, place: { name: @place.name }
-
+    assert_redirected_to places_path
   end
+
 
   test "should destroy place" do
     assert_difference('Place.count', -1) do

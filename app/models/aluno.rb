@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Aluno < ActiveRecord::Base
   acts_as :pessoa
   attr_accessible :matricula

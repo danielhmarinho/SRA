@@ -1,8 +1,13 @@
+# -*- encoding : utf-8 -*-
 require 'test_helper'
 
 class AtendimentosControllerTest < ActionController::TestCase
   setup do
-    @atendimento = atendimentos(:one)
+     @professor = Professor.create name: "Hilmer", matricula: "21121"
+     @place = Place.create name:"Bibiblioteca"
+     @type = Type.create name: "Documentação", place_id: @place.id
+     @atendimento = Atendimento.create pessoa_id: @professor.id, data: "2013-11-12 13:46:00", 
+     place_id: @place.id, type_id: @type.id
   end
 
   test "should get index" do
@@ -18,8 +23,9 @@ class AtendimentosControllerTest < ActionController::TestCase
 
   test "should create atendimento" do
     assert_difference('Atendimento.count') do
-      post :create, atendimento: { data: @atendimento.data }
     end
+        post :create, atendimento: { pessoa_id: @atendimento.pessoa_id,  place_id: @atendimento.place_id, 
+          data: @atendimento.data, type_id: @atendimento.type_id }
 
     assert_redirected_to atendimento_path(assigns(:atendimento))
   end
@@ -36,7 +42,7 @@ class AtendimentosControllerTest < ActionController::TestCase
 
   test "should update atendimento" do
     put :update, id: @atendimento, atendimento: { data: @atendimento.data }
-    assert_redirected_to atendimento_path(assigns(:atendimento))
+    assert_redirected_to atendimentos_path
   end
 
   test "should destroy atendimento" do

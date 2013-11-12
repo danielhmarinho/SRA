@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateServidors < ActiveRecord::Migration
   def change
     create_table :servidors do |t|

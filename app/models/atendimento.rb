@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Atendimento < ActiveRecord::Base
   belongs_to :pessoa
   belongs_to :place

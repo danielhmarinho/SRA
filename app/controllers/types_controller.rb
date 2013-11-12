@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class TypesController < ApplicationController
   # GET /types
   # GET /types.json

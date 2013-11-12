@@ -1,8 +1,9 @@
+# -*- encoding : utf-8 -*-
 require 'test_helper'
 
 class ServidorsControllerTest < ActionController::TestCase
   setup do
-    @servidor = servidors(:one)
+    @servidor = Servidor.create name: "José", matricula: "28"
   end
 
   test "should get index" do
@@ -36,7 +37,7 @@ class ServidorsControllerTest < ActionController::TestCase
 
   test "should update servidor" do
     put :update, id: @servidor, servidor: {  }
-    assert_redirected_to servidor_path(assigns(:servidor))
+    assert_redirected_to servidors_path()
   end
 
   test "should destroy servidor" do

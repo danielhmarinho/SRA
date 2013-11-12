@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Comunidade < ActiveRecord::Base
   
   acts_as :pessoa

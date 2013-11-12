@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AlunosController < ApplicationController
   # GET /alunos
   # GET /alunos.json

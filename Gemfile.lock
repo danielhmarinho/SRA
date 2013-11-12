@@ -45,6 +45,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    docile (1.1.0)
     erubis (2.7.0)
     execjs (2.0.2)
     hike (1.2.3)
@@ -57,6 +58,7 @@ GEM
       railties (>= 3.1.0)
     json (1.8.1)
     libv8 (3.16.14.3)
+    lockfile (2.1.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -99,6 +101,12 @@ GEM
     simple_form (2.1.0)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
+    simplecov (0.8.1)
+      docile (~> 1.1.0)
+      lockfile (>= 2.1.0)
+      multi_json
+      simplecov-html (~> 0.8.0)
+    simplecov-html (0.8.0)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -137,6 +145,7 @@ DEPENDENCIES
   rails3-jquery-autocomplete
   sass-rails (~> 3.2.3)
   simple_form
+  simplecov
   sqlite3
   therubyracer
   twitter-bootstrap-rails

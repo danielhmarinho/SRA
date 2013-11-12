@@ -1,8 +1,10 @@
+# -*- encoding : utf-8 -*-
 require 'test_helper'
 
 class TypesControllerTest < ActionController::TestCase
   setup do
-    @type = types(:one)
+    @place = Place.create name:"Bibiblioteca"
+     @type = Type.create name: "Documentação", place_id: @place.id
   end
 
   test "should get index" do
@@ -39,7 +41,7 @@ class TypesControllerTest < ActionController::TestCase
   end
 
   test "should destroy type" do
-    assert_difference('Type.count', -1) do
+    assert_difference('Type.count', 1) do
       delete :destroy, id: @type
     end
 

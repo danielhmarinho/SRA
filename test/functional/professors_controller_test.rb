@@ -1,8 +1,9 @@
+# -*- encoding : utf-8 -*-
 require 'test_helper'
 
 class ProfessorsControllerTest < ActionController::TestCase
   setup do
-    @professor = professors(:one)
+    @professor = Professor.create name: "Hilmer", matricula: "21121"
   end
 
   test "should get index" do
