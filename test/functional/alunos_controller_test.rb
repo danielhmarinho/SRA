@@ -3,7 +3,8 @@ require 'test_helper'
 
 class AlunosControllerTest < ActionController::TestCase
   setup do
-    @aluno = Aluno.create name: "Guilherme", matricula: "282332"
+    @aluno = Aluno.create name: "Guilherme", matricula: "29291201"
+ 
   end
 
   test "should get index" do
@@ -19,7 +20,7 @@ class AlunosControllerTest < ActionController::TestCase
 
   test "should create aluno" do
     assert_difference('Aluno.count') do
-      post :create, aluno: { matricula: @aluno.matricula }
+      post :create, aluno: { matricula: "2323", name: @aluno.name }
     end
 
     assert_redirected_to alunos_path

@@ -3,7 +3,7 @@ require 'test_helper'
 
 class TypesControllerTest < ActionController::TestCase
   setup do
-    @place = Place.create name:"Bibiblioteca"
+     @place = Place.create name:"Bibiblioteca"
      @type = Type.create name: "Documentação", place_id: @place.id
   end
 
@@ -20,7 +20,7 @@ class TypesControllerTest < ActionController::TestCase
 
   test "should create type" do
     assert_difference('Type.count') do
-      post :create, type: { name: @type.name }
+      post :create, type: { name: @type.name, place_id: @place.id}
     end
 
    assert_redirected_to types_path
@@ -41,7 +41,7 @@ class TypesControllerTest < ActionController::TestCase
   end
 
   test "should destroy type" do
-    assert_difference('Type.count', 1) do
+    assert_difference('Type.count', -1) do
       delete :destroy, id: @type
     end
 

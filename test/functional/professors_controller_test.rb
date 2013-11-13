@@ -19,7 +19,7 @@ class ProfessorsControllerTest < ActionController::TestCase
 
   test "should create professor" do
     assert_difference('Professor.count') do
-      post :create, professor: {  }
+      post :create, professor: {name: @professor.name, matricula: @professor.matricula  }
     end
 
   assert_redirected_to professors_path

@@ -19,7 +19,7 @@ class ServidorsControllerTest < ActionController::TestCase
 
   test "should create servidor" do
     assert_difference('Servidor.count') do
-      post :create, servidor: {  }
+      post :create, servidor: {name: @servidor.name, matricula: @servidor.matricula  }
     end
 
     assert_redirected_to servidor_path(assigns(:servidor))
@@ -36,7 +36,7 @@ class ServidorsControllerTest < ActionController::TestCase
   end
 
   test "should update servidor" do
-    put :update, id: @servidor, servidor: {  }
+    put :update, id: @servidor, servidor: {name: @servidor.name, matricula: @servidor.matricula}
     assert_redirected_to servidors_path()
   end
 

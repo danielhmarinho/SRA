@@ -3,7 +3,7 @@ require 'test_helper'
 
 class ComunidadesControllerTest < ActionController::TestCase
   setup do
-    @comunidade = Comunidades.create name: "Pessoa Externa", identificacao: "023.832.393-23" 
+    @comunidade = Comunidade.create name: "Pessoa Externa", identificacao: "023.832.393-23" 
   end
 
   test "should get index" do
@@ -19,7 +19,7 @@ class ComunidadesControllerTest < ActionController::TestCase
 
   test "should create comunidade" do
     assert_difference('Comunidade.count') do
-      post :create, comunidade: {  }
+      post :create, comunidade: { name: @comunidade.name, identificacao: @comunidade.identificacao   }
     end
 
     assert_redirected_to comunidades_path
@@ -36,7 +36,7 @@ class ComunidadesControllerTest < ActionController::TestCase
   end
 
   test "should update comunidade" do
-    put :update, id: @comunidade, comunidade: {  }
+    put :update, id: @comunidade, comunidade: {name: @comunidade.name, identificacao: @comunidade.identificacao   }
     assert_redirected_to comunidades_path
   end
 

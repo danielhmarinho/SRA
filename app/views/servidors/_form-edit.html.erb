@@ -2,7 +2,7 @@
 <div class="page-header">
 <%= form_for(@servidor) do |f| %>
 </div>
-  <% if @professor.errors.any? %>
+  <% if @servidor.errors.any? %>
      <div class="alert alert-danger">
       <ul>
       <% @servidor.errors.full_messages.each do |msg| %>
