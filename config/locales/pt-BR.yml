@@ -109,7 +109,7 @@ pt-BR:
       greater_than: Campo Inválido, valor deve ser maior que %{count}.
       greater_than_or_equal_to: deve ser maior ou igual a %{count}
       inclusion: não está incluído na lista
-      invalid: não é válido
+      invalid: Campo invalido
       less_than: deve ser menor que %{count}
       less_than_or_equal_to: deve ser menor ou igual a %{count}
       not_a_number: Não é permitido letras em campos numéricos.
