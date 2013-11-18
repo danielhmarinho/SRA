@@ -4,4 +4,5 @@ class Aluno < ActiveRecord::Base
   attr_accessible :matricula
 
   validates_uniqueness_of :matricula
+  validates_numericality_of :matricula , greater_than: 0
 end
