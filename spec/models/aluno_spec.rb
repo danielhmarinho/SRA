@@ -10,4 +10,10 @@ it "Pode ser instanciado" do
 #nao e permitido letras no campo matricula
   it { should validate_numericality_of(:matricula) }
 
+
+
+#testando se os atributos podem ser atribuidos em massa(attr)
+it { should allow_mass_assignment_of(:matricula) }
+
+
 end
