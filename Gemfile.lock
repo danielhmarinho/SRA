@@ -82,6 +82,11 @@ GEM
     docile (1.1.0)
     erubis (2.7.0)
     execjs (2.0.2)
+    factory_girl (4.3.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.3.0)
+      factory_girl (~> 4.3.0)
+      railties (>= 3.0.0)
     ffi (1.9.3)
     hike (1.2.3)
     i18n (0.6.5)
@@ -206,6 +211,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   datetimepicker-rails!
   execjs
+  factory_girl_rails (~> 4.0)
   jquery-rails
   jquery-ui-rails
   rails (= 3.2.15)
