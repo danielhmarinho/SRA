@@ -16,4 +16,13 @@ it "Pode ser instanciado" do
 it { should allow_mass_assignment_of(:matricula) }
 
 
+#teste aluno deve extender pessoa
+
+it { should have_one(:pessoa) } 
+
+#teste matricula deve ser unica
+
+it { should validate_uniqueness_of(:matricula) }
+
+
 end
