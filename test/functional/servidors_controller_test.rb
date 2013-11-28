@@ -19,10 +19,10 @@ class ServidorsControllerTest < ActionController::TestCase
 
   test "should create servidor" do
     assert_difference('Servidor.count') do
-      post :create, servidor: {name: @servidor.name, matricula: @servidor.matricula  }
+      post :create, servidor: {name: @servidor.name, matricula: "23232" }
     end
 
-    assert_redirected_to servidor_path(assigns(:servidor))
+    assert_redirected_to servidors_path
   end
 
   test "should show servidor" do

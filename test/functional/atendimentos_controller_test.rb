@@ -24,8 +24,7 @@ class AtendimentosControllerTest < ActionController::TestCase
   test "should create atendimento" do
     assert_difference('Atendimento.count') do
     end
-        post :create, atendimento: { pessoa_id: @atendimento.pessoa_id,  place_id: @atendimento.place_id, 
-          data: @atendimento.data, type_id: @atendimento.type_id }
+        post :create, atendimento: {data: @atendimento.data, place: @place}
 
     assert_redirected_to atendimento_path(assigns(:atendimento))
   end
