@@ -14,7 +14,8 @@ gem 'datetimepicker-rails', :require => 'datetimepicker-rails', :git => 'https:/
 
 gem 'simple_form'
 gem 'rails3-jquery-autocomplete'
-
+gem 'watir'
+gem 'brazilian-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -26,6 +27,14 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+end
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0.beta'
+end
+
+group :test do
+  gem 'shoulda-matchers'
 end
 
 gem 'jquery-rails'

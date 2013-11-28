@@ -5,4 +5,5 @@ class Comunidade < ActiveRecord::Base
   attr_accessible :identificacao
   validates_uniqueness_of :identificacao
 
+  usar_como_cpf :identificacao
 end
