@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131104210819) do
+ActiveRecord::Schema.define(:version => 20131210171629) do
 
   create_table "alunos", :force => true do |t|
     t.string   "matricula"
@@ -53,6 +53,13 @@ ActiveRecord::Schema.define(:version => 20131104210819) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "places_types", :id => false, :force => true do |t|
+    t.integer "place_id"
+    t.integer "type_id"
+  end
+
+  add_index "places_types", ["place_id", "type_id"], :name => "index_places_types_on_place_id_and_type_id"
+
   create_table "professors", :force => true do |t|
     t.string   "matricula"
     t.datetime "created_at", :null => false
@@ -67,11 +74,8 @@ ActiveRecord::Schema.define(:version => 20131104210819) do
 
   create_table "types", :force => true do |t|
     t.string   "name"
-    t.integer  "place_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  add_index "types", ["place_id"], :name => "index_types_on_place_id"
 
 end
