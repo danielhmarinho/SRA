@@ -74,8 +74,11 @@ ActiveRecord::Schema.define(:version => 20131210171629) do
 
   create_table "types", :force => true do |t|
     t.string   "name"
+    t.integer  "place_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "types", ["place_id"], :name => "index_types_on_place_id"
 
 end

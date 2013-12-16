@@ -18,7 +18,7 @@
   </div>
   <div class="field">
     <%= f.label "Local" %><br />
-    <%= f.select :place_id,  Place.all.collect {|p| [p.name, p.id]} %>
+    <%= f.collection_check_boxes :place_ids, Place.all, :id, :name , :mutiple=> true %>
   </div>
  
   <div class="actions">
