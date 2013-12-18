@@ -82,7 +82,7 @@ class TypesController < ApplicationController
   end
 
   def type_by_place
-    @type = Type.where(:place_id=>params[:id])
+    @type = Place.find(params[:id]).types
 
     respond_to do |format|
      format.js { render json: @type }
