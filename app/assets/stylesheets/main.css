@@ -60,3 +60,11 @@
   .navbar-inverse .navbar-inner {
     background-image: linear-gradient(to bottom, #174, #063);
   }
+
+  .list {
+      margin-bottom: 10px;
+      width: 280px;
+      height: 100px;
+      overflow: auto;
+  }
+

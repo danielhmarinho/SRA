@@ -45,7 +45,6 @@ class PlacesController < ApplicationController
   # POST /places.json
   def create
     @place = Place.new(params[:place])
-    puts "="*80, params[:destinationSelect].to_s, "="*80
 
     respond_to do |format|
       if @place.save
