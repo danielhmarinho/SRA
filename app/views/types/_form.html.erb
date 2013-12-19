@@ -1,4 +1,4 @@
-<%= form_for(@type) do |f| %>
+<%= simple_form_for(@type) do |f| %>
   <% if @type.errors.any? %>
   <div class="alert alert-danger">
    <!-- <div id="error_explanation">
@@ -15,10 +15,7 @@
   <div class="field">
     <%= f.label "Nome" %><br />
     <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label "Local" %><br />
-    <%= f.collection_check_boxes :place_ids, Place.all, :id, :name , :mutiple=> true %>
+
   </div>
  
   <div class="actions">

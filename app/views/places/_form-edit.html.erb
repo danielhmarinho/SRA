@@ -1,6 +1,6 @@
 
 <div class="page-header">
-<%= form_for(@place) do |f| %>
+<%= simple_form_for(@place) do |f| %>
 </div>
   <% if @place.errors.any? %>
      <div class="alert alert-danger">
@@ -16,11 +16,16 @@
     <%= f.label "Nome" %><br />
     <%= f.text_field :name %>
   </div>
+      <div class="list">
+        <%= f.label "Tipos de Atendimento" %>
+        <%= f.association :types, as: :check_boxes, label: false %>
+      </div>
+
     <div class="actions">
   <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"), 
           places_path , 
           class: "btn  btn-warning"%>
-    <%= f.submit "Atualizar Atendimento", :class => 'btn-success btn' %>
+    <%= f.submit "Atualizar Local de Atendimento", :class => 'btn-success btn' %>
     
   </ul>
 </div>

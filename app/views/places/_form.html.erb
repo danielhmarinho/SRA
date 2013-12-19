@@ -38,8 +38,9 @@
 	<%= f.label "Nome" %>
 	
 	<%= f.text_field :name %>
-  <%= f.label "Tipos de Atendimento" %>
+
   <div class="list">
+    <%= f.label "Tipos de Atendimento" %>
   <%= f.association :types, as: :check_boxes, label: false %>
   </div>
 </div>

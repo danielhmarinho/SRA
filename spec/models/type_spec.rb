@@ -8,7 +8,7 @@ it "Pode ser instanciado" do
   end
 
 #teste tipo de atendimento deve possuir um local de atendimento
-  it { should validate_presence_of(:place) }
+  it { should validate_presence_of(:places) }
 
 
 #teste tipo de atendimento deve possuir um nome
@@ -16,12 +16,12 @@ it "Pode ser instanciado" do
 
 #testando se os atributos podem ser atribuidos em massa(attr)
 it { should allow_mass_assignment_of(:name) }
-it { should allow_mass_assignment_of(:place_id) }
 
 
-#teste type deve possuir um local
 
-it { should belong_to(:place) } 
+#teste type deve possuir pelo menos um local
+
+it { should have_and_belong_to_many(:places) }
 
 #validacao do campo nome
  it do
