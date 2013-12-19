@@ -25,7 +25,6 @@ class TypesController < ApplicationController
   # GET /types/new.json
   def new
     @type = Type.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @type }
@@ -85,7 +84,7 @@ class TypesController < ApplicationController
     @type = Place.find(params[:id]).types
 
     respond_to do |format|
-     format.js { render json: @type }
+      format.js { render json: @type }
     end
   end
 end

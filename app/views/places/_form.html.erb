@@ -1,28 +1,62 @@
+<script type="text/javascript">
+	$(function() {
+		function cutAndPaste(from,to) {
+			$(to).append(function() {
+			return $(from+" option:selected").each(function() {
+			this.outerHTML
+			}).remove();
+		});
+	}
+	
+		$("#forward").off("click").on("click", function() {
+			cutAndPaste("#sourceSelect","#destinationSelect");
+		});
+	
+		$("#backward").off("click").on("click", function() {
+			cutAndPaste("#destinationSelect","#sourceSelect");
+		});
+	});
+</script>
+
 <%= render "navbar" %>
 <div class="page-header">
-<%= form_for(@place) do |f| %>
+	<%= form_for(@place) do |f| %>
 </div>
-  <% if @place.errors.any? %>
-     <div class="alert alert-danger">
-      <ul>
-      <% @place.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<% if @place.errors.any? %>
+<div class="alert alert-danger">
+	<ul>
+		<% @place.errors.full_messages.each do |msg| %>
+		<li>
+			<%= msg %>
+		</li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
 
-  <div class="field">
-    <%= f.label "Nome" %><br />
-    <%= f.text_field :name %>
-  </div>
-    <div class="actions">
-  <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"), 
-          places_path , 
-          class: "btn  btn-warning"%>
-    <%= f.submit "Criar Local de Atendimento", :class => 'btn-success btn' %>
-    
-  </ul>
+<div class="field">
+	<%= f.label "Nome" %>
+	<br />
+	<%= f.text_field :name %>
+</div>
+<div class="actions">
+	<%= link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
+	places_path ,
+	class: "btn btn-warning"%> <%= f.submit "Criar Local de Atendimento", :class => 'btn-success btn' %>
+	<div style="float: right;">
+		<select name="sourceSelect" id="sourceSelect" multiple="multiple" size="3">
+			<%= options_for_select(@type_existing) %>
+		</select>
+
+		<input type="button" name="forward" id="forward" value=">" />
+
+		<input type="button" name="backward" id="backward" value="<" />
+
+		<select name="destinationSelect" id="destinationSelect" multiple="multiple" size="3">
+			<%= options_for_select(@type_desired) %>
+		</select>
+
+	</div> </ul>
 </div>
 
 <% end %>

@@ -27,6 +27,9 @@ class PlacesController < ApplicationController
   def new
     @place = Place.new
 
+    @type_existing = Type.all.map { |type| type.name }
+    @type_desired = []
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @place }
@@ -42,6 +45,7 @@ class PlacesController < ApplicationController
   # POST /places.json
   def create
     @place = Place.new(params[:place])
+    puts "="*80, params[:destinationSelect].to_s, "="*80
 
     respond_to do |format|
       if @place.save
