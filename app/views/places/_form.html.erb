@@ -36,7 +36,7 @@
 
 <div class="field">
 	<%= f.label "Nome" %>
-	<br />
+	
 	<%= f.text_field :name %>
 </div>
 <div class="actions">
@@ -55,7 +55,7 @@
 		<select name="destinationSelect" id="destinationSelect" multiple="multiple" size="3">
 			<%= options_for_select(@type_desired) %>
 		</select>
-
+		<%= f.collection_check_boxes :type_ids, Type.all, :id, :name , :mutiple=> true %>
 	</div> </ul>
 </div>
 
