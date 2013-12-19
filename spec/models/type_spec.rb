@@ -7,8 +7,6 @@ it "Pode ser instanciado" do
     Type.new.should be_an_instance_of(Type)
   end
 
-#teste tipo de atendimento deve possuir um local de atendimento
-  it { should validate_presence_of(:places) }
 
 
 #teste tipo de atendimento deve possuir um nome
