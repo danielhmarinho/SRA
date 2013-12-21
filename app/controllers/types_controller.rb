@@ -3,7 +3,7 @@ class TypesController < ApplicationController
   # GET /types
   # GET /types.json
   def index
-    @types = Type.all
+    @types = Type.all(:order => ('name ASC'))
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +14,7 @@ class TypesController < ApplicationController
   # GET /types/1
   # GET /types/1.json
   def show
-    @type = Type.find(params[:id])
+    @type = Type.find(params[:id]).order('name ASC')
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @type }
