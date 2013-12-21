@@ -18,7 +18,7 @@
   </div>
       <div class="list">
         <%= f.label "Tipos de Atendimento" %>
-        <%= f.association :types, as: :check_boxes, label: false %>
+        <%= f.association :types, collection: Type.order('name ASC'), as: :check_boxes, label: false %>
       </div>
 
     <div class="actions">

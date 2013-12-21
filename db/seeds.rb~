@@ -1,9 +1,0 @@
-Place.create!([
-  {name: "Biblioteca"},
-  {name: "Biblioteca2 "}
-])
-Type.create!([
-  {name: "Tipo 1"},
-  {name: "Tipo 2"},
-  {name: "Tipo 3"}
-])

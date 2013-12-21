@@ -68,11 +68,11 @@ $(document).ready(function() {
 
   </br>
   <tr>
-    <td><%= f.select :pessoa_id,  Pessoa.all.collect {|p| [p.name, p.id]} %></td>
+    <td><%= f.select :pessoa_id,  Pessoa.order('name ASC').collect {|p| [p.name, p.id]} %></td>
  <td><%= f.input :data, label: false, :as => :datetime_picker, error: false, label: false%></td>
     <td id='place'>
-      <%= f.select :place_id,  Place.all.collect {|p| [p.name, p.id]} %></td>
-    <td id="type"><%= f.select :type_id,  Type.all.collect {|t| [t.name, t.id]} %></td>
+      <%= f.select :place_id,  Place.order('name ASC').collect {|p| [p.name, p.id]} %></td>
+    <td id="type"><%= f.select :type_id,  Type.order('name ASC').collect {|t| [t.name, t.id]} %></td>
 
 
   </tr>

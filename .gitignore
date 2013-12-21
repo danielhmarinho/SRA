@@ -11,6 +11,8 @@ capybara-*.html
 /db/*.sqlite3
 /public/system/*
 /coverage/
+.idea/*
+./idea/runConfigurations/*
 /spec/tmp/*
 **.orig
 rerun.txt
