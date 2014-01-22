@@ -6,25 +6,12 @@
     <div class="span9">
 
       <div class="row-fluid">
-        <div class="span4">
-          <h2>Login</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">Ver Detalhes &raquo;</a></p>
-        </div><!--/span-->
-        <div class="span4">
-          <h2>Cabeçalho</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">Ver Detalhes &raquo;</a></p>
-        </div><!--/span-->
-        <div class="span4">
-          <h2>Cabeçalho</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">Ver Detalhes &raquo;</a></p>
-        </div><!--/span-->
-      </div><!--/row-->
+        <div class="span6 form">
+
+          <%= render "devise/sessions/sign_in", :remote => true %>
 
 
-    </div><!--/span-->
+        </div><!--/span-->
   </div><!--/row-->
 
   <hr>
