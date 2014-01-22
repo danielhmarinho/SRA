@@ -11,7 +11,7 @@ gem 'therubyracer'
 gem 'acts_as_relation', '~> 0.1'
 gem "twitter-bootstrap-rails"
 gem 'datetimepicker-rails', :require => 'datetimepicker-rails', :git => 'https://github.com/thiagovsk/datetimepicker-rails.git'
-
+gem 'devise'
 gem 'simple_form'
 gem 'rails3-jquery-autocomplete'
 gem 'watir'
