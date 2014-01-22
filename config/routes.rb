@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 SRA::Application.routes.draw do
 
+  devise_for :users
+
   resources :atendimentos do 
 
      get :autocomplete_pessoa_name, :on => :collection
