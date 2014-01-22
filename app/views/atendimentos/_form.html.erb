@@ -72,7 +72,7 @@ $(document).ready(function() {
   </br>
   <tr>
     <td><%= f.input :pessoa_id, label: false, collection: Pessoa.order('name ASC').collect {|p| [p.name, p.id]} %></td>
-    <td><%= f.input :data, label: false, :as => :datetime_picker, error: false, label: false%></td>
+    <td><%= f.input :data, input_html: {value: f.object.data || l(DateTime.current, :format => '%d/%m/%Y %R')}, label: false, :as => :string, error: false, :readonly => true %></td>
     <td id='place'>
       <%= f.select :place_id,  Place.order('name ASC').collect {|p| [p.name, p.id]} %></td>
     <td id="type"><%= f.select :type_id,  Type.order('name ASC').collect {|t| [t.name, t.id]} %></td>
