@@ -11,16 +11,7 @@ class ComunidadesController < ApplicationController
     end
   end
 
-  # GET /comunidades/1
-  # GET /comunidades/1.json
-  def show
-    @comunidade = Comunidade.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @comunidade }
-    end
-  end
 
   # GET /comunidades/new
   # GET /comunidades/new.json

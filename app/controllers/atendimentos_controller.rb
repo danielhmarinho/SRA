@@ -15,17 +15,6 @@ class AtendimentosController < ApplicationController
     end
   end
 
-  # GET /atendimentos/1
-  # GET /atendimentos/1.json
-  def show
-    @atendimento = Atendimento.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @atendimento }
-    end
-  end
-
   # GET /atendimentos/new
   # GET /atendimentos/new.json
   def new

@@ -11,16 +11,7 @@ class ServidorsController < ApplicationController
     end
   end
 
-  # GET /servidors/1
-  # GET /servidors/1.json
-  def show
-    @servidor = Servidor.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @servidor }
-    end
-  end
 
   # GET /servidors/new
   # GET /servidors/new.json

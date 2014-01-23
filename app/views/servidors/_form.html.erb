@@ -1,6 +1,5 @@
-<%= render "navbar" %>
 <div class="page-header">
-<%= form_for(@servidor) do |f| %>
+<%= simple_form_for(@servidor) do |f| %>
 </div>
   <% if @servidor.errors.any? %>
      <div class="alert alert-danger">

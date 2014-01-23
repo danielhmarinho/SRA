@@ -12,16 +12,6 @@ class PlacesController < ApplicationController
     end
   end
 
-  # GET /places/1
-  # GET /places/1.json
-  def show
-    @place = Place.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @place }
-    end
-  end
 
   # GET /places/new
   # GET /places/new.json

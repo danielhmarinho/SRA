@@ -11,17 +11,6 @@ class ProfessorsController < ApplicationController
     end
   end
 
-  # GET /professors/1
-  # GET /professors/1.json
-  def show
-    @professor = Professor.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @professor }
-    end
-  end
-
   # GET /professors/new
   # GET /professors/new.json
   def new
