@@ -34,9 +34,7 @@
       });
 
   </script>
-  <div align='left'>
-    <%= autocomplete_field_tag :replacement_id, '', autocomplete_user_name_atendimentos_path, :id_element => "#atendimento_user_id", placeholder: "Procurar pelo Nome" %>
-  </div>
+
 
 
   <%= simple_form_for(@atendimento, :html => {:class => 'form-horizontal'}) do |f| %>
@@ -75,7 +73,8 @@
         <tr>
           <td><%= current_user.name %></td>
           <%= f.input :user_id, label: false, input_html: {value: f.object.data || current_user.id}, :as => :hidden %>
-          <td><%= f.input :data, input_html: {value: f.object.data || l(DateTime.current, :format => '%d/%m/%Y %R')}, label: false, :as => :string, error: false, :readonly => true %></td>
+          <td><%=  l(DateTime.current, :format => '%d/%m/%Y %R')%></td>
+          <%= f.input :data, input_html: {value: f.object.data || l(DateTime.current, :format => '%d/%m/%Y %R')}, label: false, :as => :hidden, error: false, :readonly => true %>
           <td id='place'>
             <%= f.select :place_id, Place.order('name ASC').collect { |p| [p.name, p.id] } %></td>
           <td id="type"><%= f.select :type_id, Type.order('name ASC').collect { |t| [t.name, t.id] } %></td>
