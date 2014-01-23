@@ -1,10 +1,19 @@
-<h2>Sign in</h2>
 
-<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-    <div class="form-inputs">
-      <%= f.input :email, :required => false, :autofocus => true %>
-      <%= f.input :password, :required => false %>
-      <%= f.button :submit, "Login", :class => 'btn-success btn' %>
-    </div>
+<%= render "shared/navbar" %>
+<div class="container">
+<div class="row">
+<div class="page-header"> 
+<h1 align="center">Sistema de Registro de Atendimento </h1>
+</div>
+</div>
+</div>
+<div align = "center" >
 
-<% end %>
+
+  <%= render "devise/sessions/form_sign_in" %>
+  <%= render "devise/shared/links" %>
+
+  <footer>
+    <p>&copy; SRA - Solicitação de Registros de Atendimento - Universidade de Brasília</p>
+  </footer>
+</div><!--/.fluid-container-->
