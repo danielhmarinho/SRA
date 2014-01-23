@@ -3,7 +3,14 @@
     	
       <%= f.input :email, :required => false, :autofocus => true %>
       <%= f.input :password, :required => false %>
-      <%= f.button :submit, "Login", :class => 'btn-success btn' %>
+      <%= f.button :submit, "Login", :class => 'btn-success btn-large' %>
+        <button class="btn btn-primary btn-large" data-toggle="modal" data-target="#myModal">
+          Cadastrar Pessoa
+        </button>
+
+
+             
+
     </div>
 
 <% end %>
