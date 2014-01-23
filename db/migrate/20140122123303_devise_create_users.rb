@@ -5,7 +5,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
     create_table :users,:as_relation_superclass => true do |t|
       ## Database authenticatable
       t.string :name
-      t.string :matricula
       t.string :email
       t.string :encrypted_password
 

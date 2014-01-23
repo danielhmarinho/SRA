@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(:version => 20140122123303) do
   end
 
   create_table "atendimentos", :force => true do |t|
-    t.integer  "pessoa_id"
+    t.integer  "user_id"
     t.datetime "data"
     t.integer  "place_id"
     t.integer  "type_id"
@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(:version => 20140122123303) do
     t.datetime "updated_at", :null => false
   end
 
-  add_index "atendimentos", ["pessoa_id"], :name => "index_atendimentos_on_pessoa_id"
   add_index "atendimentos", ["place_id"], :name => "index_atendimentos_on_place_id"
   add_index "atendimentos", ["type_id"], :name => "index_atendimentos_on_type_id"
+  add_index "atendimentos", ["user_id"], :name => "index_atendimentos_on_user_id"
 
   create_table "comunidades", :force => true do |t|
     t.string   "identificacao"
@@ -73,7 +73,6 @@ ActiveRecord::Schema.define(:version => 20140122123303) do
     t.integer  "as_user_id"
     t.string   "as_user_type"
     t.string   "name"
-    t.string   "matricula"
     t.string   "email"
     t.string   "encrypted_password"
     t.string   "reset_password_token"

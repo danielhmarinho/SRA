@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class AtendimentosController < ApplicationController
 
-  autocomplete :pessoa, :name
+  autocomplete :user, :name
 
 
   # GET /atendimentos

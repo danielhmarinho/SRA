@@ -36,7 +36,7 @@ $(document).ready(function() {
 
 </script>
 <div align='left'>
-  <%= autocomplete_field_tag :replacement_id, '', autocomplete_pessoa_name_atendimentos_path,:id_element => "#atendimento_pessoa_id", placeholder: "Procurar pelo Nome"%>
+  <%= autocomplete_field_tag :replacement_id, '', autocomplete_user_name_atendimentos_path,:id_element => "#atendimento_user_id", placeholder: "Procurar pelo Nome"%>
 </div>
 
 
@@ -71,7 +71,7 @@ $(document).ready(function() {
 
   </br>
   <tr>
-    <td><%= f.input :pessoa_id, label: false, collection: Pessoa.order('name ASC').collect {|p| [p.name, p.id]} %></td>
+    <td><%= f.text_field :user_id, label: false, :value => current_user.name %></td>
     <td><%= f.input :data, input_html: {value: f.object.data || l(DateTime.current, :format => '%d/%m/%Y %R')}, label: false, :as => :string, error: false, :readonly => true %></td>
     <td id='place'>
       <%= f.select :place_id,  Place.order('name ASC').collect {|p| [p.name, p.id]} %></td>

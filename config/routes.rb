@@ -5,7 +5,7 @@ SRA::Application.routes.draw do
 
   resources :atendimentos do 
 
-     get :autocomplete_pessoa_name, :on => :collection
+     get :autocomplete_user_name, :on => :collection
   end
 
 
