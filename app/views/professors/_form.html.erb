@@ -1,6 +1,6 @@
 <%= render "navbar" %>
 <div class="page-header">
-<%= form_for(@professor) do |f| %>
+<%= simple_form_for(@professor) do |f| %>
 </div>
   <% if @professor.errors.any? %>
      <div class="alert alert-danger">
@@ -14,11 +14,20 @@
 
   <div class="field">
     <%= f.label "Nome" %><br />
-    <%= f.text_field :name %>
+    <%= f.input :name, label: false %>
 
 
     <%= f.label "Matricula" %><br />
-    <%= f.text_field :matricula %>
+    <%= f.input :matricula, label: false %>
+
+    <%= f.label "Email" %><br />
+    <%= f.input :email, label: false %>
+
+    <%= f.label "Senha" %><br />
+    <%= f.input :password, label: false %>
+
+    <%= f.label "Confirmação de Senha" %><br />
+    <%= f.input :password_confirmation, label: false %>
 
   </div>
     <div class="actions">
