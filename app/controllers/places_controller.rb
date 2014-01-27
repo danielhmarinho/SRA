@@ -2,7 +2,7 @@
 class PlacesController < ApplicationController
   # GET /places
   # GET /places.json
-  before_filter
+  load_and_authorize_resource
 
   def index
     @places = Place.all(:order => 'name ASC')

@@ -70,6 +70,7 @@ GEM
     brstring (3.3.0)
       activesupport (>= 3.0.0)
     builder (3.0.4)
+    cancan (1.6.10)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
     coffee-rails (3.2.2)
@@ -224,6 +225,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_relation (~> 0.1)
   brazilian-rails
+  cancan
   coffee-rails (~> 3.2.1)
   datetimepicker-rails!
   devise

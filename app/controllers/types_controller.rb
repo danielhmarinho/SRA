@@ -2,6 +2,8 @@
 class TypesController < ApplicationController
   # GET /types
   # GET /types.json
+  load_and_authorize_resource
+
   def index
     @types = Type.all(:order => ('name ASC'))
 
