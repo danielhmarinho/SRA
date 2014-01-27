@@ -2,6 +2,8 @@
 class ProfessorsController < ApplicationController
   # GET /professors
   # GET /professors.json
+  load_and_authorize_resource
+
   def index
     @professors = Professor.all
 

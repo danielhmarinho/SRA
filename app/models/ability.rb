@@ -5,7 +5,14 @@ class Ability
     user ||= User.new # guest user
 
     if user.as_user_type ==  'Aluno'
-      can :create, [Atendimento]
+      can :create, Atendimento
+    elsif user.as_user_type == 'Professor'
+      can :create, Atendimento
+    elsif user.as_user_type == 'Servidor'
+      can [:edit, :create], Type
+      can :read, :all
+    elsif user.as_user_type == 'Comunidade'
+      can :create, Atendimento
     end
 
   end

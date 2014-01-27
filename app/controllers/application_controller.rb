@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
+    exception.default_message = "Vocẽ não possui permissão para acessar esta área"
     flash[:error] = exception.message
     redirect_to root_url
   end

@@ -2,6 +2,8 @@
 class ComunidadesController < ApplicationController
   # GET /comunidades
   # GET /comunidades.json
+  load_and_authorize_resource
+
   def index
     @comunidades = Comunidade.all
 

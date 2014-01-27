@@ -2,6 +2,7 @@
 class AlunosController < ApplicationController
   # GET /alunos
   # GET /alunos.json
+  load_and_authorize_resource
   def index
     @alunos = Aluno.all
 

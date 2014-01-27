@@ -2,6 +2,8 @@
 class ServidorsController < ApplicationController
   # GET /servidors
   # GET /servidors.json
+  load_and_authorize_resource
+
   def index
     @servidors = Servidor.all
 
