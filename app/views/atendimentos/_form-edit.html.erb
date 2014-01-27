@@ -69,7 +69,7 @@
 
           </br>
         <tr>
-          <td><%= f.select :pessoa_id, Person.order('name ASC').collect { |p| [p.name, p.id] } %></td>
+          <td><%= f.select :user_id, User.order('name ASC').collect { |p| [p.name, p.id] } %></td>
           <td><%= f.input :data, label: false, :as => :datetime_picker, error: false, label: false %></td>
           <td id='place'>
             <%= f.select :place_id, Place.order('name ASC').collect { |p| [p.name, p.id] } %></td>
