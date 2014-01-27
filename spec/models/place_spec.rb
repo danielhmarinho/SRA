@@ -15,11 +15,7 @@ it "Pode ser instanciado" do
 #testando se os atributos podem ser atribuidos em massa(attr)
 it { should allow_mass_assignment_of(:name) }
 it { should allow_mass_assignment_of(:type_ids) }
-
-#validacao do campo nome
- it do
-    should_not allow_value('@#$%*!>:{}+').for(:name)
-  end
-
+it { should have_many(:atendimentos) }
+it { should have_and_belong_to_many(:types) }
 
 end
