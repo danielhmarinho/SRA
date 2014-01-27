@@ -9,8 +9,8 @@ describe Atendimento do
   
  #testando se os atributos podem ser atribuidos em massa(attr)
   it { should allow_mass_assignment_of(:data) }
-  it { should allow_mass_assignment_of(:pessoa_id) }
-  it { should allow_mass_assignment_of(:pessoa) }
+  it { should allow_mass_assignment_of(:user_id) }
+  it { should allow_mass_assignment_of(:user) }
   it { should allow_mass_assignment_of(:place_id) }
   it { should allow_mass_assignment_of(:type_id) }
 
@@ -19,7 +19,7 @@ describe Atendimento do
   it { should validate_presence_of(:data) }
   
   #teste atendimento deve pertencer a pessoa, local e tipo
-  it { should belong_to(:pessoa) }
+  it { should belong_to(:user) }
   it { should belong_to(:place) }
   it { should belong_to(:type) } 
  

@@ -21,10 +21,6 @@ it { should allow_mass_assignment_of(:name) }
 
 it { should have_and_belong_to_many(:places) }
 
-#validacao do campo nome
- it do
-    should_not allow_value('@#$%*!>:{}+').for(:name)
-  end
 
 
 end

@@ -14,7 +14,7 @@ it { should allow_mass_assignment_of(:identificacao) }
 
 #teste aluno deve extender pessoa
 
-it { should have_one(:pessoa) } 
+it { should have_one(:user) } 
 
 
 end

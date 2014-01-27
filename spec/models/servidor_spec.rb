@@ -20,7 +20,7 @@ it { should validate_uniqueness_of(:matricula) }
 
 #teste se professor extende pessoa
 
-it { should have_one(:pessoa) }
+it { should have_one(:user) }
 
 
 end
