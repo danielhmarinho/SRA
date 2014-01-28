@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-
+    <script type="text/javascript">
+        $(document).ready(function(){
+            setTimeout(function(){
+                $('#flash').remove();
+            }, 5000);
+        })
+    </script>
     <meta charset="utf-8">
     <title>Sistema de Registro de Atendimentos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,13 +48,12 @@
     
     <!-- Le content -->
     <%= yield %>
-\\
 
 
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <%= javascript_include_tag "application" %>
+
 
   </body>
 </html>
