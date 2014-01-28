@@ -13,8 +13,6 @@ class Ability
       can [:edit, :update], Place
       can :read, :all
       can :manage, Professor
-    elsif user.as_user_type == 'Comunidade'
-      can :create, Atendimento
     end
 
   end

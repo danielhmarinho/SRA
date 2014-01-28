@@ -21,9 +21,6 @@ SRA::Application.routes.draw do
   resources :alunos
 
   resources :servidors
-
-  resources :comunidades
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            setTimeout(function(){
-                $('#flash').remove();
-            }, 5000);
-        })
-    </script>
+
     <meta charset="utf-8">
     <title>Sistema de Registro de Atendimentos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,11 +14,7 @@
  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js", "application" %>
 
     <%= csrf_meta_tags %>
-    <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-    </style>
+
   
     
 
@@ -44,12 +34,13 @@
 
   <body>
     
-    <%= render partial: "shared/flash_messages", flash: flash %> 
+
     
     <!-- Le content -->
+
+    <%= render "shared/navbar" %>
+    <%= render partial: "shared/flash_messages", flash: flash %>
     <%= yield %>
-
-
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

@@ -1,22 +1,24 @@
-<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar navbar-default navbar-static-top navbar-inverse" role="navigation">
   <div class="navbar-inner">
     <div class="container">
       <a class="brand" href="">
          <img src="/assets/UnB3.png">
       </a>
 
+      <div class = "logged" align='right'>
+        <%  if user_signed_in? %>
+
+
+        <button type="button" class="btn btn-default navbar-btn"><%=  current_user.name %></button>
+            <%=link_to raw("<i class=\"icon-white icon-remove-circle\"> Sair </i>"),
+                       destroy_user_session_path,
+                       class: "btn  btn-danger", method: "delete" %>
+
+        <% end %>
+      </div>
 
       </div><!--/.nav-collapse -->
     </div>
-  <div class = "logged" align='right'>
-
-    <%  if user_signed_in? %>
-        Logado como : <%=  current_user.name %>
-        <%= link_to "Sair" , destroy_user_session_path, :method => :delete %>
-
-    <% end %>
-  </div>
-
 
 </div>
 </div>
