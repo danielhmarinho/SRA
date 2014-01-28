@@ -9,8 +9,10 @@ class Ability
     elsif user.as_user_type == 'Professor'
       can :create, Atendimento
     elsif user.as_user_type == 'Servidor'
-      can [:edit, :create], Type
+      can [:edit, :update, :create], Type
+      can [:edit, :update], Place
       can :read, :all
+      can :manage, Professor
     elsif user.as_user_type == 'Comunidade'
       can :create, Atendimento
     end
