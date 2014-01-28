@@ -23,7 +23,8 @@ describe AlunosController do
   # This should return the minimal set of attributes required to create a valid
   # Aluno. As you add validations to Aluno, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { :name => "Alessandro",:matricula => "1321315" } }
+  let(:valid_attributes) { { :name => "Alessandro",:matricula => "1321315" , :password => "12345678" ,
+  :password_confirmation => "12345678"  , :email => "eueueue@gmail.com"} }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -38,13 +39,8 @@ describe AlunosController do
     end
   end
 
-  describe "GET show" do
-    it "assigns the requested aluno as @aluno" do
-      aluno = Aluno.create! valid_attributes
-      get :show, {:id => aluno.to_param}, valid_session
-      expect(assigns(:aluno)).to eq(aluno)
-    end
-  end
+
+
 
   describe "GET new" do
     it "assigns a new aluno as @aluno" do
@@ -75,9 +71,9 @@ describe AlunosController do
         expect(assigns(:aluno)).to be_persisted
       end
 
-      it "redirects to the created aluno" do
+      it "redirects to the home page" do
         post :create, {:aluno => valid_attributes}, valid_session
-        expect(response).to redirect_to(alunos_path)
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -116,10 +112,10 @@ describe AlunosController do
         expect(assigns(:aluno)).to eq(aluno)
       end
 
-      it "redirects to the aluno" do
+      it "redirects to the homepage" do
         aluno = Aluno.create! valid_attributes
         put :update, {:id => aluno.to_param, :aluno => valid_attributes}, valid_session
-        expect(response).to redirect_to(alunos_path)
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -150,10 +146,10 @@ describe AlunosController do
       }.to change(Aluno, :count).by(-1)
     end
 
-    it "redirects to the alunos list" do
+    it "redirects to the homepage" do
       aluno = Aluno.create! valid_attributes
       delete :destroy, {:id => aluno.to_param}, valid_session
-      expect(response).to redirect_to(alunos_url)
+      expect(response).to redirect_to(root_path)
     end
   end
 

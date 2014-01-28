@@ -23,7 +23,8 @@ describe ServidorsController do
   # This should return the minimal set of attributes required to create a valid
   # Servidor. As you add validations to Servidor, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { :name => "Alessandro", :matricula => "465464"  } }
+  let(:valid_attributes) { { :name => "Alessandro",:matricula => "1321315" , :password => "12345678" ,
+                             :password_confirmation => "12345678"  , :email => "eueueue@gmail.com"} }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -38,13 +39,6 @@ describe ServidorsController do
     end
   end
 
-  describe "GET show" do
-    it "assigns the requested servidor as @servidor" do
-      servidor = Servidor.create! valid_attributes
-      get :show, {:id => servidor.to_param}, valid_session
-      expect(assigns(:servidor)).to eq(servidor)
-    end
-  end
 
   describe "GET new" do
     it "assigns a new servidor as @servidor" do
@@ -75,9 +69,9 @@ describe ServidorsController do
         expect(assigns(:servidor)).to be_persisted
       end
 
-      it "redirects to the created servidor" do
+      it "redirects to the homepage" do
         post :create, {:servidor => valid_attributes}, valid_session
-        expect(response).to redirect_to(servidors_path)
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -116,10 +110,10 @@ describe ServidorsController do
         expect(assigns(:servidor)).to eq(servidor)
       end
 
-      it "redirects to the servidor" do
+      it "redirects to the homepage" do
         servidor = Servidor.create! valid_attributes
         put :update, {:id => servidor.to_param, :servidor => valid_attributes}, valid_session
-        expect(response).to redirect_to(servidors_path)
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -150,10 +144,10 @@ describe ServidorsController do
       }.to change(Servidor, :count).by(-1)
     end
 
-    it "redirects to the servidors list" do
+    it "redirects to the homepage" do
       servidor = Servidor.create! valid_attributes
       delete :destroy, {:id => servidor.to_param}, valid_session
-      expect(response).to redirect_to(servidors_url)
+      expect(response).to redirect_to(root_path)
     end
   end
 

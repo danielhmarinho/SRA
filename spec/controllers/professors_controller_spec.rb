@@ -23,7 +23,8 @@ describe ProfessorsController do
   # This should return the minimal set of attributes required to create a valid
   # Professor. As you add validations to Professor, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { :name => "Alessandro", :matricula => "312131321" } }
+  let(:valid_attributes) { { :name => "Alessandro",:matricula => "1321315" , :password => "12345678" ,
+                             :password_confirmation => "12345678"  , :email => "eueueue@gmail.com"} }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -38,13 +39,7 @@ describe ProfessorsController do
     end
   end
 
-  describe "GET show" do
-    it "assigns the requested professor as @professor" do
-      professor = Professor.create! valid_attributes
-      get :show, {:id => professor.to_param}, valid_session
-      expect(assigns(:professor)).to eq(professor)
-    end
-  end
+
 
   describe "GET new" do
     it "assigns a new professor as @professor" do
@@ -75,9 +70,9 @@ describe ProfessorsController do
         expect(assigns(:professor)).to be_persisted
       end
 
-      it "redirects to the created professor" do
+      it "redirects to the homepage" do
         post :create, {:professor => valid_attributes}, valid_session
-        expect(response).to redirect_to(professors_path)
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -116,10 +111,10 @@ describe ProfessorsController do
         expect(assigns(:professor)).to eq(professor)
       end
 
-      it "redirects to the professor" do
+      it "redirects to the homepage" do
         professor = Professor.create! valid_attributes
         put :update, {:id => professor.to_param, :professor => valid_attributes}, valid_session
-        expect(response).to redirect_to(professors_path)
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -150,10 +145,10 @@ describe ProfessorsController do
       }.to change(Professor, :count).by(-1)
     end
 
-    it "redirects to the professors list" do
+    it "redirects to the homepage" do
       professor = Professor.create! valid_attributes
       delete :destroy, {:id => professor.to_param}, valid_session
-      expect(response).to redirect_to(professors_url)
+      expect(response).to redirect_to(root_path)
     end
   end
 

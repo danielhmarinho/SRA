@@ -18,75 +18,75 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe PlacesController do
+describe TypesController do
 
   # This should return the minimal set of attributes required to create a valid
-  # Place. As you add validations to Place, be sure to
+  # Type. As you add validations to Type, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) { { :name => "Alessandro"  } }
 
+
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # PlacesController. Be sure to keep this updated too.
+  # TypesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET index" do
-    it "assigns all places as @places" do
-      place = Place.create! valid_attributes
+    it "assigns all types as @types" do
+      type = Type.create! valid_attributes
       get :index, {}, valid_session
-      expect(assigns(:places)).to eq([place])
+      expect(assigns(:types)).to eq([type])
     end
   end
 
 
-
   describe "GET new" do
-    it "assigns a new place as @place" do
+    it "assigns a new type as @type" do
       get :new, {}, valid_session
-      expect(assigns(:place)).to be_a_new(Place)
+      expect(assigns(:type)).to be_a_new(Type)
     end
   end
 
   describe "GET edit" do
-    it "assigns the requested place as @place" do
-      place = Place.create! valid_attributes
-      get :edit, {:id => place.to_param}, valid_session
-      expect(assigns(:place)).to eq(place)
+    it "assigns the requested type as @type" do
+      type = Type.create! valid_attributes
+      get :edit, {:id => type.to_param}, valid_session
+      expect(assigns(:type)).to eq(type)
     end
   end
 
   describe "POST create" do
     describe "with valid params" do
-      it "creates a new Place" do
+      it "creates a new Type" do
         expect {
-          post :create, {:place => valid_attributes}, valid_session
-        }.to change(Place, :count).by(1)
+          post :create, {:type => valid_attributes}, valid_session
+        }.to change(Type, :count).by(1)
       end
 
-      it "assigns a newly created place as @place" do
-        post :create, {:place => valid_attributes}, valid_session
-        expect(assigns(:place)).to be_a(Place)
-        expect(assigns(:place)).to be_persisted
+      it "assigns a newly created type as @type" do
+        post :create, {:type => valid_attributes}, valid_session
+        expect(assigns(:type)).to be_a(Type)
+        expect(assigns(:type)).to be_persisted
       end
 
       it "redirects to the homepage" do
-        post :create, {:place => valid_attributes}, valid_session
+        post :create, {:type => valid_attributes}, valid_session
         expect(response).to redirect_to(root_path)
       end
     end
 
     describe "with invalid params" do
-      it "assigns a newly created but unsaved place as @place" do
+      it "assigns a newly created but unsaved type as @type" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Place.any_instance.stub(:save).and_return(false)
-        post :create, {:place => {  }}, valid_session
-        expect(assigns(:place)).to be_a_new(Place)
+        Type.any_instance.stub(:save).and_return(false)
+        post :create, {:type => {  }}, valid_session
+        expect(assigns(:type)).to be_a_new(Type)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Place.any_instance.stub(:save).and_return(false)
-        post :create, {:place => {  }}, valid_session
+        Type.any_instance.stub(:save).and_return(false)
+        post :create, {:type => {  }}, valid_session
         expect(response).to render_template("new")
       end
     end
@@ -94,59 +94,59 @@ describe PlacesController do
 
   describe "PUT update" do
     describe "with valid params" do
-      it "updates the requested place" do
-        place = Place.create! valid_attributes
-        # Assuming there are no other places in the database, this
-        # specifies that the Place created on the previous line
+      it "updates the requested type" do
+        type = Type.create! valid_attributes
+        # Assuming there are no other types in the database, this
+        # specifies that the Type created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        expect_any_instance_of(Place).to receive(:update_attributes).with({ "these" => "params" })
-        put :update, {:id => place.to_param, :place => { "these" => "params" }}, valid_session
+        expect_any_instance_of(Type).to receive(:update_attributes).with({ "these" => "params" })
+        put :update, {:id => type.to_param, :type => { "these" => "params" }}, valid_session
       end
 
-      it "assigns the requested place as @place" do
-        place = Place.create! valid_attributes
-        put :update, {:id => place.to_param, :place => valid_attributes}, valid_session
-        expect(assigns(:place)).to eq(place)
+      it "assigns the requested type as @type" do
+        type = Type.create! valid_attributes
+        put :update, {:id => type.to_param, :type => valid_attributes}, valid_session
+        expect(assigns(:type)).to eq(type)
       end
 
       it "redirects to the homepage" do
-        place = Place.create! valid_attributes
-        put :update, {:id => place.to_param, :place => valid_attributes}, valid_session
+        type = Type.create! valid_attributes
+        put :update, {:id => type.to_param, :type => valid_attributes}, valid_session
         expect(response).to redirect_to(root_path)
       end
     end
 
     describe "with invalid params" do
-      it "assigns the place as @place" do
-        place = Place.create! valid_attributes
+      it "assigns the type as @type" do
+        type = Type.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Place.any_instance.stub(:save).and_return(false)
-        put :update, {:id => place.to_param, :place => {  }}, valid_session
-        expect(assigns(:place)).to eq(place)
+        Type.any_instance.stub(:save).and_return(false)
+        put :update, {:id => type.to_param, :type => {  }}, valid_session
+        expect(assigns(:type)).to eq(type)
       end
 
       it "re-renders the 'edit' template" do
-        place = Place.create! valid_attributes
+        type = Type.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Place.any_instance.stub(:save).and_return(false)
-        put :update, {:id => place.to_param, :place => {  }}, valid_session
+        Type.any_instance.stub(:save).and_return(false)
+        put :update, {:id => type.to_param, :type => {  }}, valid_session
         expect(response).to render_template("edit")
       end
     end
   end
 
   describe "DELETE destroy" do
-    it "destroys the requested place" do
-      place = Place.create! valid_attributes
+    it "destroys the requested type" do
+      type = Type.create! valid_attributes
       expect {
-        delete :destroy, {:id => place.to_param}, valid_session
-      }.to change(Place, :count).by(-1)
+        delete :destroy, {:id => type.to_param}, valid_session
+      }.to change(Type, :count).by(-1)
     end
 
     it "redirects to the homepage" do
-      place = Place.create! valid_attributes
-      delete :destroy, {:id => place.to_param}, valid_session
+      type = Type.create! valid_attributes
+      delete :destroy, {:id => type.to_param}, valid_session
       expect(response).to redirect_to(root_path)
     end
   end

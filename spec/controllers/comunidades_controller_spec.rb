@@ -23,8 +23,8 @@ describe ComunidadesController do
   # This should return the minimal set of attributes required to create a valid
   # Comunidade. As you add validations to Comunidade, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { :name => "Alessandro", :identificacao => "02919594150" } }
-
+  let(:valid_attributes) { { :name => "Alessandro",:identificacao => "03713770131" , :password => "12345678" ,
+                             :password_confirmation => "12345678"  , :email => "eueueue@gmail.com"} }
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # ComunidadesController. Be sure to keep this updated too.
@@ -38,13 +38,6 @@ describe ComunidadesController do
     end
   end
 
-  describe "GET show" do
-    it "assigns the requested comunidade as @comunidade" do
-      comunidade = Comunidade.create! valid_attributes
-      get :show, {:id => comunidade.to_param}, valid_session
-      expect(assigns(:comunidade)).to eq(comunidade)
-    end
-  end
 
   describe "GET new" do
     it "assigns a new comunidade as @comunidade" do
@@ -75,9 +68,9 @@ describe ComunidadesController do
         expect(assigns(:comunidade)).to be_persisted
       end
 
-      it "redirects to the created comunidade" do
+      it "redirects to the homepage" do
         post :create, {:comunidade => valid_attributes}, valid_session
-        expect(response).to redirect_to(comunidades_path)
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -116,10 +109,10 @@ describe ComunidadesController do
         expect(assigns(:comunidade)).to eq(comunidade)
       end
 
-      it "redirects to the comunidade" do
+      it "redirects to the homepage" do
         comunidade = Comunidade.create! valid_attributes
         put :update, {:id => comunidade.to_param, :comunidade => valid_attributes}, valid_session
-        expect(response).to redirect_to(comunidades_path)
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -150,10 +143,10 @@ describe ComunidadesController do
       }.to change(Comunidade, :count).by(-1)
     end
 
-    it "redirects to the comunidades list" do
+    it "redirects to the homepage" do
       comunidade = Comunidade.create! valid_attributes
       delete :destroy, {:id => comunidade.to_param}, valid_session
-      expect(response).to redirect_to(comunidades_url)
+      expect(response).to redirect_to(root_path)
     end
   end
 
