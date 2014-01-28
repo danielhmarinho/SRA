@@ -2,7 +2,9 @@
 class AlunosController < ApplicationController
   # GET /alunos
   # GET /alunos.json
-  load_and_authorize_resource
+  load_and_authorize_resource :except => [:new, :create]
+
+
   def index
     @alunos = Aluno.all
 
@@ -36,7 +38,7 @@ class AlunosController < ApplicationController
 
     respond_to do |format|
       if @aluno.save
-        format.html { redirect_to alunos_url, notice: 'Aluno criado com sucesso.' }
+        format.html { redirect_to root_path, notice: 'Aluno criado com sucesso.' }
         format.json { render json: @aluno, status: :created, location: @aluno }
       else
         format.html { render action: "new" }

@@ -85,62 +85,10 @@
       </tr>
       <div class="actions">
         <%= f.submit :class => 'btn-success btn' %>
-        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-          Cadastrar Pessoa
-        </button>
 
-        </ul>
+
       </div>
 
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title" id="myModalLabel">Cadastrar</h4>
-            </div>
-            <div class="modal-body">
-              <div class="tabbable"> <!-- Only required for left/right tabs -->
-                <ul class="nav nav-tabs">
-                  <li><a href="#tab2" data-toggle="tab">Professor</a></li>
-                  <li><a href="#tab3" data-toggle="tab">Servidor Administrativo</a></li>
-                  <li><a href="#tab4" data-toggle="tab">Aluno</a></li>
-                  <li><a href="#tab5" data-toggle="tab">Comunidade Externa</a></li>
-                </ul>
-                <div class="tab-content">
-                  <div class="tab-pane " id="tab1">
-
-                    <p><%= render "alunos/form", :remote => true, :@aluno => Aluno.new %> </p>
-                  </div>
-
-                  <div class="tab-pane " id="tab2">
-                    <p><%= render "professors/form", :remote => true, :@professor => Professor.new %></p>
-                  </div>
-
-                  <div class="tab-pane " id="tab3">
-                    <p><%= render "servidors/form", :remote => true, :@servidor => Servidor.new %></p>
-                  </div>
-
-                  <div class="tab-pane " id="tab4">
-                    <p><%= render "alunos/form", :remote => true, :@aluno => Aluno.new %> </p>
-                  </div>
-                  <div class="tab-pane " id="tab5">
-                    <p><%= render "comunidades/form", :remote => true, :@comunidade => Comunidade.new %> </p>
-                  </div>
-
-
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-            </div>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-      <!-- /.modal -->
 
 
   <% end %>
