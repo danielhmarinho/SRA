@@ -2,7 +2,7 @@
 class ComunidadesController < ApplicationController
   # GET /comunidades
   # GET /comunidades.json
-  load_and_authorize_resource
+  load_and_authorize_resource :except => [:new, :create]
 
   def index
     @comunidades = Comunidade.all
@@ -54,7 +54,7 @@ class ComunidadesController < ApplicationController
 
     respond_to do |format|
       if @comunidade.update_attributes(params[:comunidade])
-        format.html { redirect_to comunidades_url, notice: 'Pessoa Externa atualizada com sucesso' }
+        format.html { redirect_to root_path, notice: 'Pessoa Externa atualizada com sucesso' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
