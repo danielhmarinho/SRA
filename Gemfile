@@ -14,6 +14,7 @@ gem 'datetimepicker-rails', :require => 'datetimepicker-rails', :git => 'https:/
 gem 'devise'
 gem 'simple_form'
 gem 'rails3-jquery-autocomplete'
+gem 'font-awesome-less'
 gem 'watir'
 gem 'brazilian-rails'
 gem 'seed_dump'

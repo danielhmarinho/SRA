@@ -9,10 +9,11 @@
         <%  if user_signed_in? %>
 
 
-        <button type="button" class="btn btn-default navbar-btn"><%=  current_user.name %></button>
-            <%=link_to raw("<i class=\"icon-white icon-remove-circle\"> Sair </i>"),
+        <button type="button" class="btn btn-info navbar-btn"><i class="icon-white icon-user"></i> <%=  current_user.name%></button>
+            <%=link_to raw("<i class=\"fa fa-sign-out\"> Sair </i>"),
                        destroy_user_session_path,
-                       class: "btn  btn-danger", method: "delete" %>
+                       class: "btn  btn-danger", method: "delete", confirm: "Deseja realmente sair?" %>
+
 
         <% end %>
       </div>

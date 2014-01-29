@@ -80,6 +80,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    commonjs (0.2.7)
     commonwatir (4.0.0)
     devise (3.2.2)
       bcrypt-ruby (~> 3.0)
@@ -97,6 +98,8 @@ GEM
       factory_girl (~> 4.3.0)
       railties (>= 3.0.0)
     ffi (1.9.3)
+    font-awesome-less (4.0.2)
+      less-rails (>= 2.4.2)
     hike (1.2.3)
     i18n (0.6.5)
     journey (1.0.4)
@@ -106,6 +109,11 @@ GEM
     jquery-ui-rails (4.1.0)
       railties (>= 3.1.0)
     json (1.8.1)
+    less (2.4.0)
+      commonjs (~> 0.2.7)
+    less-rails (2.4.2)
+      actionpack (>= 3.1)
+      less (~> 2.4.0)
     libv8 (3.16.14.3)
     lockfile (2.1.0)
     mail (2.5.4)
@@ -231,6 +239,7 @@ DEPENDENCIES
   devise
   execjs
   factory_girl_rails (~> 4.0)
+  font-awesome-less
   jquery-rails
   jquery-ui-rails
   rails (= 3.2.15)

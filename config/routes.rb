@@ -1,17 +1,14 @@
 # -*- encoding : utf-8 -*-
 SRA::Application.routes.draw do
 
-  devise_for :users
+  devise_for :users ,:path => '', :path_names => {:sign_in => "", :sign_out => ""}
 
-  resources :atendimentos do 
+  resources :atendimentos do
 
      get :autocomplete_user_name, :on => :collection
   end
 
-
-
-
-  resources :professors 
+  resources :professors
  
   resources :types do
     get 'type_by_place', :on => :collection
