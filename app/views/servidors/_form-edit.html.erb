@@ -13,18 +13,27 @@
 
   <div class="field">
     <%= f.label "Nome" %><br />
-    <%= f.text_field :name %>
+    <%= f.input :name, label: false %>
 
 
     <%= f.label "Matricula" %><br />
-    <%= f.text_field :matricula %>
+    <%= f.input :matricula, label: false %>
+
+    <%= f.label "Nome de Usuário" %><br />
+    <%= f.input :username, label: false %>
+
+    <%= f.label "Senha" %><br />
+    <%= f.input :password, label: false %>
+
+    <%= f.label "Confirmação de Senha" %><br />
+    <%= f.input :password_confirmation, label: false %>
 
   </div>
     <div class="actions">
   <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"), 
           servidors_path , 
           class: "btn  btn-warning"%>
-    <%= f.submit "Atualizar Servidor", :class => 'btn-success btn' %>
+    <%= f.submit "Criar Servidor UnB", :class => 'btn-success btn' %>
     
   </ul>
 </div>

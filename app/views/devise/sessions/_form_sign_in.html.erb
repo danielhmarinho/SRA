@@ -4,8 +4,9 @@
 
     <div class="form-inputs">
 
-      <%= f.label :email, "Email "%>
-      <%= f.input :email, :required => true, :autofocus => true, :label => false %>
+
+      <%= f.label "Nome de Usuário" %><br />
+      <%= f.input :username, :required => true, :autofocus => true, :label => false %>
       <%= f.label :password, "Senha "%>
       <%= f.input :password, :required => true, :label => false %>
       <%= f.button :submit, "Login", :class => 'btn-success' %>
