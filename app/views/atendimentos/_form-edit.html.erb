@@ -71,10 +71,8 @@
 
           </br>
         <tr>
-          <td><%= current_user.name %></td>
-          <%= f.input :user_id, label: false, input_html: {value: f.object.data || current_user.id}, :as => :hidden %>
-          <td><%=  l(DateTime.current, :format => '%d/%m/%Y %R')%></td>
-          <%= f.input :data, input_html: {value: f.object.data || l(DateTime.current, :format => '%d/%m/%Y %R')}, label: false, :as => :hidden, error: false, :readonly => true %>
+          <td><%= User.find_by_id(@atendimento.user_id).name %></td>
+          <td><%=  l(@atendimento.data, :format => '%d/%m/%Y %R')%></td>
           <td id='place'>
             <%= f.select :place_id, Place.order('name ASC').collect { |p| [p.name, p.id] } %></td>
           <td id="type"><%= f.select :type_id, Type.order('name ASC').collect { |t| [t.name, t.id] } %></td>
