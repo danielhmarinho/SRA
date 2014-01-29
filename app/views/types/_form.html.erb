@@ -13,8 +13,10 @@
   <% end %>
 
   <div class="field">
-    <%= f.label "Nome" %><br />
-    <%= f.text_field :name %>
+    <%= f.label :name ,"Nome" %><br />
+    <%= f.input :name, :label => false %>
+    <%= f.label :places, "Locais de Atendimento" %><br />
+    <%= f.association :places, :as => :check_boxes, :label => false %>
 
   </div>
  

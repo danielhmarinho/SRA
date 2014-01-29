@@ -9,12 +9,9 @@ class Ability
     elsif user.as_user_type == 'Professor'
       can :create, Atendimento
     elsif user.as_user_type == 'Servidor'
-      can [:edit, :update, :create], Type
-      can [:edit, :update], Place
+      can :manage, [Type, Professor, Servidor,Place]
       can :read, :all
-      can [:create], Atendimento
-      can :manage, Professor
-      can :manage, Servidor
+      can [:edit, :update], Atendimento
     end
 
   end
