@@ -5,10 +5,8 @@
     <div class="form-inputs">
 
 
-      <%= f.label "Nome de Usuário" %><br />
-      <%= f.input :username, :required => true, :autofocus => true, :label => false %>
-      <%= f.label :password, "Senha "%>
-      <%= f.input :password, :required => true, :label => false %>
+      <%= f.input :username, :autofocus => true, :label => 'Nome de Usuário'%>
+      <%= f.input :password, :label => 'Senha' %>
       <%= f.button :submit, "Login", :class => 'btn-success' %>
       <!-- Single button -->
       <%=link_to raw(" Ainda não tem cadastro? "),

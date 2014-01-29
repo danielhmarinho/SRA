@@ -84,9 +84,14 @@
       </table>
       </tr>
       <div class="actions">
+        <%if current_user.as_user_type != 'Aluno'%>
 
+            <%= link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
+                        atendimentos_path ,
+                        class: "btn  btn-warning"%>
+
+        <% end%>
         <%= f.submit :class => 'btn-success btn' %>
-
 
       </div>
 

@@ -12,7 +12,9 @@ class Ability
       can [:edit, :update, :create], Type
       can [:edit, :update], Place
       can :read, :all
+      can [:create], Atendimento
       can :manage, Professor
+      can :manage, Servidor
     end
 
   end
