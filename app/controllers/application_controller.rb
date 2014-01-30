@@ -9,7 +9,11 @@ class ApplicationController < ActionController::Base
     if current_user.as_user_type ==  'Aluno'
       new_atendimento_path
     elsif current_user.as_user_type == 'Professor'
-      new_atendimento_path
+      if current_user.has_role? :admin
+        atendimentos_path
+      else
+        new_atendimento_path
+      end
     elsif current_user.as_user_type == 'Servidor'
       atendimentos_path
     elsif current_user.as_user_type == 'Comunidade'
