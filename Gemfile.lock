@@ -151,6 +151,7 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.5)
+    rolify (3.4.0)
     rspec-collection_matchers (0.0.2)
       rspec-expectations (>= 2.99.0.beta1)
     rspec-core (3.0.0.beta1)
@@ -244,6 +245,7 @@ DEPENDENCIES
   jquery-ui-rails
   rails (= 3.2.15)
   rails3-jquery-autocomplete
+  rolify
   rspec-rails (~> 3.0.0.beta)
   sass-rails (~> 3.2.3)
   seed_dump
