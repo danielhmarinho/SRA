@@ -24,7 +24,7 @@ describe AlunosController do
   # Aluno. As you add validations to Aluno, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) { { :name => "Alessandro",:matricula => "1321315" , :password => "12345678" ,
-  :password_confirmation => "12345678"  , :email => "eueueue@gmail.com"} }
+  :password_confirmation => "12345678"  , :username => "aluno123"} }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -62,7 +62,7 @@ describe AlunosController do
       it "creates a new Aluno" do
         expect {
           post :create, {:aluno => valid_attributes}, valid_session
-        }.to change(Aluno, :count).by(0)
+        }.to change(Aluno, :count).by(1)
       end
 
       it "assigns a newly created aluno as @aluno" do

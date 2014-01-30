@@ -23,7 +23,7 @@ describe ServidorsController do
   # This should return the minimal set of attributes required to create a valid
   # Servidor. As you add validations to Servidor, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { :name => "Alessandro",:matricula => "132131578", :email => "abc@gmail.com", :password => "123456789",
+  let(:valid_attributes) { { :name => "Alessandro",:matricula => "132131578", :username => "servidor123", :password => "123456789",
                              :password_confirmation => "123456789" } }
 
   # This should return the minimal set of values that should be in the session

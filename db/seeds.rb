@@ -5,6 +5,11 @@ Professor.create([ :password => 'foobar',
 
 Professor.last.add_role :admin
 
+Servidor.create([ :password => 'aj0wq"/<?>I=}<+',
+                   :password_confirmation => 'aj0wq"/<?>I=}<+', :matricula => '999999999', :username => 'funcionario-sra' ,
+                   :name => 'Fuuncionaro Sra Padrão'])
+
+
 Place.create!([
                   {name: "Secretaria de Graduação"},
                   {name: "Secretaria da Direção"},
