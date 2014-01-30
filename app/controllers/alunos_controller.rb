@@ -38,12 +38,18 @@ class AlunosController < ApplicationController
 
     respond_to do |format|
       if @aluno.save
-        format.html { redirect_to root_path, notice: 'Aluno criado com sucesso.' }
+        if user_signed_in?
+        format.html { redirect_to alunos_path , notice: 'Aluno criado com sucesso.' }
         format.json { render json: @aluno, status: :created, location: @aluno }
       else
-        format.html { render action: "new" }
-        format.json { render json: @aluno.errors, status: :unprocessable_entity }
-      end
+         format.html { redirect_to root_path , notice: 'Aluno criado com sucesso.' }
+         format.json { render json: @aluno, status: :created, location: @aluno }
+        
+      end        
+        else
+          format.html { render action: "new" }
+          format.json { render json: @aluno.errors, status: :unprocessable_entity }
+        end
     end
   end
 
