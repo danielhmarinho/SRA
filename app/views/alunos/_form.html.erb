@@ -32,15 +32,17 @@
       <div class="actions">
 
 
+
+              <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
+                   alunos_path ,
+                   class: "btn  btn-warning"%>
+
+
         <%= button_tag :class => 'btn-success btn' , :id => 'cadastrar-aluno' do %>
             <i class='fa fa-user'></i> Criar Aluno
 
 
         <% end %>
-
-              <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
-                   root_path ,
-                   class: "btn  btn-warning"%>
 
 
         </ul>

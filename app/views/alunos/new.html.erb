@@ -4,7 +4,12 @@
       <h1>Novo Aluno </h1>
     </div>
 
+    <% if user_signed_in? %>
     <%= render 'form' %>
+
+    <% else %>
+	<%= render 'form-main' %>
+	<% end %>
 
 
   </div>

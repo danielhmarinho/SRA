@@ -1,10 +1,10 @@
 <div class="page-header">
-  <%= simple_form_for(@servidor) do |f| %>
+  <%= simple_form_for(@aluno) do |f| %>
       </div>
-      <% if @servidor.errors.any? %>
+      <% if @aluno.errors.any? %>
           <div class="alert alert-danger">
             <ul>
-              <% @servidor.errors.full_messages.each do |msg| %>
+              <% @aluno.errors.full_messages.each do |msg| %>
                   <li><%= msg %></li>
               <% end %>
             </ul>
@@ -19,7 +19,7 @@
         <%= f.label "Matricula" %><br />
         <%= f.input :matricula, label: false %>
 
-        <%= f.label "Username" %><br />
+        <%= f.label "Nome de Usuário" %><br />
         <%= f.input :username, label: false %>
 
         <%= f.label "Senha" %><br />
@@ -30,12 +30,20 @@
 
       </div>
       <div class="actions">
-        <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
-                   servidors_path ,
+
+
+
+              <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
+                   root_path ,
                    class: "btn  btn-warning"%>
-        <%= button_tag :class => 'btn-success btn' , :id => 'cadastrar-servidor' do %>
-            <i class='fa fa-user'></i> Criar Servidor Administrativo
+
+
+        <%= button_tag :class => 'btn-success btn' , :id => 'cadastrar-aluno' do %>
+            <i class='fa fa-user'></i> Criar Aluno
+
+
         <% end %>
+
 
         </ul>
       </div>

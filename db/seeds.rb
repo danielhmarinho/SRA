@@ -1,6 +1,6 @@
 # encoding: UTF-8
 Professor.create([ :password => 'foobar',
-                   :password_confirmation => 'foobar', :matricula => '101910291', :username => 'aleessandro' ,
+                   :password_confirmation => 'foobar', :matricula => '101910291', :username => 'alessandro' ,
                    :name => 'Alessandro'])
 
 Professor.last.add_role :admin
