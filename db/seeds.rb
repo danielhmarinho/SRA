@@ -83,7 +83,7 @@ Type.create!([
 
      #Referente as Secretarias de Graduação e Direção
 
-     {name: "Declaração", :places => Place.find(1,2)}
+     {name: "Declaração", :places => Place.find(1,2)},
 
 
     #Tipo de atendimento de outros
