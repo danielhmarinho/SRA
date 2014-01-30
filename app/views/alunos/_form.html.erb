@@ -30,13 +30,7 @@
 
       </div>
       <div class="actions">
-        <%if current_user.as_user_type != 'Aluno'%>
-
-            <%= link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
-                        alunos_path ,
-                        class: "btn  btn-warning"%>
-
-        <% end%>
+   
 
         <%= button_tag :class => 'btn-success btn' do %>
             <i class='fa fa-user'></i> Criar Aluno
