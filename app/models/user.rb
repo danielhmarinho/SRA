@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  rolify
   acts_as_superclass
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
