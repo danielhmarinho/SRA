@@ -1,4 +1,6 @@
 # iniciando o watir
+# -*- encoding : utf-8 -*-
+
 require 'watir-webdriver' 
 
 #Cadastrar aluno

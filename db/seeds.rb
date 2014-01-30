@@ -14,7 +14,6 @@ Place.create!([
 
 
 Type.create!([
-
                  #Tipos de Atendimento referentes apenas a Secretaria de Graduação
 
                  {name: "Solicitação de Equipamento", :places => Place.where("name in ('Secretaria de Graduação')")},
@@ -98,5 +97,4 @@ Type.create!([
 
                  {name: "Outros", :places => Place.find(1,2,3)}
              ])
-
 
