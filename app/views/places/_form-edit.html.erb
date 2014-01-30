@@ -1,32 +1,34 @@
 <div class="page-header">
-<%= simple_form_for(@place) do |f| %>
-</div>
-  <% if @place.errors.any? %>
-     <div class="alert alert-danger">
-      <ul>
-      <% @place.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+  <%= simple_form_for(@place) do |f| %>
+      </div>
+      <% if @place.errors.any? %>
+          <div class="alert alert-danger">
+            <ul>
+              <% @place.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label "Nome" %><br />
-    <%= f.text_field :name %>
-  </div>
+      <div class="field">
+        <%= f.label "Nome" %><br />
+        <%= f.text_field :name %>
+      </div>
       <div class="list">
         <%= f.label "Tipos de Atendimento" %>
         <%= f.association :types, collection: Type.order('name ASC'), as: :check_boxes, label: false %>
       </div>
 
-    <div class="actions">
-  <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"), 
-          places_path , 
-          class: "btn  btn-warning"%>
-    <%= f.submit "Atualizar Local de Atendimento", :class => 'btn-success btn' %>
-    
-  </ul>
-</div>
+      <div class="actions">
+        <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
+                   places_path ,
+                   class: "btn  btn-warning"%>
+        <%= button_tag :class => 'btn-success btn' do %>
+            <i class='fa fa-refresh''></i> Atualizar Local de Atendimento
+        <% end %>
 
-<% end %>
+        </ul>
+      </div>
+
+  <% end %>

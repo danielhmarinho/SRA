@@ -2,14 +2,15 @@
   <div class="navbar-inner">
     <div class="container">
       <a class="brand" href="">
-         <img src="/assets/UnB3.png">
+        <img src="/assets/UnB3.png">
       </a>
 
       <div class = "logged" align='right'>
         <%  if user_signed_in? %>
 
 
-        <button type="button" class="btn btn-info navbar-btn"><i class="icon-white icon-user"></i> <%=  current_user.name%></button>
+            <button type="button" class="btn btn-info navbar-btn"><i class="fa fa-gear"></i>
+              <%=  current_user.name%></button>
             <%=link_to raw("<i class=\"fa fa-sign-out\"> Sair </i>"),
                        destroy_user_session_path,
                        class: "btn  btn-danger", method: "delete", confirm: "Deseja realmente sair?" %>
@@ -18,8 +19,8 @@
         <% end %>
       </div>
 
-      </div><!--/.nav-collapse -->
-    </div>
+    </div><!--/.nav-collapse -->
+  </div>
 
 </div>
 </div>

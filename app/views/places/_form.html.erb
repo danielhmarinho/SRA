@@ -1,34 +1,38 @@
 <div class="page-header">
-	<%= simple_form_for(@place) do |f| %>
-</div>
-<% if @place.errors.any? %>
-<div class="alert alert-danger">
-	<ul>
-		<% @place.errors.full_messages.each do |msg| %>
-		<li>
-			<%= msg %>
-		</li>
-		<% end %>
-	</ul>
-</div>
-<% end %>
+  <%= simple_form_for(@place) do |f| %>
+      </div>
+      <% if @place.errors.any? %>
+          <div class="alert alert-danger">
+            <ul>
+              <% @place.errors.full_messages.each do |msg| %>
+                  <li>
+                    <%= msg %>
+                  </li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
 
-<div class="field">
-	<%= f.label "Nome" %>
-	
-	<%= f.text_field :name %>
+      <div class="field">
+        <%= f.label "Nome" %>
 
-  <div class="list">
-    <%= f.label "Tipos de Atendimento" %>
-  <%= f.association :types, collection: Type.order('name ASC'), as: :check_boxes, label: false %>
-  </div>
-</div>
-<div class="actions">
-	<%= link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
-	places_path ,
-	class: "btn btn-warning"%> <%= f.submit "Criar Local de Atendimento", :class => 'btn-success btn' %>
+        <%= f.text_field :name %>
 
-	</div> </ul>
-</div>
+        <div class="list">
+          <%= f.label "Tipos de Atendimento" %>
+          <%= f.association :types, collection: Type.order('name ASC'), as: :check_boxes, label: false %>
+        </div>
+      </div>
+      <div class="actions">
+        <%= link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
+                    places_path ,
+                    class: "btn btn-warning"%>
+        <%= button_tag :class => 'btn-success btn' do %>
+            <i class='fa fa fa-map-marker'></i> Criar Local de Atendimento
+        <% end %>
 
-<% end %>
+
+      </div> </ul>
+      </div>
+
+  <% end %>

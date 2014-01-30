@@ -5,7 +5,7 @@
       <%= render partial: "shared/navbar_collapsible"%>
       <div align="right">
 
-        <%= link_to raw("<i class=\"icon-white icon-plus\"> Criar Atendimento </i>"),
+        <%= link_to raw("<i class=\"fa fa-plus-circle\"> Criar Atendimento </i>"),
                     new_atendimento_path,
                     class: "btn btn-success  btn-small" %>
       </div>
@@ -36,7 +36,7 @@
                               edit_atendimento_path(atendimento),
                               class: "btn btn-small btn-primary",
                               method: :get %></td>
-              <td><%= link_to raw("<i class=\"icon-white icon-trash\"> Deletar </i>"),
+              <td><%= link_to raw("<i class=\"fa fa-trash-o\"> Deletar </i>"),
                               atendimento,
                               class: "btn btn-small btn-danger",
                               method: :delete, data: {confirm: 'Tem certeza que deseja excluir?'} %></td>

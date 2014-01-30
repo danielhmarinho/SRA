@@ -7,9 +7,13 @@
 
       <%= f.input :username, :autofocus => true, :label => 'Nome de Usuário'%>
       <%= f.input :password, :label => 'Senha' %>
-      <%= f.button :submit, "Login", :class => 'btn-success' %>
+
+      <%= button_tag :class => 'btn-success btn' do %>
+          <i class='fa fa-sign-in'></i> Login
+      <% end %>
+
       <!-- Single button -->
-      <%=link_to raw(" Ainda não tem cadastro? "),
+      <%=link_to raw("<i class=\"fa fa-users\"> Ainda não tem cadastro? </i>"),
                  new_aluno_path ,
                  class: "btn  btn-primary"%>
 
