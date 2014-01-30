@@ -84,14 +84,18 @@
       </table>
       </tr>
       <div class="actions">
-        <%if current_user.as_user_type != 'Aluno'%>
+        <%if current_user.as_user_type == 'Servidor' || (current_user.has_role?  :admin) %>
+
 
             <%= link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
                         atendimentos_path ,
                         class: "btn  btn-warning"%>
-         <% elsif  %>
 
 
+         <% else  %>
+
+        <!-- nothing to do here!-->          
+           
 
         <% end%>
 
