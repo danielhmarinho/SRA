@@ -2,7 +2,7 @@
 class TypesController < ApplicationController
   # GET /types
   # GET /types.json
-  load_and_authorize_resource
+  load_and_authorize_resource :except => [:type_by_place]
 
   def index
     @types = Type.all(:order => ('name ASC'))
