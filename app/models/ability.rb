@@ -6,7 +6,7 @@ class Ability
 
     if user.as_user_type ==  'Aluno'
       can :create, Atendimento
-      can :manage, Professor
+      can :manage , Type
     elsif user.as_user_type == 'Professor'
       can :create, Atendimento
 
