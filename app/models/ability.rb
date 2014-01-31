@@ -10,9 +10,6 @@ class Ability
     
     if user.as_user_type == 'Professor'
       can :create, Atendimento
-      can [:edit, :update], Professor do |professor|
-        professor.try(:user) == user
-      end
     end
     if user.as_user_type == 'Servidor'
       can [:read, :create], [Atendimento, Professor, Aluno, Servidor]

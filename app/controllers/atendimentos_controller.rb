@@ -1,7 +1,5 @@
 # -*- encoding : utf-8 -*-
 class AtendimentosController < ApplicationController
-
-  autocomplete :user, :name
   load_and_authorize_resource
 
   # GET /atendimentos
