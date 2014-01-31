@@ -4,6 +4,11 @@ class Ability
   def initialize(user)
     user ||= User.new # guest user
 
+
+    if user.has_role? :admin
+      can :manage, :all
+    end
+    
     if user.as_user_type ==  'Aluno'
       can :create, Atendimento
     end
@@ -12,9 +17,7 @@ class Ability
       can :create, Atendimento
     end
 
-    if user.has_role? :admin
-        can :manage, :all
-    end
+
     
     if user.as_user_type == 'Servidor'
       can [:read, :edit, :create, :update], [Atendimento, Professor, Aluno, Servidor]
