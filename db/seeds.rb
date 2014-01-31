@@ -5,9 +5,16 @@ Professor.create([ :password => 'NA2U9+m6',
 
 Professor.last.add_role :admin
 
-Servidor.create([ :password => 'aj0wq"/<?>I=}<+',
-                   :password_confirmation => 'aj0wq"/<?>I=}<+', :matricula => '999999999', :username => 'funcionario-sra' ,
-                   :name => 'Funcionário Sra Padrão'])
+Servidor.create([ {:password => 'aj0wq"/<?>I=}<+',
+                   :password_confirmation => 'aj0wq"/<?>I=}<+', :matricula => '9999999', :username => 'funcionario-sra' ,
+                   :name => 'Funcionário Sra Padrão'},
+                  {:password => 'L4j():_+b7u',
+                   :password_confirmation => 'L4j():_+b7u', :matricula => '121232', :username => 'sra-administrador' ,
+                   :name => 'Funcionário Sra Administrador'}
+
+])
+Servidor.last.add_role :admin
+
 
 
 Place.create!([
