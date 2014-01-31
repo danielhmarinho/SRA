@@ -54,8 +54,16 @@ class ServidorsController < ApplicationController
 
     respond_to do |format|
       if @servidor.update_attributes(params[:servidor])
-        format.html { redirect_to servidors_url, notice: 'Servidor alterado com sucesso.' }
-        format.json { head :no_content }
+
+        @user = User.find(current_user.id)
+        if @user.update_attributes(params[:user])
+          sign_in @user, :bypass => true
+          format.html { redirect_to servidors_url, notice: 'Servidor alterado com sucesso.' }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to servidors_url, notice: 'Servidor alterado com sucesso.' }
+          format.json { head :no_content }
+        end
       else
         format.html { render action: "edit" }
         format.json { render json: @servidor.errors, status: :unprocessable_entity }

@@ -52,8 +52,18 @@ class ProfessorsController < ApplicationController
 
     respond_to do |format|
       if @professor.update_attributes(params[:professor])
-        format.html { redirect_to professors_url, notice: 'Professor foi atualizado com sucesso.' }
-        format.json { head :no_content }
+
+
+        @user = User.find(current_user.id)
+        if @user.update_attributes(params[:user])
+          sign_in @user, :bypass => true
+          format.html { redirect_to professors_url, notice: 'Professor foi atualizado com sucesso.' }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to professors_url, notice: 'Professor foi atualizado com sucesso.' }
+          format.json { head :no_content }
+        end
+
       else
         format.html { render action: "edit" }
         format.json { render json: @professor.errors, status: :unprocessable_entity }
