@@ -1,5 +1,11 @@
+
 language: ruby
-script: "bundle exec rake db:reset"
+
+before_script:
+
+  - RAILS_ENV=test rake db:reset
+  
+script: "bundle exec rake"
 
 rvm:
   - 1.9.3
