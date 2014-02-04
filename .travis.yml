@@ -1,5 +1,5 @@
 language: ruby
-script: "rake db:reset"
+script: "bundle exec rake db:reset"
 
 rvm:
   - 1.9.3
