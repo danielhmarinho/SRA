@@ -18,7 +18,7 @@ it { should allow_mass_assignment_of(:matricula) }
 
 #teste aluno deve extender pessoa
 
-it { should have_one(:pessoa) } 
+it { should have_one(:user) } 
 
 #teste matricula deve ser unica
 

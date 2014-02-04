@@ -1,6 +1,13 @@
+<script type="text/javascript">
+    window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+        });
+    }, 3000);
+</script>
 <% flash.each do |type, message| %>
-  <div class="alert <%= bootstrap_class_for(type) %> fade in">
-    <button class="close" data-dismiss="alert">×</button>
-    <%= message %>
-  </div>
+    <div class="alert <%= bootstrap_class_for(type) %> fade in">
+      <button class="close" data-dismiss="alert">×</button>
+      <%= message %>
+    </div>
 <% end %>

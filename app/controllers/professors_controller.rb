@@ -2,23 +2,14 @@
 class ProfessorsController < ApplicationController
   # GET /professors
   # GET /professors.json
+  load_and_authorize_resource
+
   def index
     @professors = Professor.all
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @professors }
-    end
-  end
-
-  # GET /professors/1
-  # GET /professors/1.json
-  def show
-    @professor = Professor.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @professor }
     end
   end
 
@@ -61,8 +52,18 @@ class ProfessorsController < ApplicationController
 
     respond_to do |format|
       if @professor.update_attributes(params[:professor])
-        format.html { redirect_to professors_url, notice: 'Professor foi atualizado com sucesso.' }
-        format.json { head :no_content }
+
+
+        @user = User.find(current_user.id)
+        if @user.update_attributes(params[:user])
+          sign_in @user, :bypass => true
+          format.html { redirect_to professors_url, notice: 'Professor foi atualizado com sucesso.' }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to professors_url, notice: 'Professor foi atualizado com sucesso.' }
+          format.json { head :no_content }
+        end
+
       else
         format.html { render action: "edit" }
         format.json { render json: @professor.errors, status: :unprocessable_entity }

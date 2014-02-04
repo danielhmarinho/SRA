@@ -2,6 +2,9 @@
 class AlunosController < ApplicationController
   # GET /alunos
   # GET /alunos.json
+  load_and_authorize_resource :except => [:new, :create]
+
+
   def index
     @alunos = Aluno.all
 
@@ -11,16 +14,6 @@ class AlunosController < ApplicationController
     end
   end
 
-  # GET /alunos/1
-  # GET /alunos/1.json
-  def show
-    @aluno = Aluno.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @aluno }
-    end
-  end
 
   # GET /alunos/new
   # GET /alunos/new.json
@@ -45,12 +38,18 @@ class AlunosController < ApplicationController
 
     respond_to do |format|
       if @aluno.save
-        format.html { redirect_to alunos_url, notice: 'Aluno criado com sucesso.' }
+        if user_signed_in?
+        format.html { redirect_to alunos_path , notice: 'Aluno criado com sucesso.' }
         format.json { render json: @aluno, status: :created, location: @aluno }
       else
-        format.html { render action: "new" }
-        format.json { render json: @aluno.errors, status: :unprocessable_entity }
-      end
+         format.html { redirect_to root_path , notice: 'Aluno criado com sucesso.' }
+         format.json { render json: @aluno, status: :created, location: @aluno }
+        
+      end        
+        else
+          format.html { render action: "new" }
+          format.json { render json: @aluno.errors, status: :unprocessable_entity }
+        end
     end
   end
 

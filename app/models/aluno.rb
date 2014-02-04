@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Aluno < ActiveRecord::Base
-  acts_as :pessoa
+  acts_as :user
   attr_accessible :matricula
 
   validates_uniqueness_of :matricula

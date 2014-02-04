@@ -48,7 +48,7 @@
     color: #f9ed9d;
     }
 
-.navbar-fixed-top .brand {
+.navbar-static-top .brand {
   color: #634c08;color: #f4dc87;
   }
 
@@ -68,3 +68,7 @@
       overflow: auto;
   }
 
+
+  .logged {
+
+  }

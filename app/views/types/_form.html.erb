@@ -13,18 +13,22 @@
   <% end %>
 
   <div class="field">
-    <%= f.label "Nome" %><br />
-    <%= f.text_field :name %>
+    <%= f.label :name ,"Nome" %><br />
+    <%= f.input :name, :label => false %>
+    <%= f.label :places, "Locais de Atendimento" %><br />
+    <%= f.association :places, :as => :check_boxes, :label => false %>
 
   </div>
- 
+
   <div class="actions">
-  <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"), 
-          types_path , 
+  <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
+          types_path ,
           class: "btn  btn-warning"%>
-    <%= f.submit  "Criar Tipo de Atendimento" ,:class => 'btn-success btn'  %>
-    
-  </ul>
-</div>
+    <%= button_tag :class => 'btn-success btn' , :id => 'criar-tipo' do %>
+        <i class='fa fa-plus-circle'></i> Criar Tipo de Atendimento
+    <% end %>
+
+    </ul>
+  </div>
 
 <% end %>

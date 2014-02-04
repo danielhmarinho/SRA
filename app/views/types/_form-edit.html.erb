@@ -1,30 +1,32 @@
-<%= form_for(@type) do |f| %>
-  <% if @type.errors.any? %>
-  <div class="alert alert-danger">
-   <!-- <div id="error_explanation">
+<%= simple_form_for(@type) do |f| %>
+    <% if @type.errors.any? %>
+        <div class="alert alert-danger">
+          <!-- <div id="error_explanation">
       <h2><%= pluralize(@type.errors.count, "Erro") %> Cadastro de Tipo de Atendimento invalido:</h2>
   -->
-      <ul>
-      <% @type.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+          <ul>
+            <% @type.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label "Nome" %><br />
+      <%= f.text_field :name %>
+    </div>
+
+
+    <div class="actions">
+      <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
+                 types_path ,
+                 class: "btn  btn-warning"%>
+      <%= button_tag :class => 'btn-success btn' , :id => 'atualizar-tipo' do %>
+          <i class='fa fa-refresh'></i> Atualizar Tipo de Atendimento
       <% end %>
+
       </ul>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label "Nome" %><br />
-    <%= f.text_field :name %>
-  </div>
-
- 
-  <div class="actions">
-  <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"), 
-          types_path , 
-          class: "btn  btn-warning"%>
-    <%= f.submit  "Atualizar Tipo de Atendimento", :class => 'btn-success btn'  %>
-    
-  </ul>
-</div>
 
 <% end %>

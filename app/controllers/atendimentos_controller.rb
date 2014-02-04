@@ -1,8 +1,6 @@
 # -*- encoding : utf-8 -*-
 class AtendimentosController < ApplicationController
-
-  autocomplete :pessoa, :name
-
+  load_and_authorize_resource
 
   # GET /atendimentos
   # GET /atendimentos.json
@@ -12,17 +10,6 @@ class AtendimentosController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @atendimentos }
-    end
-  end
-
-  # GET /atendimentos/1
-  # GET /atendimentos/1.json
-  def show
-    @atendimento = Atendimento.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @atendimento }
     end
   end
 
@@ -49,7 +36,8 @@ class AtendimentosController < ApplicationController
 
     respond_to do |format|
       if @atendimento.save
-        format.html { redirect_to atendimentos_url, notice: 'Atendimento criado com sucesso.' }
+        format.html { redirect_to new_atendimento_url}
+        flash[:success] = "Atendimento Criado com Sucesso"
         format.json { render json: @atendimento, status: :created, location: @atendimento }
       else
         format.html { render action: "new" }

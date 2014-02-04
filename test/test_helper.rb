@@ -1,11 +1,10 @@
-# -*- encoding : utf-8 -*-
 require 'simplecov'
-SimpleCov.start 'rails'
-ENV["RAILS_ENV"] = "test"
+SimpleCov.start
 
-require File.expand_path('../../config/environment', __FILE__)
+# -*- encoding : utf-8 -*-
 
-require 'rails/test_help'
+  ENV["RAILS_ENV"] = "test"
+  require 'rails/test_help'
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.

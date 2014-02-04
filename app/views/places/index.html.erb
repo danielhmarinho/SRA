@@ -1,39 +1,38 @@
-<%= render "navbar" %>
-
 <div class="container">
   <div class="row">
-<div class="page-header">
-<h1>Lista de Locais de Atendimentos</h1>
-  
-  <div align="right" >
-<%=link_to raw("<i class=\"icon-white icon-plus\"> Criar Local de Atendimento </i>"), 
-          new_place_path, 
-          class: "btn btn-success  btn-small"%>
-</div>
-</div>
-<table>
-  <tr>
-    <th>Nome</th>
-    <th></th>
-    <th></th>
-  </tr>
+    <div class="page-header">
+      <h1>Lista de Locais de Atendimentos</h1>
+      <%= render partial: "shared/navbar_collapsible"%>
 
-<% @places.each do |place| %>
-  <tr>
-    <td><%= place.try(:name) %></td>
-    <td><%= link_to raw("<i class=\"icon-white icon-pencil\"> Editar </i>"), 
-          edit_place_path(place), 
-          class: "btn btn-small btn-primary",
-          method: :get %></td>
-    <td><%= link_to raw("<i class=\"icon-white icon-trash\"> Deletar </i>"), 
-          place, 
-          class: "btn btn-small btn-danger",
-          method: :delete, data: { confirm: 'Tem certeza que deseja excluir?'} %></td></td>
-  </tr>
-  </tr>
-<% end %>
-</table>
+      <div align="right" >
+        <%=link_to raw("<i class=\"fa fa-map-marker\"> Criar Local de Atendimento </i>"),
+                   new_place_path,
+                   class: "btn btn-success  btn-small"%>
+      </div>
+    </div>
+    <table>
+      <tr>
+        <th>Nome</th>
+        <th></th>
+        <th></th>
+      </tr>
 
-<br />
-</div>
+      <% @places.each do |place| %>
+          <tr>
+            <td><%= place.try(:name) %></td>
+            <td><%= link_to raw("<i class=\"fa fa-pencil-square-o\"> Editar </i>"),
+                            edit_place_path(place),
+                            class: "btn btn-small btn-primary",
+                            method: :get %></td>
+            <td><%= link_to raw("<i class=\"fa fa-trash-o\"> Deletar </i>"),
+                            place,
+                            class: "btn btn-small btn-danger",
+                            method: :delete, data: { confirm: 'Tem certeza que deseja excluir?'} %></td></td>
+          </tr>
+          </tr>
+      <% end %>
+    </table>
+
+    <br />
+  </div>
 </div>

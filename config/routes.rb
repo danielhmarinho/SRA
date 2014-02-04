@@ -1,15 +1,14 @@
 # -*- encoding : utf-8 -*-
 SRA::Application.routes.draw do
 
-  resources :atendimentos do 
+  devise_for :users ,:path => '', :path_names => {:sign_in => "", :sign_out => ""}
 
-     get :autocomplete_pessoa_name, :on => :collection
+  resources :atendimentos do
+
+     get :autocomplete_user_name, :on => :collection
   end
 
-
-
-
-  resources :professors 
+  resources :professors
  
   resources :types do
     get 'type_by_place', :on => :collection
@@ -19,9 +18,6 @@ SRA::Application.routes.draw do
   resources :alunos
 
   resources :servidors
-
-  resources :comunidades
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -71,7 +67,9 @@ SRA::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'atendimentos#index'
+  root :to => 'application#index'
+
+
 
   # See how all your routes lay out with "rake routes"
 

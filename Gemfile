@@ -11,12 +11,15 @@ gem 'therubyracer'
 gem 'acts_as_relation', '~> 0.1'
 gem "twitter-bootstrap-rails"
 gem 'datetimepicker-rails', :require => 'datetimepicker-rails', :git => 'https://github.com/thiagovsk/datetimepicker-rails.git'
-
+gem 'devise'
 gem 'simple_form'
 gem 'rails3-jquery-autocomplete'
+gem 'font-awesome-less'
 gem 'watir'
 gem 'brazilian-rails'
 gem 'seed_dump'
+gem 'cancan'
+gem "rolify"
 
 # Gems used only for assets and not required
 # in production environments by default.

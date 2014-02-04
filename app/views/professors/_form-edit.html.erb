@@ -1,6 +1,5 @@
-<%= render "navbar" %>
 <div class="page-header">
-<%= form_for(@professor) do |f| %>
+  <%= simple_form_for(@professor) do |f| %>
 </div>
   <% if @professor.errors.any? %>
      <div class="alert alert-danger">
@@ -14,18 +13,29 @@
 
   <div class="field">
     <%= f.label "Nome" %><br />
-    <%= f.text_field :name %>
+    <%= f.input :name, label: false %>
 
 
     <%= f.label "Matricula" %><br />
-    <%= f.text_field :matricula %>
+    <%= f.input :matricula, label: false %>
+
+    <%= f.label "Nome de Usuário" %><br />
+    <%= f.input :username, label: false %>
+
+    <%= f.label "Senha" %><br />
+    <%= f.input :password, label: false %>
+
+    <%= f.label "Confirmação de Senha" %><br />
+    <%= f.input :password_confirmation, label: false %>
 
   </div>
     <div class="actions">
   <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"), 
           professors_path , 
           class: "btn  btn-warning"%>
-    <%= f.submit "Atualizar Professor", :class => 'btn-success btn' %>
+      <%= button_tag :class => 'btn-success btn' do %>
+          <i class='fa fa-refresh'></i> Atualizar Professor
+      <% end %>
     
   </ul>
 </div>

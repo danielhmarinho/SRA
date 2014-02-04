@@ -1,138 +1,101 @@
-
-    <%= render "navbar" %>
 <div class="page-header">
-<script type="text/javascript">
+  <script type="text/javascript">
 
-$(document).ready(function() {
-  // Ajax to create the options for the type select
-  function get_types(value) { // value = place id
-    $.ajax({
-      url : "/types/type_by_place",
-      type: "GET",
-      dataType: "json",
-      data : {"id":value},
-      success: function(response){
-        var select = $("#type select");
-        select.html("");
+      $(document).ready(function () {
+          // Ajax to create the options for the type select
+          function get_types(value) { // value = place id
+              $.ajax({
+                  url: "/types/type_by_place",
+                  type: "GET",
+                  dataType: "json",
+                  data: {"id": value},
+                  success: function (response) {
+                      var select = $("#type select");
+                      select.html("");
 
-        for(var i=0; i < response.length; i++) {
-          select.append("<option value="+response[i].id+">"+response[i].name+"</option>");
-        }
-      },
-      error: function() {
-        console.log("Erro ao buscar type");
-      }
-    });
-  }
+                      for (var i = 0; i < response.length; i++) {
+                          select.append("<option value=" + response[i].id + ">" + response[i].name + "</option>");
+                      }
+                  },
+                  error: function () {
+                      console.log("Erro ao buscar type");
+                  }
+              });
+          }
 
-  $('#place select').change(function () {
-    var value = $(this).val();
+          $('#place select').change(function () {
+              var value = $(this).val();
 
-    get_types(value); 
-  });
-  
-  // When the page html is already, set the select option for type base on the first value of the place 
-  get_types($('#place select option')[0].value);
-});
+              get_types(value);
+          });
 
-</script>
+          // When the page html is already, set the select option for type base on the first value of the place
+          get_types($('#place select option')[0].value);
+      });
 
-<%= simple_form_for(@atendimento, :html => {:class => 'form-horizontal' }) do |f| %>
+  </script>
 
 
-  
-</div>
 
-  <% if @atendimento.errors.any? %>
-  <div class="alert alert-danger">
-    <!-- <div id="error_explanation">
+  <%= simple_form_for(@atendimento, :html => {:class => 'form-horizontal'}) do |f| %>
+
+
+      </div>
+
+      <% if @atendimento.errors.any? %>
+          <div class="alert alert-danger">
+            <!-- <div id="error_explanation">
       <h2><%= pluralize(@atendimento.errors.count, "Erro") %> Cadastro de Atendimento invalido:</h2>
     -->
-      <ul>
-      <% @atendimento.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+            <ul>
+              <% @atendimento.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
       <% end %>
-      </ul>
-    </div>
+
+
+
+      <table>
+        <tr>
+          <th><%= f.label "Nome" %>
+            <br/></th>
+          <th><%= f.label "Data" %>
+            <br/></th>
+          <th><%= f.label "Local de Atendimento" %>
+            <br/></th>
+          <th><%= f.label "Tipo de Atendimento" %>
+            <br/></th>
+
+
+          </br>
+        <tr>
+          <td><%= User.find_by_id(@atendimento.user_id).name %></td>
+          <td><%=  l(@atendimento.data, :format => '%d/%m/%Y %R')%></td>
+          <td id='place'>
+            <%= f.select :place_id, Place.order('name ASC').collect { |p| [p.name, p.id] } %></td>
+          <td id="type"><%= f.select :type_id, Type.order('name ASC').collect { |t| [t.name, t.id] } %></td>
+
+
+        </tr>
+      </table>
+      </tr>
+      <div class="actions">
+        <%if current_user.as_user_type != 'Aluno'%>
+
+            <%= link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
+                        atendimentos_path ,
+                        class: "btn  btn-warning"%>
+
+        <% end%>
+        <%= button_tag :class => 'btn-success btn' do %>
+            <i class='fa fa-refresh'></i> Atualizar Atendimento
+        <% end %>
+
+      </div>
+
+
+
   <% end %>
-
-
-  <table>
-  <tr>
-    <th><%= f.label "Nome" %><br /></th>
-    <th><%= f.label "Data" %><br /></th>
-    <th><%= f.label "Local de Atendimento" %><br /></th>
-      <th><%= f.label "Tipo de Atendimento" %><br /></th>
-
-
-
-  </br>
-  <tr>
-    <td><%= f.select :pessoa_id,  Pessoa.order('name ASC').collect {|p| [p.name, p.id]} %></td>
- <td><%= f.input :data, label: false, :as => :datetime_picker, error: false, label: false%></td>
-    <td id='place'>
-      <%= f.select :place_id,  Place.order('name ASC').collect {|p| [p.name, p.id]} %></td>
-    <td id="type"><%= f.select :type_id,  Type.order('name ASC').collect {|t| [t.name, t.id]} %></td>
-
-
-  </tr>
-</table>
-</tr>
-  <div class="actions">
-  <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"), 
-          atendimentos_path , 
-          class: "btn  btn-warning"%>
-    <%= f.submit  :class => 'btn-success btn' %>
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Cadastrar Pessoa
-</button>
-    
-  </ul>
-</div>
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Cadastrar</h4>
-      </div>
-      <div class="modal-body">
-    	<div class="tabbable"> <!-- Only required for left/right tabs -->
-    		<ul class="nav nav-tabs">
-    			<li><a href="#tab2" data-toggle="tab">Professor</a></li>
-			<li><a href="#tab3" data-toggle="tab">Servidor</a></li>
-			<li><a href="#tab4" data-toggle="tab">Aluno</a></li>
-    		</ul>
-    	<div class="tab-content">
-    		<div class="tab-pane " id="tab1">
-			
-    			<p><%= render "alunos/form", :remote => true , :@aluno => Aluno.new %> </p>
-    		</div>
-
-    		<div class="tab-pane " id="tab2">
-    			<p><%= render "professors/form", :remote => true , :@professor => Professor.new %></p>
-    		</div>
-
-		<div class="tab-pane " id="tab3">
-    			<p><%= render "servidors/form", :remote => true , :@servidor => Servidor.new %></p>
-    		</div>
-
-		<div class="tab-pane " id="tab4">
-    			<p><%= render "alunos/form", :remote => true , :@aluno => Aluno.new %> </p>
-    		</div>
-
-    
-    	</div>
-    </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-
-<% end %>
 

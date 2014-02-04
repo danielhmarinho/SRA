@@ -2,6 +2,8 @@
 class TypesController < ApplicationController
   # GET /types
   # GET /types.json
+  load_and_authorize_resource :except => [:type_by_place]
+
   def index
     @types = Type.all(:order => ('name ASC'))
 
@@ -11,15 +13,6 @@ class TypesController < ApplicationController
     end
   end
 
-  # GET /types/1
-  # GET /types/1.json
-  def show
-    @type = Type.find(params[:id]).order('name ASC')
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @type }
-    end
-  end
 
   # GET /types/new
   # GET /types/new.json

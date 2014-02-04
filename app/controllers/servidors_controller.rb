@@ -2,6 +2,8 @@
 class ServidorsController < ApplicationController
   # GET /servidors
   # GET /servidors.json
+  load_and_authorize_resource
+
   def index
     @servidors = Servidor.all
 
@@ -11,16 +13,7 @@ class ServidorsController < ApplicationController
     end
   end
 
-  # GET /servidors/1
-  # GET /servidors/1.json
-  def show
-    @servidor = Servidor.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @servidor }
-    end
-  end
 
   # GET /servidors/new
   # GET /servidors/new.json
@@ -61,8 +54,16 @@ class ServidorsController < ApplicationController
 
     respond_to do |format|
       if @servidor.update_attributes(params[:servidor])
-        format.html { redirect_to servidors_url, notice: 'Servidor alterado com sucesso.' }
-        format.json { head :no_content }
+
+        @user = User.find(current_user.id)
+        if @user.update_attributes(params[:user])
+          sign_in @user, :bypass => true
+          format.html { redirect_to servidors_url, notice: 'Servidor alterado com sucesso.' }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to servidors_url, notice: 'Servidor alterado com sucesso.' }
+          format.json { head :no_content }
+        end
       else
         format.html { render action: "edit" }
         format.json { render json: @servidor.errors, status: :unprocessable_entity }
