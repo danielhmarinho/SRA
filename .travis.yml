@@ -7,10 +7,11 @@ before_script:
 rvm:
   - 1.9.3
 notifications:
-  recipients:
-    - gbre.111@gmail.com
-    - darkbubu123@gmail.com
-    - thaiane.unb@hotmail.com
+  email:
+    recipients:
+      - gbre.111@gmail.com
+      - darkbubu123@gmail.com
+      - thaiane.unb@hotmail.com
 branches:
   only:
     - architecture
