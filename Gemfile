@@ -19,6 +19,7 @@ gem 'watir'
 gem 'brazilian-rails'
 gem 'seed_dump'
 gem 'cancan'
+gem 'coveralls', require: false
 gem "rolify"
 
 # Gems used only for assets and not required
