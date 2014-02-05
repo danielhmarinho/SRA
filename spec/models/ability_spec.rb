@@ -396,17 +396,17 @@ describe "User" do
       end
 
       it "should not allow to update Professor" do
-        should be_able_to(:update, Professor.new)
+        should_not be_able_to(:update, Professor.new)
 
       end
 
       it "should not allow to update Aluno" do
-        should be_able_to(:update, Aluno.new)
+        should_not be_able_to(:update, Aluno.new)
 
       end
 
       it "should not allow to update Servidor" do
-        should be_able_to(:update, Servidor.new)
+        should_not be_able_to(:update, Servidor.new)
 
       end
 
@@ -448,17 +448,17 @@ describe "User" do
       end
 
       it "should not allow to edit Professor" do
-        should be_able_to(:edit, Professor.new)
+        should_not be_able_to(:edit, Professor.new)
 
       end
 
       it "should not allow to edit Aluno" do
-        should be_able_to(:edit, Aluno.new)
+        should_not be_able_to(:edit, Aluno.new)
 
       end
 
       it "should not allow to edit Servidor" do
-        should be_able_to(:edit, Servidor.new)
+        should_not be_able_to(:edit, Servidor.new)
 
       end
 

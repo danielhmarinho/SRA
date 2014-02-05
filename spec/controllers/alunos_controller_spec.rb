@@ -85,12 +85,7 @@ describe AlunosController do
         expect(assigns(:aluno)).to be_a_new(Aluno)
       end
 
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Aluno.any_instance.stub(:save).and_return(false)
-        post :create, {:aluno => {  }}, valid_session
-        expect(response).to redirect_to(root_path)
-      end
+   
     end
   end
 
