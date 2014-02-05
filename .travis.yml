@@ -12,6 +12,7 @@ notifications:
       - gbre.111@gmail.com
       - darkbubu123@gmail.com
       - thaiane.unb@hotmail.com
+      - thiagitosouza@hotmail.com
 branches:
   only:
     - architecture
