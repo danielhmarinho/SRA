@@ -71,7 +71,7 @@ class PlacesController < ApplicationController
     @place.destroy
 
     respond_to do |format|
-      format.html { redirect_to places_url }
+      format.html { redirect_to places_url, notice: 'Local deletado com sucesso.' }
       format.json { head :no_content }
     end
   end
