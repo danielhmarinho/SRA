@@ -76,7 +76,7 @@ class AlunosController < ApplicationController
     @aluno.destroy
 
     respond_to do |format|
-      format.html { redirect_to alunos_url }
+      format.html { redirect_to alunos_url, notice: 'Aluno deletado com sucesso.' }
       format.json { head :no_content }
     end
   end

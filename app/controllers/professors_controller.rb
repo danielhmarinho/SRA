@@ -78,7 +78,7 @@ class ProfessorsController < ApplicationController
     @professor.destroy
 
     respond_to do |format|
-      format.html { redirect_to professors_url }
+      format.html { redirect_to professors_url, notice: 'Professor deletado com sucesso.' }
       format.json { head :no_content }
     end
   end

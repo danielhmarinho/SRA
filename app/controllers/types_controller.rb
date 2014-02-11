@@ -68,7 +68,7 @@ class TypesController < ApplicationController
     @type.destroy
 
     respond_to do |format|
-      format.html { redirect_to types_url }
+      format.html { redirect_to types_url, notice: 'Tipo de Atendimento deletado com sucesso.' }
       format.json { head :no_content }
     end
   end
