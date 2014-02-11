@@ -78,7 +78,7 @@ class ServidorsController < ApplicationController
     @servidor.destroy
 
     respond_to do |format|
-      format.html { redirect_to servidors_url }
+      format.html { redirect_to servidors_url, notice: 'Servidor deletado com sucesso.' }
       format.json { head :no_content }
     end
   end

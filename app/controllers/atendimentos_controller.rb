@@ -69,7 +69,7 @@ class AtendimentosController < ApplicationController
     @atendimento.destroy
 
     respond_to do |format|
-      format.html { redirect_to atendimentos_url }
+      format.html { redirect_to atendimentos_url, notice: 'Atendimento deletado com sucesso.' }
       format.json { head :no_content }
     end
   end
