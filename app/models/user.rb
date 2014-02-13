@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   rolify
-  acts_as_superclass
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :trackable, :validatable, :timeoutable, :authentication_keys => [:username]
@@ -11,7 +10,7 @@ class User < ActiveRecord::Base
   
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :password, :password_confirmation, :remember_me,:name
+  attr_accessible :username, :password, :password_confirmation, :remember_me,:name, :matricula
 
   def email_required?
     false

@@ -4,20 +4,17 @@ class Ability
   def initialize(user)
     user ||= User.new # guest user
 
-    if user.as_user_type ==  'Aluno'
+    if user.has_role?  :student
       can :create, Atendimento
     end
     
-    if user.as_user_type == 'Professor'
+    if user.has_role?  :professor
       can :create, Atendimento
     end
-    if user.as_user_type == 'Servidor'
-      can [:read, :create], [Atendimento, Professor, Aluno, Servidor]
+    if user.has_role? :administrative
+      can [:read, :create], [Atendimento]
       can [:edit, :update], Atendimento
       can :manage, [Type, Place]
-      can [:edit, :update], Servidor do |servidors|
-        servidors.try(:user) == user
-      end
      end
     if user.has_role? :admin
       can :manage, :all

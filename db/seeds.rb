@@ -1,20 +1,33 @@
 # encoding: UTF-8
-Professor.create([ :password => 'NA2U9+m6',
+User.create([ :password => 'NA2U9+m6',
                    :password_confirmation => 'NA2U9+m6', :matricula => '101910291', :username => 'alessandro' ,
                    :name => 'Alessandro'])
 
-Professor.last.add_role :admin
 
-Servidor.create([ {:password => 'aj0wq"/<?>I=}<+',
+User.last.add_role :professor
+User.last.add_role :admin
+
+User.create([ :password => 'aj0wq"/<?>I=}<+',
                    :password_confirmation => 'aj0wq"/<?>I=}<+', :matricula => '9999999', :username => 'funcionario-sra' ,
-                   :name => 'Funcionário Sra Padrão'},
-                  {:password => 'L4j():_+b7u',
-                   :password_confirmation => 'L4j():_+b7u', :matricula => '121232', :username => 'sra-administrador' ,
-                   :name => 'Funcionário Sra Administrador'}
+                   :name => 'Funcionário Sra Padrão'])
 
-])
-Servidor.last.add_role :admin
+User.last.add_role :administrative
 
+
+User.create([ :password => 'L4j():_+b7u',
+              :password_confirmation => 'L4j():_+b7u', :matricula => '121232', :username => 'sra-administrador' ,
+              :name => 'Funcionário Sra Administrador'])
+
+
+User.last.add_role :administrative
+User.last.add_role :admin
+
+
+User.create([ :password => '123456',
+              :password_confirmation => '123456', :matricula => '090037910', :username => 'gbrego' ,
+              :name => 'Guilherme Baufaker'])
+
+User.last.add_role :student
 
 
 Place.create!([

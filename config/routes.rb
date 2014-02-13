@@ -14,10 +14,7 @@ SRA::Application.routes.draw do
     get 'type_by_place', :on => :collection
   end
   resources :places
-  
-  resources :alunos
-
-  resources :servidors
+    resources :servidors
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
