@@ -8,13 +8,10 @@ SRA::Application.routes.draw do
      get :autocomplete_user_name, :on => :collection
   end
 
-  resources :professors
- 
   resources :types do
     get 'type_by_place', :on => :collection
   end
   resources :places
-    resources :servidors
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
