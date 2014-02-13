@@ -84,7 +84,7 @@
       </table>
       </tr>
       <div class="actions">
-        <%if current_user.has_role? :administrative || (current_user.has_role?  :admin) %>
+        <%if ((current_user.has_role? :admin) || (current_user.has_role? :administrative)) %>
 
 
             <%= link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),

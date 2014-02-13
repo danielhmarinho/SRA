@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 require 'cancan'
 class ApplicationController < ActionController::Base
+
+
   protect_from_forgery
   include ApplicationHelper
 
@@ -45,4 +47,15 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+
+  helper_method :redirect_as_place, :redirect_as_type
+
+  def redirect_as_place(format, notice)
+    format.html { redirect_to places_url, notice }
+  end
+
+  def redirect_as_type(format, notice)
+    format.html { redirect_to types_url, notice }
+  end
+
 end
