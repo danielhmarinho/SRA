@@ -23,7 +23,7 @@ class TypesController < ApplicationController
 
     respond_to do |format|
       if @type.save
-        redirect_as_type(format, notice: 'Tipo de Atendimento criado com sucesso.')
+        redirect_as_controller(format, types_path, notice: 'Tipo de Atendimento criado com sucesso.')
       else
         format.html { render action: "new" }
       end
@@ -36,7 +36,7 @@ class TypesController < ApplicationController
 
     respond_to do |format|
       if @type.update_attributes(params[:type])
-        redirect_as_type(format, notice: 'Tipo de Atendimento alterado com sucesso.')
+        redirect_as_controller(format, types_path, notice: 'Tipo de Atendimento alterado com sucesso.')
 
       else
         format.html { render action: "edit" }
@@ -50,7 +50,7 @@ class TypesController < ApplicationController
     @type.destroy
 
     respond_to do |format|
-      redirect_as_type(format, notice: 'Tipo de Atendimento deletado com sucesso.')
+      redirect_as_controller(format, types_path, notice: 'Tipo de Atendimento deletado com sucesso.')
     end
   end
 

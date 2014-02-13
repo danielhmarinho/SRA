@@ -48,14 +48,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  helper_method :redirect_as_place, :redirect_as_type
+  helper_method :redirect_as_controller
 
-  def redirect_as_place(format, notice)
-    format.html { redirect_to places_url, notice }
+
+
+  def redirect_as_controller(format, path, notice)
+    format.html { redirect_to path, notice }
   end
 
-  def redirect_as_type(format, notice)
-    format.html { redirect_to types_url, notice }
-  end
 
 end
