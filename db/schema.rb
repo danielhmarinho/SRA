@@ -13,12 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20140130124012) do
 
-  create_table "alunos", :force => true do |t|
-    t.string   "matricula"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "atendimentos", :force => true do |t|
     t.integer  "user_id"
     t.datetime "data"
@@ -45,12 +39,6 @@ ActiveRecord::Schema.define(:version => 20140130124012) do
 
   add_index "places_types", ["place_id", "type_id"], :name => "index_places_types_on_place_id_and_type_id"
 
-  create_table "professors", :force => true do |t|
-    t.string   "matricula"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.integer  "resource_id"
@@ -62,12 +50,6 @@ ActiveRecord::Schema.define(:version => 20140130124012) do
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
-  create_table "servidors", :force => true do |t|
-    t.string   "matricula"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "types", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -75,9 +57,8 @@ ActiveRecord::Schema.define(:version => 20140130124012) do
   end
 
   create_table "users", :force => true do |t|
-    t.integer  "as_user_id"
-    t.string   "as_user_type"
     t.string   "name"
+    t.string   "matricula"
     t.string   "encrypted_password"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"

@@ -22,25 +22,39 @@
           <th>Local de Atendimento</th>
           <th>Tipo de Atendimento</th>
           <th></th>
+          <%if can? :delete, Atendimento%>
           <th></th>
-
+          <% end %>
 
           <% @atendimentos.each do |atendimento| %>
             <tr>
               <td><%= atendimento.user.try(:name) %></td>
               <td><%= l(atendimento.try(:data), :format => :long) if atendimento.data %></td>
-              <td><%= atendimento.user.try(:as_user_type) %></td>
+              <%  if atendimento.user.has_role? :student %>
+                  <td><%="Estudante"%></td>
+              <% elsif atendimento.user.has_role? :administrative %>
+                  <td><%="Servidor Administrativo"%></td>
+
+              <% elsif atendimento.user.has_role? :professor %>
+                  <td><%="Professor"%></td>
+
+
+                 <% end %>
+
               <td><%= atendimento.place.try(:name) %></td>
               <td><%= atendimento.type.try(:name) %></td>
+              <%if can? :edit, Atendimento%>
               <td><%= link_to raw("<i class=\"fa fa-pencil-square-o\"> Editar </i>"),
                               edit_atendimento_path(atendimento),
                               class: "btn btn-small btn-primary",
                               method: :get %></td>
-              <td><%= link_to raw("<i class=\"fa fa-trash-o\"> Deletar </i>"),
+               <%end%>
+              <%if can? :delete, Atendimento%>
+            <td><%= link_to raw("<i class=\"fa fa-trash-o\"> Deletar </i>"),
                               atendimento,
                               class: "btn btn-small btn-danger",
                               method: :delete, data: {confirm: 'Tem certeza que deseja excluir?'} %></td>
-              </td>
+              <%end%>
             </tr>
 
         <% end %>

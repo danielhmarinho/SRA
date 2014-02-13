@@ -6,19 +6,21 @@ class ApplicationController < ActionController::Base
 
 
   def after_sign_in_path_for(resource)
-    if current_user.as_user_type ==  'Aluno'
+    if current_user.has_role? :administrative
+      atendimentos_path
+    elsif current_user.has_role? :student
       new_atendimento_path
-    elsif current_user.as_user_type == 'Professor'
+
+    elsif current_user.has_role? :professor
       if current_user.has_role? :admin
         atendimentos_path
       else
         new_atendimento_path
       end
-    elsif current_user.as_user_type == 'Servidor'
+    elsif current_user.has_role? :admin
       atendimentos_path
-    elsif current_user.as_user_type == 'Comunidade'
-      new_atendimento_path
     end
+
 
   end
 
@@ -32,14 +34,12 @@ class ApplicationController < ActionController::Base
   def redirect_as_user(user)
 
     begin
-      if current_user.as_user_type ==  'Aluno'
+      if current_user.has_role? :student
         redirect_to new_atendimento_path
-      elsif current_user.as_user_type == 'Professor'
+      elsif current_user.has_role? :professor
         redirect_to new_atendimento_path
-      elsif current_user.as_user_type == 'Servidor'
+      elsif current_user.has_role? :administrative
         redirect_to atendimentos_path
-      elsif current_user.as_user_type == 'Comunidade'
-        redirect_to new_atendimento_path
       end
     rescue => e
       redirect_to root_path

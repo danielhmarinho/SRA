@@ -2,9 +2,10 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
 
   def change
-    create_table :users,:as_relation_superclass => true do |t|
+    create_table :users  do |t|
       ## Database authenticatable
       t.string :name
+      t.string :matricula
       t.string :encrypted_password
 
       ## Recoverable

@@ -8,7 +8,6 @@ gem 'rails', '3.2.15'
 gem 'sqlite3'
 gem 'execjs'
 gem 'therubyracer'
-gem 'acts_as_relation', '~> 0.1'
 gem "twitter-bootstrap-rails"
 gem 'datetimepicker-rails', :require => 'datetimepicker-rails', :git => 'https://github.com/thiagovsk/datetimepicker-rails.git'
 gem 'devise'

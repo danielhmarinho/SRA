@@ -8,10 +8,8 @@ require 'watir-webdriver'
 browser = Watir::Browser.new
 browser.goto "http://localhost:3000"
 
-
-
 browser.text_field(:id, "user_username").set("alessandro")
-browser.text_field(:id, "user_password").set("foobar")
+browser.text_field(:id, "user_password").set("NA2U9+m6")
 browser.button(:id,"login").click
 browser.link(:text, "Criar Atendimento").click
 browser.select_list(:id, "atendimento_place_id").select("Biblioteca")
@@ -20,7 +18,6 @@ browser.button(:id,"criar-atendimento").click
 browser.link(:text, "Voltar").click
 
 #criar professor
-
 browser.goto "http://localhost:3000/professors"
 browser.link(:text, "Criar Professor").click
 browser.text_field(:id, "professor_name").set("hilmer")
