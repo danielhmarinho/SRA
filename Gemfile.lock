@@ -107,6 +107,8 @@ GEM
     hike (1.2.3)
     i18n (0.6.5)
     journey (1.0.4)
+    jquery-datatables-rails (1.12.2)
+      jquery-rails
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -142,6 +144,8 @@ GEM
       activesupport (= 3.2.15)
       bundler (~> 1.0)
       railties (= 3.2.15)
+    rails-bootstrap-helpers (0.1.0)
+      rails (>= 3.2.11)
     rails3-jquery-autocomplete (1.0.11)
       rails (~> 3.0)
     railties (3.2.15)
@@ -250,9 +254,11 @@ DEPENDENCIES
   execjs
   factory_girl_rails (~> 4.0)
   font-awesome-less
+  jquery-datatables-rails
   jquery-rails
   jquery-ui-rails
   rails (= 3.2.15)
+  rails-bootstrap-helpers
   rails3-jquery-autocomplete
   rolify
   rspec-rails (~> 3.0.0.beta)

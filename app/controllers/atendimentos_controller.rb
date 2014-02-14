@@ -26,7 +26,7 @@ class AtendimentosController < ApplicationController
 
     respond_to do |format|
       if @atendimento.save
-        redirect_as_controller(format, new_atendimento_path, notice: 'Atendimento alterado com sucesso')
+        redirect_as_controller(format, new_atendimento_path, notice: 'Atendimento criado com sucesso')
       else
         format.html { render action: "new" }
       end
