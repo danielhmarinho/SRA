@@ -37,7 +37,6 @@ class TypesController < ApplicationController
     respond_to do |format|
       if @type.update_attributes(params[:type])
         redirect_as_controller(format, types_path, notice: 'Tipo de Atendimento alterado com sucesso.')
-
       else
         format.html { render action: "edit" }
       end

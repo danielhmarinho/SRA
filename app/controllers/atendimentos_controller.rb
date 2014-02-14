@@ -6,22 +6,12 @@ class AtendimentosController < ApplicationController
   # GET /atendimentos.json
   def index
     @atendimentos = Atendimento.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @atendimentos }
-    end
   end
 
   # GET /atendimentos/new
   # GET /atendimentos/new.json
   def new
     @atendimento = Atendimento.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @atendimento }
-    end
   end
 
   # GET /atendimentos/1/edit
@@ -36,12 +26,9 @@ class AtendimentosController < ApplicationController
 
     respond_to do |format|
       if @atendimento.save
-        format.html { redirect_to new_atendimento_url}
-        flash[:success] = "Atendimento Criado com Sucesso"
-        format.json { render json: @atendimento, status: :created, location: @atendimento }
+        redirect_as_controller(format, new_atendimento_path, notice: 'Atendimento alterado com sucesso')
       else
         format.html { render action: "new" }
-        format.json { render json: @atendimento.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -53,11 +40,10 @@ class AtendimentosController < ApplicationController
 
     respond_to do |format|
       if @atendimento.update_attributes(params[:atendimento])
-        format.html { redirect_to atendimentos_url, notice: 'Atendimento alterado com sucesso.' }
-        format.json { head :no_content }
+        redirect_as_controller(format, atendimentos_path, notice: 'Atendimento alterado com sucesso')
       else
         format.html { render action: "edit" }
-        format.json { render json: @atendimento.errors, status: :unprocessable_entity }
+
       end
     end
   end
@@ -69,8 +55,7 @@ class AtendimentosController < ApplicationController
     @atendimento.destroy
 
     respond_to do |format|
-      format.html { redirect_to atendimentos_url, notice: 'Atendimento deletado com sucesso.' }
-      format.json { head :no_content }
+      redirect_as_controller(format, atendimentos_path, notice: 'Atendimento deletado com sucesso')
     end
   end
 end
