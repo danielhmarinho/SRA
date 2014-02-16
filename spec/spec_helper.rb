@@ -1,7 +1,11 @@
 require 'simplecov'
-SimpleCov.start
 require 'coveralls'
-Coveralls.wear!
+
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+    Coveralls::SimpleCov::Formatter,
+    SimpleCov::Formatter::HTMLFormatter,
+]
+SimpleCov.start
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
