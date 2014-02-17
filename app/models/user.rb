@@ -22,11 +22,10 @@ class User < ActiveRecord::Base
 
 before_save :get_ldap_name
 
-=begin
+
 def get_ldap_name
   self.name = Devise::LDAP::Adapter.get_ldap_param(self.username,"givenName")[0]
   self.add_role :admin
-
 end
-=end
+
 end
