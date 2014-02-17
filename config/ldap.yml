@@ -26,7 +26,11 @@ development:
   host: 172.16.0.63
   port: 389
   attribute: uid
+<<<<<<< HEAD
   base: <%= "#{@ou},dc=fga,dc=unb,dc=br"%>
+=======
+  base: dc=fga,dc=unb,dc=br
+>>>>>>> 64c24450dd76259a8ca672409d9d1f7649016c01
   ssl: false
   # <<: *AUTHORIZATIONS
 
