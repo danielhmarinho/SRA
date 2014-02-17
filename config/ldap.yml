@@ -1,3 +1,4 @@
+<% @ou = "Alunos" %>
 ## Authorizations
 # Uncomment out the merging for each environment that you'd like to include.
 # You can also just copy and paste the tree (do not include the "authorizations") to each
@@ -25,7 +26,7 @@ development:
   host: 172.16.0.63
   port: 389
   attribute: uid
-  base: ou=Alunos,dc=fga,dc=unb,dc=br
+  base: <%= "#{@ou},dc=fga,dc=unb,dc=br"%>
   ssl: false
   # <<: *AUTHORIZATIONS
 

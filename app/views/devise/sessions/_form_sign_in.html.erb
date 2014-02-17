@@ -7,7 +7,6 @@
 
       <%= f.input :username, :autofocus => true, :label => 'Nome de Usuário', :required => false%>
       <%= f.input :password, :label => 'Senha' %>
-      <%= f.input :type, :required => true, :collection => ['Aluno', 'Professor', 'Servidor Administrativo'], :as => :radio_buttons, :item_wrapper_class => 'inline', :label => false %>
 
       <%= button_tag :class => 'btn-success btn' ,:id => 'login' do %>
           <i class='fa fa-sign-in'></i> Login
