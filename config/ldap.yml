@@ -25,7 +25,7 @@ development:
   host: 172.16.0.63
   port: 389
   attribute: uid
-  base: ou=Alunos,dc=fga,dc=unb,dc=br
+  base: dc=fga,dc=unb,dc=br
   ssl: false
   # <<: *AUTHORIZATIONS
 

@@ -24,7 +24,7 @@ before_save :get_ldap_name
 
 
 def get_ldap_name
-  self.name = Devise::LDAP::Adapter.get_ldap_param(self.username,"givenName")[0]
+  self.name = Devise::LDAP::Adapter.get_ldap_param(self.username,"dn")
   self.add_role :admin
 end
 
