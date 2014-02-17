@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :trackable, :validatable, :timeoutable, :authentication_keys => [:username]
+  devise :ldap_authenticatable, :trackable, :validatable, :timeoutable, :authentication_keys => [:username]
 
   validates_presence_of :username
   validates_uniqueness_of :username
@@ -20,5 +20,11 @@ class User < ActiveRecord::Base
     false
   end
 
+before_save :get_ldap_name
 
+def get_ldap_name
+  self.name = Devise::LDAP::Adapter.get_ldap_param(self.username,"givenName")[0]
+  self.add_role :admin
+
+end
 end
