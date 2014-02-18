@@ -30,12 +30,37 @@ def get_ldap_name
   general_info = Devise::LDAP::Adapter.get_ldap_param(self.username,"dn")
 
 
- is_professor = general_info.at("Professores")
- is_Aluno = general_info.at("Alunos")
- is_Servidor = general_info.at("Servidores")
+  case check_levels(general_info)
+
+    when "Alunos"
+      return self.add_role :student
+
+    when "Professores"
+      return self.add_role :professor
+
+    when "Servidores"
+      return self.add_role :administrative
 
 
-  self.add_role :admin
+  end
+
+  #self.add_role :admin
 end
+
+
+  def check_levels(general_info)
+
+    if general_info.at("Professores") != nil
+      return "Professores"
+
+    elsif general_info.at("Servidores") != nil
+      return "Servidores"
+
+    elsif general_info.at("Alunos") != nil
+      return "Alunos"
+    end
+
+  end
+
 
 end

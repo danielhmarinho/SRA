@@ -22,7 +22,7 @@ authorizations: &AUTHORIZATIONS
 ## Environment
 
 development:
-  host: 
+  host: 164.41.94.169
   port: 389
   attribute: uid
   base: dc=fga,dc=unb,dc=br
@@ -31,11 +31,9 @@ development:
 
 
 production:
-  host: localhost
-  port: 636
-  attribute: cn
-  base: ou=people,dc=test,dc=com
-  admin_user: cn=admin,dc=test,dc=com
-  admin_password: admin_password
-  ssl: start_tls
-  # <<: *AUTHORIZATIONS
+    host: 172.16.0.63
+    port: 389
+    attribute: uid
+    base: dc=fga,dc=unb,dc=br
+    ssl: false
+
