@@ -9,7 +9,6 @@ gem 'sqlite3'
 gem 'execjs'
 gem 'therubyracer'
 gem "twitter-bootstrap-rails"
-gem 'datetimepicker-rails', :require => 'datetimepicker-rails', :git => 'https://github.com/thiagovsk/datetimepicker-rails.git'
 gem 'devise'
 gem 'simple_form'
 gem 'rails3-jquery-autocomplete'
