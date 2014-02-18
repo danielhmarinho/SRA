@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :password, :password_confirmation, :remember_me,:name, :matricula, :type
+  attr_accessible :username, :password, :password_confirmation, :remember_me,:name, :matricula
 
   def email_required?
     false
@@ -29,9 +29,9 @@ def get_ldap_name
 
   general_info = Devise::LDAP::Adapter.get_ldap_param(self.username,"dn")
 
+  check = check_levels(general_info)
 
-  case check_levels(general_info)
-
+  case check
     when "Alunos"
       return self.add_role :student
 
