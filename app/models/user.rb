@@ -24,7 +24,17 @@ before_save :get_ldap_name
 
 
 def get_ldap_name
-  self.name = Devise::LDAP::Adapter.get_ldap_param(self.username,"dn")
+  self.matricula = Devise::LDAP::Adapter.get_ldap_param(self.username,"uid")[0]
+  self.name = Devise::LDAP::Adapter.get_ldap_param(self.username,"givenName")[0]
+
+  general_info = Devise::LDAP::Adapter.get_ldap_param(self.username,"dn")
+
+
+ is_professor = general_info.at("Professores")
+ is_Aluno = general_info.at("Alunos")
+ is_Servidor = general_info.at("Servidores")
+
+
   self.add_role :admin
 end
 
