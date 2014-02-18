@@ -37,3 +37,11 @@ production:
     base: dc=fga,dc=unb,dc=br
     ssl: false
 
+
+test:
+  host: 164.41.94.169
+  port: 389
+  attribute: uid
+  base: dc=fga,dc=unb,dc=br
+  ssl: false
+  # <<: *AUTHORIZATIONS
