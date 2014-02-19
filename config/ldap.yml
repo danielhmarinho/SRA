@@ -31,7 +31,7 @@ development:
 
 
 production:
-    host: 172.16.0.63
+    host: 164.41.94.169
     port: 389
     attribute: uid
     base: dc=fga,dc=unb,dc=br

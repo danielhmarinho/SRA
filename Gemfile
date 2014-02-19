@@ -14,7 +14,6 @@ gem 'simple_form'
 gem 'rails3-jquery-autocomplete'
 gem 'font-awesome-less'
 gem 'watir'
-gem 'brazilian-rails'
 gem 'seed_dump'
 gem 'cancan'
 gem 'coveralls', require: false
