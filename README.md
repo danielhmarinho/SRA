@@ -9,7 +9,7 @@ O projeto visa desenvolver um sistema para gerenciamento dos serviços acadêmic
 
 <h2> Dados Técnicos </h2>
 
-<a href="https://travis-ci.org/gbrego/SRA"><img src="https://travis-ci.org/gbrego/SRA.png?branch=architecture"></a> <a href='https://coveralls.io/r/gbrego/SRA?branch=architecture'>[![Coverage Status](https://coveralls.io/repos/gbrego/SRA/badge.png?branch=architecture)](https://coveralls.io/r/gbrego/SRA?branch=architecture)
+<a href="https://travis-ci.org/gbrego/SRA"><img src="https://travis-ci.org/gbrego/SRA.png?branch=architecture"></a> <a href='https://coveralls.io/r/gbrego/SRA?branch=architecture'>[![Coverage Status](https://coveralls.io/repos/gbrego/SRA/badge.png?branch=architecture)](https://coveralls.io/r/gbrego/SRA?branch=architecture)[![Code Climate](https://codeclimate.com/github/gbrego/SRA.png)](https://codeclimate.com/github/gbrego/SRA)
 
 
 ```
