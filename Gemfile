@@ -18,11 +18,17 @@ gem 'seed_dump'
 gem 'cancan'
 gem 'coveralls', require: false
 gem "rolify"
+<<<<<<< HEAD
 gem "devise_ldap_authenticatable"
 gem 'jquery-datatables-rails'
 gem "rails-bootstrap-helpers"
 
 
+=======
+gem 'jquery-datatables-rails'
+gem "rails-bootstrap-helpers"
+
+>>>>>>> 660d83485664b7536da84385e4a83a60b5f1f079
 
 # Gems used only for assets and not required
 # in production environments by default.
