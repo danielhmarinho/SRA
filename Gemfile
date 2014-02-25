@@ -19,6 +19,9 @@ gem 'cancan'
 gem 'coveralls', require: false
 gem "rolify"
 gem "devise_ldap_authenticatable"
+gem 'jquery-datatables-rails'
+gem "rails-bootstrap-helpers"
+
 
 
 # Gems used only for assets and not required
