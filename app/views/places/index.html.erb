@@ -10,29 +10,45 @@
                    class: "btn btn-success  btn-small"%>
       </div>
     </div>
-    <table>
-      <tr>
+
+
+
+    <div id='registros'>
+      <table id="places" class="display">
+        <thead>
+        <tr>
         <th>Nome</th>
         <th></th>
         <th></th>
       </tr>
+      </thead>
 
+      <tbody>
       <% @places.each do |place| %>
           <tr>
             <td><%= place.try(:name) %></td>
-            <td><%= link_to raw("<i class=\"fa fa-pencil-square-o\"> Editar </i>"),
-                            edit_place_path(place),
-                            class: "btn btn-small btn-primary",
-                            method: :get %></td>
-            <td><%= link_to raw("<i class=\"fa fa-trash-o\"> Deletar </i>"),
-                            place,
-                            class: "btn btn-small btn-danger",
-                            method: :delete, data: { confirm: 'Tem certeza que deseja excluir?'} %></td></td>
-          </tr>
+            <%if can? :edit, Place%>
+            <td><%= bs_button_to  raw("<i class=\"fa fa-pencil-square-o\"></i>"),
+                                  edit_place_path(place),tooltip: "Editar Local de Atendimento",
+                                  class: "btn btn-large btn-primary",
+                                  method: :get %></td>
+            <%end%>
+
+
+            <%if can? :delete, Place%>
+                <td><%= bs_button_to raw("<i class=\"fa fa-trash-o\"></i>"),
+                                     place, tooltip: "Excluir Local de Atendimento",
+                                     class: "btn btn-large btn-danger",
+                                     method: :delete, data: {confirm: 'Tem certeza que deseja excluir?'} %></td>
+            <%end%>
+
+
           </tr>
       <% end %>
-    </table>
+      </tbody>
 
-    <br />
+    </table>
+  </div>
+    <br/>
   </div>
 </div>

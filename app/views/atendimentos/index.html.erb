@@ -14,52 +14,59 @@
 
 
     <div id='registros'>
-      <table>
+      <table id="atendimentos" class="display">
+
+        <thead>
+
         <tr>
           <th>Nome</th>
           <th>Data</th>
           <th>Público Alvo</th>
           <th>Local de Atendimento</th>
           <th>Tipo de Atendimento</th>
-          <th></th>
+          <th class="edit-button"></th>
           <%if can? :delete, Atendimento%>
-          <th></th>
+              <th></th>
+              </tr>
           <% end %>
+          </thead>
+        <tbody>
+        <% @atendimentos.each do |atendimento| %>
+              <tr>
+                <td><%= atendimento.user.try(:name) %></td>
+                <td><%= l(atendimento.try(:data), :format => :long) if atendimento.data %></td>
+                <%  if atendimento.user.has_role? :student %>
+                    <td><%="Estudante"%></td>
+                <% elsif atendimento.user.has_role? :administrative %>
+                    <td><%="Servidor Administrativo"%></td>
 
-          <% @atendimentos.each do |atendimento| %>
-            <tr>
-              <td><%= atendimento.user.try(:name) %></td>
-              <td><%= l(atendimento.try(:data), :format => :long) if atendimento.data %></td>
-              <%  if atendimento.user.has_role? :student %>
-                  <td><%="Estudante"%></td>
-              <% elsif atendimento.user.has_role? :administrative %>
-                  <td><%="Servidor Administrativo"%></td>
-
-              <% elsif atendimento.user.has_role? :professor %>
-                  <td><%="Professor"%></td>
+                <% elsif atendimento.user.has_role? :professor %>
+                    <td><%="Professor"%></td>
 
 
-                 <% end %>
+                <% end %>
 
-              <td><%= atendimento.place.try(:name) %></td>
-              <td><%= atendimento.type.try(:name) %></td>
-              <%if can? :edit, Atendimento%>
-              <td><%= link_to raw("<i class=\"fa fa-pencil-square-o\"> Editar </i>"),
-                              edit_atendimento_path(atendimento),
-                              class: "btn btn-small btn-primary",
-                              method: :get %></td>
-               <%end%>
-              <%if can? :delete, Atendimento%>
-            <td><%= link_to raw("<i class=\"fa fa-trash-o\"> Deletar </i>"),
-                              atendimento,
-                              class: "btn btn-small btn-danger",
-                              method: :delete, data: {confirm: 'Tem certeza que deseja excluir?'} %></td>
-              <%end%>
-            </tr>
+                <td><%= atendimento.place.try(:name) %></td>
+                <td><%= atendimento.type.try(:name) %></td>
+                <%if can? :edit, Atendimento%>
+                   <td><%= bs_button_to  raw("<i class=\"fa fa-pencil-square-o\"></i>"),
+                                    edit_atendimento_path(atendimento),tooltip: "Editar Atendimento",
+                                    class: "btn btn-large btn-primary",
+                                    method: :get %></td>
 
-        <% end %>
+                <%end%>
+                <%if can? :delete, Atendimento%>
+                    <td><%= bs_button_to raw("<i class=\"fa fa-trash-o\"></i>"),
+                                         atendimento, tooltip: "Excluir Atendimento",
+                                         class: "btn btn-large btn-danger",
+                                         method: :delete, data: {confirm: 'Tem certeza que deseja excluir?'} %></td>
+                <%end%>
 
-      </table>
+              </tr>
+
+          <% end %>
+        </tbody>
+          </table>
 
     </div>
 
