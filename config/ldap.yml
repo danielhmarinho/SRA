@@ -22,7 +22,7 @@ authorizations: &AUTHORIZATIONS
 ## Environment
 
 development:
-  host: 164.41.94.169
+  host: 164.41.86.31
   port: 389
   attribute: uid
   base: dc=fga,dc=unb,dc=br
@@ -31,7 +31,7 @@ development:
 
 
 production:
-    host: 164.41.94.169
+    host: 172.16.0.63
     port: 389
     attribute: uid
     base: dc=fga,dc=unb,dc=br
@@ -39,7 +39,7 @@ production:
 
 
 test:
-  host: 164.41.94.169
+  host: 164.41.86.31
   port: 389
   attribute: uid
   base: dc=fga,dc=unb,dc=br
