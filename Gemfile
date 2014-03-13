@@ -8,21 +8,35 @@ gem 'rails', '3.2.15'
 gem 'sqlite3'
 gem 'execjs'
 gem 'therubyracer'
+
 gem "twitter-bootstrap-rails"
+
 gem 'devise'
+
 gem 'simple_form'
+
 gem 'rails3-jquery-autocomplete'
+
 gem 'font-awesome-less'
+
 gem 'watir'
+
 gem 'seed_dump'
+
+gem 'thin'
+
 gem 'cancan'
+
 gem 'coveralls', require: false
+
 gem "rolify"
 gem "devise_ldap_authenticatable"
 gem 'jquery-datatables-rails'
 gem "rails-bootstrap-helpers"
 
+gem 'gmaps4rails'
 
+gem 'bootstrap-generators', '~> 3.1.1'
 
 
 # Gems used only for assets and not required
