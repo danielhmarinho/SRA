@@ -6,9 +6,11 @@
 class Listatendimento < ActiveRecord::Base
   
     attr_accessor :path
+    attr_accessor :atendimentos_relatorio
 
-    def initialize(path = nil)
+    def initialize(path = nil, atendimentos_relatorio)
       @path = path
+      @atendimentos_relatorio = atendimentos_relatorio
     end
 
     PDF_OPTIONS = {
@@ -31,13 +33,9 @@ class Listatendimento < ActiveRecord::Base
 
           data = [["Coluna 1", "Coluna 2", "Coluna 3"]] 
 
-          10.times do |i|
-            data += [["linha #{i}", "linha #{i+1}", "linha #{i+1}"]]  
+          atendimentos_relatorio.each do |atendimento|
+            data += [["linha 0", "linha 1", "linha 2"]]  
           end
-
-          #@atendimentos.each do |atendimento|
-          #  data += [["linha #{i}", "linha #{i+1}", "linha #{i+1}"]]  
-          #end
 
           pdf.table(data, :header => true)
 
@@ -68,6 +66,7 @@ class Listatendimento < ActiveRecord::Base
 
       end
     end
+
   def save
     pdf.render_file(path)
   end
