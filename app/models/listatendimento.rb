@@ -6,20 +6,18 @@
 class Listatendimento < ActiveRecord::Base
   
     attr_accessor :path
-    attr_accessor :atendimentos_relatorio
+    attr_accessor :atendimentos_data
 
-    def initialize(path = nil, atendimentos_relatorio)
+    def initialize(path = nil, atendimentos_data)
       @path = path
-      @atendimentos_relatorio = atendimentos_relatorio
+      @atendimentos_data = atendimentos_data
     end
 
     PDF_OPTIONS = {
         :page_size   => "A4",
         :page_layout => :landscape,
-        :margin      => [40, 40]
+        :margin      => [20, 20]
     }
-
-  
 
     def pdf
       Prawn::Document.new(PDF_OPTIONS) do |pdf|
@@ -30,15 +28,8 @@ class Listatendimento < ActiveRecord::Base
           pdf.move_down 20
           pdf.text "Registros", :size => 20, :align => :center, :style => :bold
 
-
-          data = [["Coluna 1", "Coluna 2", "Coluna 3"]] 
-
-          atendimentos_relatorio.each do |atendimento|
-            data += [["linha 0", "linha 1", "linha 2"]]  
-          end
-
-          pdf.table(data, :header => true)
-
+          pdf.move_down 20
+          pdf.table(atendimentos_data, :header => true, :cell_style => { :border_width => 3 })
 
           pdf.repeat :all do
 
