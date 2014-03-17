@@ -35,7 +35,7 @@ gem 'jquery-datatables-rails'
 gem "rails-bootstrap-helpers"
 
 gem 'gmaps4rails'
-
+gem "prawn", "0.8.4"
 gem 'bootstrap-generators', '~> 3.1.1'
 
 
