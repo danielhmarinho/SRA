@@ -27,7 +27,9 @@ class ListatendimentosController < ApplicationController
 
         type = atendimento.type.name
 
-        data.push [user.name, user.matricula, role, type, atendimento.data]
+        50.times do
+          data.push [user.name, user.matricula, role, type, atendimento.data]
+        end
       end
 
       return data

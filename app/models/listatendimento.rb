@@ -22,21 +22,15 @@ class Listatendimento < ActiveRecord::Base
     def pdf
       
       Prawn::Document.new(PDF_OPTIONS) do |pdf|
-          pdf.move_down(60)
+          
+          pdf.bounding_box [pdf.bounds.left, pdf.bounds.top - 65], :width  => pdf.bounds.width, :height => 460 do
+            pdf.table(atendimentos_data, :header => true)      
+          end
 
-          #pdf.move_down 50
-          pdf.fill_color "000000"
-          pdf.text "Sistema de Registro de Atendimentos", :size => 22, :style => :bold, :align => :center
-
-          #pdf.move_down 20
-          pdf.text "Registros", :size => 20, :align => :center, :style => :bold
-
-          #pdf.move_down 20
-          pdf.table(atendimentos_data, :header => true, :cell_style => { :border_width => 3 })
-
-          pdf.start_new_page
-          pdf.start_new_page
-          pdf.start_new_page
+          pdf.page_count.times do |i|
+            pdf.go_to_page(i+1)
+            pdf.draw_text "#{i+1} / #{pdf.page_count}", :at=>[1,1] 
+          end
 
           pdf.repeat :all do
 
@@ -54,11 +48,6 @@ class Listatendimento < ActiveRecord::Base
               pdf.stroke_horizontal_rule
               pdf.move_down(5)
               pdf.text "Brasília, #{Time.now.strftime("%d/%m/%Y")}", :align => :center
-              
-              pdf.page_count.times do |i|
-                pdf.go_to_page(i+1)
-                pdf.draw_text "#{i+1} / #{pdf.page_count}", :at=>[1,1] 
-              end
             end
           end
       end
