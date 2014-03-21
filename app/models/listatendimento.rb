@@ -32,11 +32,15 @@ class Listatendimento < ActiveRecord::Base
           pdf.text "Registros", :size => 20, :align => :center, :style => :bold
 
           #pdf.move_down 20
-          pdf.table(atendimentos_data, :header => true, :cell_style => { :border_width => 3 })
+          columns ={ 0 => 170, 1 => 80, 2 => 100, 3 => 300, 4 => 150}
+          pdf.table(atendimentos_data, :header => true, :cell_style => { :inline_format => true } , :column_widths => columns )
+          
+          
 
-          pdf.start_new_page
-          pdf.start_new_page
-          pdf.start_new_page
+          pdf.page_count.times do |i|
+             pdf.go_to_page(i+1)
+             pdf.draw_text "#{i+1} / #{pdf.page_count}", :at=>[1,1] 
+          end
 
           pdf.repeat :all do
 
@@ -55,10 +59,6 @@ class Listatendimento < ActiveRecord::Base
               pdf.move_down(5)
               pdf.text "Brasília, #{Time.now.strftime("%d/%m/%Y")}", :align => :center
               
-              pdf.page_count.times do |i|
-                pdf.go_to_page(i+1)
-                pdf.draw_text "#{i+1} / #{pdf.page_count}", :at=>[1,1] 
-              end
             end
           end
       end

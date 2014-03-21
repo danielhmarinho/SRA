@@ -27,7 +27,7 @@ class ListatendimentosController < ApplicationController
 
         type = atendimento.type.name
 
-        data.push [user.name, user.matricula, role, type, atendimento.data]
+        data += [[user.name, user.matricula, role, type, l(atendimento.try(:data), :format => :long) ]]
       end
 
       return data
