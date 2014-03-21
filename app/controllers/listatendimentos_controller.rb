@@ -1,11 +1,11 @@
 class ListatendimentosController < ApplicationController
   def new
-  	Listatendimento.new("cert.pdf", generate_data).save
+   Listatendimento.new("cert.pdf", generate_data).save
   end
 
   def create
-  	#@atendimentos = Atendimento.all
-  	#Listatendimento.new("cert.pdf").save
+   @atendimentos = Atendimento.all
+   Listatendimento.new("cert.pdf").save
   end
 
   private
@@ -26,11 +26,11 @@ class ListatendimentosController < ApplicationController
         end
 
         type = atendimento.type.name
-
-        data += [[user.name, user.matricula, role, type, l(atendimento.try(:data), :format => :long) ]]
+          data.push [user.name, user.matricula, role, type, l(atendimento.try(:data), :format => :long) ]
       end
 
       return data
     end
 
 end
+

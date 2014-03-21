@@ -14,51 +14,45 @@ class Listatendimento < ActiveRecord::Base
     end
 
     PDF_OPTIONS = {
-        :page_size   => "A4",
+        :page_size => "A4",
         :page_layout => :landscape,
-        :margin      => [20, 20]
+        :margin => [20, 20]
     }
 
     def pdf
       
       Prawn::Document.new(PDF_OPTIONS) do |pdf|
-          pdf.move_down(60)
-
-          #pdf.move_down 50
-          pdf.fill_color "000000"
-          pdf.text "Sistema de Registro de Atendimentos", :size => 22, :style => :bold, :align => :center
-
-          #pdf.move_down 20
-          pdf.text "Registros", :size => 20, :align => :center, :style => :bold
-
-          #pdf.move_down 20
-          columns ={ 0 => 170, 1 => 80, 2 => 100, 3 => 300, 4 => 150}
-          pdf.table(atendimentos_data, :header => true, :cell_style => { :inline_format => true } , :column_widths => columns )
           
-          
+          pdf.bounding_box [pdf.bounds.left, pdf.bounds.top - 65], :width => pdf.bounds.width, :height => 460 do
+            
+
+            
+            columns ={ 0 => 170, 1 => 80, 2 => 100, 3 => 300, 4 => 150}
+            pdf.table(atendimentos_data, :header => true, :cell_style => { :inline_format => true } , :column_widths => columns )
+
+          end
 
           pdf.page_count.times do |i|
-             pdf.go_to_page(i+1)
-             pdf.draw_text "#{i+1} / #{pdf.page_count}", :at=>[1,1] 
+            pdf.go_to_page(i+1)
+            pdf.draw_text "#{i+1} / #{pdf.page_count}", :at=>[1,1]
           end
 
           pdf.repeat :all do
 
             #Header Title
-            pdf.bounding_box [pdf.bounds.left, pdf.bounds.top], :width  => pdf.bounds.width do
+            pdf.bounding_box [pdf.bounds.left, pdf.bounds.top], :width => pdf.bounds.width do
               pdf.image "#{Rails.root}/app/assets/images/UnB.png", :vposition => 10
               pdf.move_up(10)
               pdf.text "Universidade de Brasília - Faculdade Gama", :align => :center
               pdf.move_down(15)
-              pdf.stroke_horizontal_rule       
+              pdf.stroke_horizontal_rule
             end
 
             #Footer
-            pdf.bounding_box [pdf.bounds.left, pdf.bounds.bottom + 25], :width  => pdf.bounds.width do
+            pdf.bounding_box [pdf.bounds.left, pdf.bounds.bottom + 25], :width => pdf.bounds.width do
               pdf.stroke_horizontal_rule
               pdf.move_down(5)
               pdf.text "Brasília, #{Time.now.strftime("%d/%m/%Y")}", :align => :center
-              
             end
           end
       end
@@ -69,5 +63,3 @@ class Listatendimento < ActiveRecord::Base
   end
 
 end
-
-
