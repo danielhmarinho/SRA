@@ -22,6 +22,7 @@ Versão do Rails: 3.2.15 || Versão do Ruby: 1.9.3
 - **[Guilherme Baufaker](http://github.com/gbrego)**    - Engenharia de Software - UnB Gama
 - **[Thaiane Ferreira](http://github.com/Thaiane)**     - Engenharia de Software - UnB Gama
 - **[Thiago Souza Ribeiro](http://github.com/thiagovsk)**               - Engenharia de Software - UnB Gama
+- **[Carlos Oliveira](http://github.com/carloshfoliveira)**     - Engenharia de Software - Unb Gama
 - **[Hilmer Rodrigues Neri](http://github.com/hneri)**      - Professor Orientador   - UnB Gama
 
 
