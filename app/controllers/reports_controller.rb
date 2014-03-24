@@ -1,3 +1,5 @@
+  # -*- encoding : utf-8 -*-
+
 class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
@@ -43,7 +45,7 @@ class ReportsController < ApplicationController
 
     def generate_data
 
-      data = [ ["Nome", "Matricula", "Tipo do Usuario", "Tipo de Atendimento", "Data/Hora"] ]
+      data = [ ["Nome", "Matrícula", "Tipo do Usuário", "Tipo de Atendimento", "Data/Hora"] ]
 
       Atendimento.all.each do |atendimento|
         user = atendimento.user
