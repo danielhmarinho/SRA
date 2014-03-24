@@ -43,7 +43,7 @@ class ReportsController < ApplicationController
 
     def generate_data
 
-      data = [ ["Nome", "Matricula", "Tipo do Usuario", "Tipo de Atendimento", "Data/Hora"] ]
+      data = [ format_titles( ["Nome", "Matricula", "Tipo do Usuario", "Tipo de Atendimento", "Data/Hora"] ) ]
 
       Atendimento.all.each do |atendimento|
         user = atendimento.user
@@ -63,5 +63,11 @@ class ReportsController < ApplicationController
       end
 
       return data
+    end
+
+    def format_titles(content)
+      content.map do |cell|
+        cell = "<font size='14'><b>#{cell}</b></font>"
+      end
     end
 end
