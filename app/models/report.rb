@@ -25,7 +25,7 @@ class Report < ActiveRecord::Base
       Prawn::Document.new(pdf_options) do |pdf|
           
           pdf.bounding_box [pdf.bounds.left, pdf.bounds.top - 65], :width => pdf.bounds.width, :height => 460 do
-            columns = { 0 => 170, 1 => 75, 2 => 100, 3 => 280, 4 => 175}
+            columns = { 0 => 190, 1 => 75, 2 => 100, 3 => 250, 4 => 185}
             pdf.table(atendimentos_data, :header => true , :column_widths => columns )
           end
 
