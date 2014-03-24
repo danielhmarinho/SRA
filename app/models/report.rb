@@ -39,8 +39,8 @@ class Report < ActiveRecord::Base
             #Header Title
             pdf.bounding_box [pdf.bounds.left, pdf.bounds.top], :width => pdf.bounds.width do
               pdf.image "#{Rails.root}/app/assets/images/UNB4.jpg", :vposition => 10
-              pdf.move_up(10)
-              pdf.text "Universidade de Brasília - Faculdade Gama", :align => :center
+              pdf.move_up(4)
+              
               pdf.move_down(15)
               pdf.stroke_horizontal_rule
             end
