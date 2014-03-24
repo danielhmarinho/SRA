@@ -25,13 +25,10 @@ class ReportsController < ApplicationController
   end
 
   def new
-    @report = Report.new("relatorio.pdf", generate_data).save
+    path = Rails.root.join("app", "assets", "relatorio.pdf")
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @report }
-    end
-
+    @report = Report.new(path, generate_data).save
+    send_file path, :filename => "RelatorioAtendimentos.pdf", :type => "application/pdf"
   end
 
 
@@ -59,9 +56,7 @@ class ReportsController < ApplicationController
         end
 
         type = atendimento.type.name
-        5.times do
-          data += [[user.name, user.matricula, role, type, l(atendimento.try(:data), :format => :long) ]]
-        end
+        data += [[user.name, user.matricula, role, type, l(atendimento.try(:data), :format => :long) ]]
       end
 
       return data

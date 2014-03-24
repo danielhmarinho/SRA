@@ -5,6 +5,8 @@ SRA::Application.routes.draw do
 
   devise_for :users ,:path => '', :path_names => {:sign_in => "", :sign_out => ""}
 
+  #get "#{Rails.root}/app/assets/images/relatorio.pdf"
+
   resources :atendimentos do
 
      get :autocomplete_user_name, :on => :collection
