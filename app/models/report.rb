@@ -26,7 +26,7 @@ class Report < ActiveRecord::Base
           
           pdf.bounding_box [pdf.bounds.left, pdf.bounds.top - 65], :width => pdf.bounds.width, :height => 460 do
             columns = { 0 => 190, 1 => 75, 2 => 100, 3 => 250, 4 => 185}
-            pdf.table(atendimentos_data, :header => true, :cell_style => { :inline_format => true } ,:column_widths => columns )
+            pdf.table(atendimentos_data, :header => true, :cell_style => { :inline_format => true, :align => :center } ,:column_widths => columns )
           end
 
           pdf.page_count.times do |i|

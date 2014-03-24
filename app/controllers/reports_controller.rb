@@ -1,3 +1,5 @@
+  # -*- encoding : utf-8 -*-
+
 class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
