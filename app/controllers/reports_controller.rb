@@ -2,7 +2,6 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   def index
-    @report = Report.new("relatorio.pdf", generate_data)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -20,16 +19,15 @@ class ReportsController < ApplicationController
       format.json { render json: @report }
     end
 
-     format.pdf { render :layout => false } 
+    format.pdf { render :layout => false } 
   end
 
   def new
-
     @report = Report.new("relatorio.pdf", generate_data).save
 
     respond_to do |format|
-    format.html # new.html.erb
-    format.json { render json: @report }
+      format.html # new.html.erb
+      format.json { render json: @report }
     end
 
   end

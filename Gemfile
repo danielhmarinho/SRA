@@ -60,8 +60,7 @@ end
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'prawn', '0.8.4'
-gem 'prawnto', '~> 0.1.1'
+gem 'prawn', '1.0'
 
 gem 'simplecov'
 
