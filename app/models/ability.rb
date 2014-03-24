@@ -14,7 +14,7 @@ class Ability
     if user.has_role? :administrative
       can [:read, :create], [Atendimento]
       can [:edit, :update], Atendimento
-      can :manage, [Type, Place]
+      can :manage, [Type, Place, Report]
      end
     if user.has_role? :admin
       can :manage, :all

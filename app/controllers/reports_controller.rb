@@ -1,6 +1,7 @@
   # -*- encoding : utf-8 -*-
 
 class ReportsController < ApplicationController
+  load_and_authorize_resource
   # GET /reports
   # GET /reports.json
   def index
