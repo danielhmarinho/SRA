@@ -35,7 +35,6 @@ gem 'jquery-datatables-rails'
 gem "rails-bootstrap-helpers"
 
 gem 'gmaps4rails'
-gem "prawn", "0.8.4"
 gem 'bootstrap-generators', '~> 3.1.1'
 
 
@@ -61,7 +60,8 @@ end
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-
+gem 'prawn', '0.8.4'
+gem 'prawnto', '~> 0.1.1'
 
 gem 'simplecov'
 

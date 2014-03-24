@@ -2,9 +2,10 @@
 
   require "prawn"
   require 'prawn/layout'
-
-class Listatendimento < ActiveRecord::Base
   
+class Report < ActiveRecord::Base
+  # attr_accessible :title, :body
+
     attr_accessor :path
     attr_accessor :atendimentos_data
 
@@ -13,23 +14,19 @@ class Listatendimento < ActiveRecord::Base
       @atendimentos_data = atendimentos_data
     end
 
-    PDF_OPTIONS = {
+    def pdf
+      
+      pdf_options = {
         :page_size => "A4",
         :page_layout => :landscape,
         :margin => [20, 20]
-    }
-
-    def pdf
+      }
       
-      Prawn::Document.new(PDF_OPTIONS) do |pdf|
+      Prawn::Document.new(pdf_options) do |pdf|
           
           pdf.bounding_box [pdf.bounds.left, pdf.bounds.top - 65], :width => pdf.bounds.width, :height => 460 do
-            
-
-            
-            columns ={ 0 => 170, 1 => 80, 2 => 100, 3 => 300, 4 => 150}
-            pdf.table(atendimentos_data, :header => true, :cell_style => { :inline_format => true } , :column_widths => columns )
-
+            columns = { 0 => 170, 1 => 75, 2 => 100, 3 => 280, 4 => 180}
+            pdf.table(atendimentos_data, :header => true , :column_widths => columns , :border_style => :grid )
           end
 
           pdf.page_count.times do |i|

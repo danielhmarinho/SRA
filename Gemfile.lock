@@ -104,14 +104,14 @@ GEM
     polyglot (0.3.3)
     prawn (0.8.4)
       prawn-core (>= 0.8.4, < 0.9)
-      prawn-core (>= 0.8.4, < 0.9)
       prawn-layout (>= 0.8.4, < 0.9)
-      prawn-layout (>= 0.8.4, < 0.9)
-      prawn-security (>= 0.8.4, < 0.9)
       prawn-security (>= 0.8.4, < 0.9)
     prawn-core (0.8.4)
     prawn-layout (0.8.4)
     prawn-security (0.8.4)
+    prawnto (0.1.1)
+      prawn
+      rails (>= 2.1)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -246,6 +246,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   prawn (= 0.8.4)
+  prawnto (~> 0.1.1)
   rails (= 3.2.15)
   rails-bootstrap-helpers
   rails3-jquery-autocomplete
