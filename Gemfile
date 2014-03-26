@@ -37,6 +37,7 @@ gem "rails-bootstrap-helpers"
 gem 'gmaps4rails'
 gem 'bootstrap-generators', '~> 3.1.1'
 
+gem 'bootstrap-datepicker-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.

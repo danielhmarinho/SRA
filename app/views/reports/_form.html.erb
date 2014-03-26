@@ -1,7 +1,23 @@
-<%= form_for @report, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('[data-behaviour~=datepicker]').datepicker();
+  })
+</script>
 
-  <%= button_tag :class => 'btn-success btn', :id => 'gerar-relatorio' do %>
-  	<i class='fa fa-plus-circle'></i> Gerar Relatório
-  <% end %>
+<%= form_for @report, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+	<table>
+		<tr>
+			<td><%= f.label "Data de início: " %></td>
+			<td><%= f.text_field 'start_date', 'data-behaviour' => 'datepicker' %></td>
+		</tr>
+		<tr>
+			<td><%= f.label "Data de fim: " %></td>
+			<td><%= f.text_field 'end_date', 'data-behaviour' => 'datepicker' %></td>
+		</tr>
+	</table>
+	
+  	<%= button_tag :class => 'btn-success btn', :id => 'gerar-relatorio' do %>
+  		<i class='fa fa-plus-circle'></i> Gerar Relatório
+  	<% end %>
 
 <% end %>
