@@ -1,4 +1,7 @@
-<form>
-	
+<%= form_for @report, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
 
-</form>
+  <%= button_tag :class => 'btn-success btn', :id => 'gerar-relatorio' do %>
+  	<i class='fa fa-plus-circle'></i> Gerar Relatório
+  <% end %>
+
+<% end %>
