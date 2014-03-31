@@ -37,7 +37,7 @@
   });
 </script>
 
-<%= form_for @report, url: {action: "create"} do |f| %>
+<%= simple_form_for @report, url: {action: "create"} do |f| %>
 	<table>
 		<tr>
 			<td><%= f.label "Data de início: " %></td>
@@ -49,7 +49,7 @@
 		</tr>
 		<tr>
 			<td><%= f.label "Local dos atendimentos" %></td>
-			<td><%= f.select :place, Place.order('name ASC').collect { |p| [p.name, p.id] } %></td>
+      <td><%= f.association :places, collection: Place.order('name ASC'), as: :check_boxes, label: false %></td>
 		</tr>
 	</table>
 	
