@@ -1,10 +1,14 @@
   # -*- encoding : utf-8 -*-
   
 class Report < ActiveRecord::Base
-  belongs_to :place
+
   attr_accessible :start_date, :end_date, :place
   attr_accessor :start_date, :end_date, :place
   
+  validates_presence_of :start_date
+  validates_presence_of :end_date
+  validates_presence_of :place
+
   validate :dates_are_valid
 
   def dates_are_valid

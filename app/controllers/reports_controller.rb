@@ -13,7 +13,7 @@ class ReportsController < ApplicationController
   def create
     @report = Report.new(params[:report])
 
-    if @report.save
+    if @report.valid?
       generate_data
 
       path = Rails.root.join("app", "assets", "relatorio.pdf")
@@ -28,11 +28,21 @@ class ReportsController < ApplicationController
 
   private
 
+    def filter_atendimentos
+      # The Atendimento date is datetime on the schema, so we need to convert it
+      start_date = DateTime.strptime(params[:report][:start_date], "%d/%m/%Y")
+      end_date = DateTime.strptime("#{params[:report][:end_date]} 23:59:59", "%d/%m/%Y %H:%M:%S")
+
+      atendimentos = Atendimento.where(:data => start_date...end_date)
+    end
+
     def generate_data
 
       atendimentos_data = [ format_titles( ["Nome", "Matrícula", "Data/Hora", "Público-alvo", "Tipo de Atendimento"] ) ]
 
-      Atendimento.all.each do |atendimento|
+      atendimentos = filter_atendimentos
+
+      atendimentos.each do |atendimento|
         user = atendimento.user
         role = verify_user user 
         type = atendimento.type.name
