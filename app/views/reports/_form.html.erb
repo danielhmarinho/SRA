@@ -1,7 +1,10 @@
 <script type="text/javascript">
   
   $(document).ready(function(){
-    $('[data-behaviour~=datepicker]').datepicker();
+    $('[data-behaviour~=datepicker]').datepicker({
+    		format: 'dd/mm/yyyy',
+    		language: 'pt-BR'
+    });
 
      function get_types(value) { // value = place id
          $.ajax({
@@ -23,8 +26,6 @@
        });
      }
 
-
-
   $('#place select').change(function () {
               var value = $(this).val();
 
@@ -32,7 +33,7 @@
   });
   get_types($('#atendimento_place_id').val());
 
-
+  
   });
 </script>
 
