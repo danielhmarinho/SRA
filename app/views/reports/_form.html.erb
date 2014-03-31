@@ -1,7 +1,39 @@
 <script type="text/javascript">
+  
   $(document).ready(function(){
     $('[data-behaviour~=datepicker]').datepicker();
-  })
+
+     function get_types(value) { // value = place id
+         $.ajax({
+           url: "/types/type_by_place",
+           type: "GET",
+           dataType: "json",
+           data: {"id": value},
+           success: function (response) {
+                var select = $("#type select");
+                select.html("");
+
+                    for (var i = 0; i < response.length; i++) {
+                          select.append("<option value=" + response[i].id + ">" + response[i].name + "</option>");
+                    }
+                },
+            error: function () {
+                    console.log("Erro ao buscar type");
+            }
+       });
+     }
+
+
+
+  $('#place select').change(function () {
+              var value = $(this).val();
+
+              get_types(value);
+  });
+  get_types($('#atendimento_place_id').val());
+
+
+  });
 </script>
 
 <%= form_for @report, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
@@ -13,6 +45,10 @@
 		<tr>
 			<td><%= f.label "Data de fim: " %></td>
 			<td><%= f.text_field 'end_date', 'data-behaviour' => 'datepicker' %></td>
+		</tr>
+		<tr>
+			<td><%= f.label "Local dos atendimentos" %></td>
+			<td><%= f.select :place, Place.order('name ASC').collect { |p| [p.name, p.id] } %></td>
 		</tr>
 	</table>
 	
