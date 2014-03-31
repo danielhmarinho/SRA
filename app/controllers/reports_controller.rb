@@ -30,14 +30,14 @@ class ReportsController < ApplicationController
 
     def generate_data
 
-      atendimentos_data = [ format_titles( ["Nome", "Matrícula", "Tipo do Usuário", "Tipo de Atendimento", "Data/Hora"] ) ]
+      atendimentos_data = [ format_titles( ["Nome", "Matrícula", "Data/Hora", "Público-alvo", "Tipo de Atendimento"] ) ]
 
       Atendimento.all.each do |atendimento|
         user = atendimento.user
         role = verify_user user 
         type = atendimento.type.name
         
-        atendimentos_data += [[user.name, user.matricula, role, type, l(atendimento.try(:data), :format => :long) ]]
+        atendimentos_data += [[user.name, user.matricula, l(atendimento.try(:data), :format => :long), role, type ]]
       end
 
       path = Rails.root.join("app", "assets", "relatorio.pdf")
@@ -63,8 +63,8 @@ class ReportsController < ApplicationController
       
       Prawn::Document.new(pdf_options) do |pdf|
           
-          pdf.bounding_box [pdf.bounds.left, pdf.bounds.top - 65], :width => pdf.bounds.width, :height => 460 do
-            columns = { 0 => 190, 1 => 75, 2 => 100, 3 => 250, 4 => 185}
+          pdf.bounding_box [pdf.bounds.left, pdf.bounds.top - 80], :width => pdf.bounds.width, :height => 460 do
+            columns = { 0 => 190, 1 => 75, 2 => 185, 3 => 100, 4 => 250}
             pdf.table(atendimentos_data, :header => true, :cell_style => { :inline_format => true, :align => :center } ,:column_widths => columns )
           end
 
@@ -80,9 +80,10 @@ class ReportsController < ApplicationController
               pdf.image "#{Rails.root}/app/assets/images/UNB4.jpg", :vposition => 10
               pdf.move_up(4)
               
-              pdf.move_down(15)
-              pdf.stroke_horizontal_rule
-            end
+              pdf.move_down(20)
+              pdf.text "RELATÓRIO DE ATENDIMENTO" , :align => :center, :size => 18, :style => :bold
+                         
+          end
 
             #Footer
             pdf.bounding_box [pdf.bounds.left, pdf.bounds.bottom + 25], :width => pdf.bounds.width do
