@@ -9,16 +9,12 @@ describe AtendimentosController do
 
   let(:valid_attributes) { { :data => "2014-02-19 14:08:00" , :place => Place.create(:name => "AHAUHAUAHU") ,
                              :type => Type.create(:name => "Documentação") }}
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # AtendimentosController. Be sure to keep this updated too.
-  let(:valid_session) {}
 
   describe "GET index" do
     it "assigns all atendimentos as @atendimentos" do
       atendimento = Atendimento.create(:data => "2014-02-19 14:08:00" , :place => Place.create(:name => "AHAUHAUAHU") ,
                                          :type => Type.create(:name => "Documentação"))
-      get :index, {}, valid_session
+      get :index, {}
       expect(assigns(:atendimentos)).to eq([atendimento])
     end
   end
@@ -26,7 +22,7 @@ describe AtendimentosController do
 
   describe "GET new" do
     it "assigns a new atendimento as @atendimento" do
-      get :new, {}, valid_session
+      get :new, {}
       expect(assigns(:atendimento)).to be_a_new(Atendimento)
     end
   end
@@ -34,7 +30,7 @@ describe AtendimentosController do
   describe "GET edit" do
     it "assigns the requested atendimento as @atendimento" do
       atendimento = Atendimento.create! valid_attributes
-      get :edit, {:id => atendimento.to_param}, valid_session
+      get :edit, {:id => atendimento.to_param}
       expect(assigns(:atendimento)).to eq(atendimento)
     end
   end
@@ -65,14 +61,14 @@ describe AtendimentosController do
       it "assigns a newly created but unsaved atendimento as @atendimento" do
         # Trigger the behavior that occurs when invalid params are submitted
         Atendimento.any_instance.stub(:save).and_return(false)
-        post :create, {:atendimento => {  }}, valid_session
+        post :create, {:atendimento => {  }}
         expect(assigns(:atendimento)).to be_a_new(Atendimento)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Atendimento.any_instance.stub(:save).and_return(false)
-        post :create, {:atendimento => {  }}, valid_session
+        post :create, {:atendimento => {  }}
         expect(response).to render_template("new")
       end
     end
@@ -110,7 +106,7 @@ describe AtendimentosController do
         atendimento = Atendimento.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Atendimento.any_instance.stub(:save).and_return(false)
-        put :update, {:id => atendimento.to_param, :atendimento => {  }}, valid_session
+        put :update, {:id => atendimento.to_param, :atendimento => {  }}
         expect(assigns(:atendimento)).to eq(atendimento)
       end
 
@@ -118,7 +114,7 @@ describe AtendimentosController do
         atendimento = Atendimento.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Atendimento.any_instance.stub(:save).and_return(false)
-        put :update, {:id => atendimento.to_param, :atendimento => {  }}, valid_session
+        put :update, {:id => atendimento.to_param, :atendimento => {  }}
         expect(response).to render_template("edit")
       end
     end
@@ -128,13 +124,13 @@ describe AtendimentosController do
     it "destroys the requested atendimento" do
       atendimento = Atendimento.create! valid_attributes
       expect {
-        delete :destroy, {:id => atendimento.to_param}, valid_session
+        delete :destroy, {:id => atendimento.to_param}
       }.to change(Atendimento, :count).by(-1)
     end
 
     it "redirects to the atendimentos list" do
       atendimento = Atendimento.create! valid_attributes
-      delete :destroy, {:id => atendimento.to_param}, valid_session
+      delete :destroy, {:id => atendimento.to_param}
       expect(response).to redirect_to(atendimentos_url)
     end
   end
