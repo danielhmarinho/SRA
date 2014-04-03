@@ -1,38 +1,66 @@
-<div class="page-header">
-  <%= simple_form_for(@place) do |f| %>
-      </div>
-      <% if @place.errors.any? %>
-          <div class="alert alert-danger">
-            <ul>
-              <% @place.errors.full_messages.each do |msg| %>
-                  <li>
-                    <%= msg %>
-                  </li>
-              <% end %>
-            </ul>
-          </div>
-      <% end %>
+
+
+</div>
+
+<% if @place.errors.any? %>
+    <div class="alert alert-danger">
+      <ul>
+        <% @place.errors.full_messages.each do |msg| %>
+            <li>
+              <%= msg %>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+
+
+<%= simple_form_for(@place, :html => {:class => 'form-vertical' }) do |f| %>
+
+
+    <div class="places-form">
 
       <div class="field">
-        <%= f.label "Nome" %>
+        <%= f.input :name %>
 
-        <%= f.text_field :name %>
-
-        <div class="list">
-          <%= f.label "Tipos de Atendimento" %>
-          <%= f.association :types, collection: Type.order('name ASC'), as: :check_boxes, label: false %>
-        </div>
-      </div>
-      <div class="actions">
-        <%= link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
-                    places_path ,
-                    class: "btn btn-warning"%>
-        <%= button_tag :class => 'btn-success btn' , :id => 'criar-local' do %>
-            <i class='fa fa fa-map-marker'></i> Criar Local de Atendimento
-        <% end %>
-
-
-      </div> </ul>
       </div>
 
-  <% end %>
+      <div class="field">
+        <table id="types2" class="display">
+          <thead>
+          <tr>
+            <th>Tipos de atendimento</th>
+            <th>Já utilizado em</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @type = Type.all %>
+          <% @type.each do |type| %>
+              <tr>
+                <td><%= f.association :types, :label => false, :as => :check_boxes, class: 'form-control', :collection => Array.wrap(Type.find(type.id)) %></td>
+
+                <td><%= type.places.map(&:name).to_sentence  %></td>
+
+
+
+              </tr>
+          <% end %>
+          </tbody>
+
+        </table>
+
+      </div>
+
+
+      </br>
+      </br>
+
+      <%= link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
+                  places_path ,
+                  class: "btn btn-warning"%>
+      <%= button_tag :class => 'btn-success btn' , :id => 'criar-local' do %>
+          <i class='fa fa fa-map-marker'></i> Criar Local de Atendimento
+      <% end %>
+
+    </div>
+<% end %>

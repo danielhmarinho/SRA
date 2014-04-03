@@ -39,7 +39,7 @@ production:
 
 
 test:
-  host: 164.41.86.31
+  host: 164.41.94.178
   port: 389
   attribute: uid
   base: dc=fga,dc=unb,dc=br
