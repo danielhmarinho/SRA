@@ -2,15 +2,12 @@
   
 class Report < ActiveRecord::Base
 
-  has_many :places
-
-  attr_accessible :start_date, :end_date, :place_ids
+  attr_accessible :start_date, :end_date, :place
   
   validates_presence_of :start_date
   validates_presence_of :end_date
   
   validate :dates_are_valid
-  validate :with_place_id
 
   def dates_are_valid
   	if self.end_date.present? && self.start_date.present?
@@ -22,19 +19,4 @@ class Report < ActiveRecord::Base
   		end
   	end
   end
-
-  def with_place_id
-  	error = true
-
-  	place_ids.each do |id|
-  		if id.is_a? Integer
-  			error = false	
-  		end	
-  	end
-
-  	if error
-  		errors.add(:place_ids, "Deve haver no mínimo um local de atendimento selecionado.")
-  	end
-  end
-
 end

@@ -35,13 +35,15 @@ class ReportsController < ApplicationController
       # The Atendimento date is datetime on the schema, so we need to convert it
       start_date = DateTime.strptime(params[:report][:start_date], "%d/%m/%Y")
       end_date = DateTime.strptime("#{params[:report][:end_date]} 23:59:59", "%d/%m/%Y %H:%M:%S")
-      place_ids = params[:report][:place_ids]
+      place_id = params[:report][:place]
       
 
-      atendimentos = Atendimento.where(data: start_date...end_date, place_id: place_ids)
+      atendimentos = Atendimento.where(data: start_date...end_date, place_id: place_id)
     end
 
     def generate_data
+
+      place = nil
 
       atendimentos_data = [ format_titles( ["Nome", "Matrícula", "Data/Hora", "Público-alvo", "Tipo de Atendimento"] ) ]
 
@@ -51,13 +53,15 @@ class ReportsController < ApplicationController
         user = atendimento.user
         role = verify_user user 
         type = atendimento.type.name
+        place = atendimento.place
         
         atendimentos_data += [[user.name, user.matricula, l(atendimento.try(:data), :format => :long), role, type ]]
       end
 
+
       path = Rails.root.join("app", "assets", "relatorio.pdf")
 
-      pdf(atendimentos_data).render_file(path)
+      pdf(atendimentos_data, place).render_file(path)
     end
 
 
@@ -68,7 +72,7 @@ class ReportsController < ApplicationController
     end
     
 
-    def pdf(atendimentos_data)
+    def pdf(atendimentos_data, place)
       
       pdf_options = {
         :page_size => "A4",
@@ -78,7 +82,7 @@ class ReportsController < ApplicationController
       
       Prawn::Document.new(pdf_options) do |pdf|
           
-          pdf.bounding_box [pdf.bounds.left, pdf.bounds.top - 80], :width => pdf.bounds.width, :height => 460 do
+          pdf.bounding_box [pdf.bounds.left, pdf.bounds.top - 90], :width => pdf.bounds.width, :height => 440 do
             columns = { 0 => 190, 1 => 75, 2 => 185, 3 => 100, 4 => 250}
             pdf.table(atendimentos_data, :header => true, :cell_style => { :inline_format => true, :align => :center } ,:column_widths => columns )
           end
@@ -97,6 +101,7 @@ class ReportsController < ApplicationController
               
               pdf.move_down(20)
               pdf.text "RELATÓRIO DE ATENDIMENTO" , :align => :center, :size => 18, :style => :bold
+              pdf.text place.name, :align => :center, :size => 12, :style => :bold
                          
           end
 

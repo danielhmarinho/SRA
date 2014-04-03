@@ -49,7 +49,7 @@
 		</tr>
 		<tr>
 			<td><%= f.label "Local dos atendimentos" %></td>
-      <td><%= f.association :places, collection: Place.order('name ASC'), as: :check_boxes, label: false %></td>
+      <td><%= f.select :place, Place.order('name ASC').collect { |p| [p.name, p.id] }  %></td>
 		</tr>
 	</table>
 	
