@@ -7,7 +7,7 @@ describe AtendimentosController do
 
   login_admin
 
-  let(:valid_attributes) { { :data => "2014-02-19 14:08:00" , :place => Place.create(:name => "AHAUHAUAHU") ,
+  let(:valid_attributes) { { :data => "2014-02-19 14:08:00" , :place => Place.create(:name => "Local") ,
                              :type => Type.create(:name => "Documentação") }}
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -16,7 +16,7 @@ describe AtendimentosController do
 
   describe "GET index" do
     it "assigns all atendimentos as @atendimentos" do
-      atendimento = Atendimento.create(:data => "2014-02-19 14:08:00" , :place => Place.create(:name => "AHAUHAUAHU") ,
+      atendimento = Atendimento.create(:data => "2014-02-19 14:08:00" , :place => Place.create(:name => "Local") ,
                                          :type => Type.create(:name => "Documentação"))
       get :index, {}, valid_session
       expect(assigns(:atendimentos)).to eq([atendimento])
