@@ -18,7 +18,9 @@
         <thead>
         <tr>
         <th>Nome</th>
+          <%if can? :delete, Place%>
         <th></th>
+          <% end %>
         <th></th>
       </tr>
       </thead>

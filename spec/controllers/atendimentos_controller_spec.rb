@@ -7,12 +7,12 @@ describe AtendimentosController do
 
   login_admin
 
-  let(:valid_attributes) { { :data => "2014-02-19 14:08:00" , :place => Place.create(:name => "AHAUHAUAHU") ,
+  let(:valid_attributes) { { :data => "2014-02-19 14:08:00" , :place => Place.create(:name => "Local") ,
                              :type => Type.create(:name => "Documentação") }}
 
   describe "GET index" do
     it "assigns all atendimentos as @atendimentos" do
-      atendimento = Atendimento.create(:data => "2014-02-19 14:08:00" , :place => Place.create(:name => "AHAUHAUAHU") ,
+      atendimento = Atendimento.create(:data => "2014-02-19 14:08:00" , :place => Place.create(:name => "Local") ,
                                          :type => Type.create(:name => "Documentação"))
       get :index, {}
       expect(assigns(:atendimentos)).to eq([atendimento])

@@ -1,3 +1,4 @@
+# encoding: UTF-8
 pt-BR:
   date:
     abbr_day_names:
@@ -96,23 +97,23 @@ pt-BR:
       second: Segundo
       year: Ano
   errors: &errors
-    format: ! '%{message}'
+    format: ! '%{attribute} %{message}'
     messages:
       accepted: deve ser aceito
-      blank: Nenhum campo pode ficar em branco
+      blank: não pode ficar em branco
       present: deve ficar em branco
-      confirmation: não está de acordo com a confirmação
+      confirmation: não é igual a %{attribute}
       empty: não pode ficar vazio
       equal_to: deve ser igual a %{count}
       even: deve ser par
       exclusion: não está disponível
-      greater_than: Campo Inválido, valor deve ser maior que %{count}.
+      greater_than: deve ser maior que %{count}
       greater_than_or_equal_to: deve ser maior ou igual a %{count}
       inclusion: não está incluído na lista
-      invalid: Campo invalido
+      invalid: não é válido
       less_than: deve ser menor que %{count}
       less_than_or_equal_to: deve ser menor ou igual a %{count}
-      not_a_number: Não é permitido letras em campos numéricos.
+      not_a_number: não é um número
       not_an_integer: não é um número inteiro
       odd: deve ser ímpar
       record_invalid: ! 'A validação falhou: %{errors}'
@@ -123,7 +124,6 @@ pt-BR:
       too_long: ! 'é muito longo (máximo: %{count} caracteres)'
       too_short: ! 'é muito curto (mínimo: %{count} caracteres)'
       wrong_length: não possui o tamanho esperado (%{count} caracteres)
-
     template:
       body: ! 'Por favor, verifique o(s) seguinte(s) campo(s):'
       header:
@@ -204,9 +204,14 @@ pt-BR:
       short: ! '%d de %B, %H:%M'
     pm: ''
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      <<: *errors
   activerecord:
-    errors:
-      <<: *errors
+    attributes:
+            user:
+              name: "Nome"
+              username: "Nome de Usuário"
+              password: "Senha"
+            place:
+              name: "Nome"
+              types: "Tipos de Atendimentos"
+            type:
+              name: "Nome"

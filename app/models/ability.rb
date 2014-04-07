@@ -11,10 +11,16 @@ class Ability
     if user.has_role?  :professor
       can :create, Atendimento
     end
+
+    if user.has_role? :manager
+      can [:create, :read, :edit, :update], Atendimento
+      can [:create, :read, :edit, :update], Type
+      can [:create, :read, :edit, :update], Place
+
+    end
+
     if user.has_role? :administrative
-      can [:read, :create], [Atendimento]
-      can [:edit, :update], Atendimento
-      can :manage, [Type, Place, Report]
+      can :create, [Atendimento]
      end
     if user.has_role? :admin
       can :manage, :all

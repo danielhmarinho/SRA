@@ -5,8 +5,15 @@ FactoryGirl.define do
   factory :administrative, :class => User do
     username "1006509"
     password "JADS6509"
-    after(:create) {|user| user.add_role(:aministrative)}
+    after(:create) {|user| user.add_role(:administrative)}
   end
+
+  factory :manager, :class => User do
+    username "1006509"
+    password "JADS6509"
+  after(:create) {|user| user.add_role(:manager)}
+end
+
 
   factory :student, :class => User do
     username "100125271"

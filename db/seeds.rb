@@ -1,8 +1,17 @@
 # encoding: UTF-8
+
+
+Type.create!([
+
+        {name: "Outros"}
+
+
+    ])
+
 Place.create!([
-                  {name: "Secretaria de Graduação"},
-                  {name: "Secretaria da Direção"},
-                  {name: "Biblioteca"}
+                  {name: "Secretaria de Graduação", :types => Type.where("name in ('Outros')")},
+                  {name: "Secretaria da Direção", :types => Type.where("name in ('Outros')")},
+                  {name: "Biblioteca", :types => Type.where("name in ('Outros')")}
 
               ])
 
@@ -89,6 +98,6 @@ Type.create!([
 
                  #Tipo de atendimento de outros
 
-                 {name: "Outros", :places => Place.find(1,2,3)}
+                 #{name: "Outros", :places => Place.find(1,2,3)}
              ])
 
