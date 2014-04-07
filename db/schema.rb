@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140130124012) do
+ActiveRecord::Schema.define(:version => 20140331181227) do
 
   create_table "atendimentos", :force => true do |t|
     t.integer  "user_id"
@@ -26,6 +26,9 @@ ActiveRecord::Schema.define(:version => 20140130124012) do
   add_index "atendimentos", ["type_id"], :name => "index_atendimentos_on_type_id"
   add_index "atendimentos", ["user_id"], :name => "index_atendimentos_on_user_id"
 
+  create_table "listatendimentos", :force => true do |t|
+  end
+
   create_table "places", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -38,6 +41,14 @@ ActiveRecord::Schema.define(:version => 20140130124012) do
   end
 
   add_index "places_types", ["place_id", "type_id"], :name => "index_places_types_on_place_id_and_type_id"
+
+  create_table "reports", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "start_date"
+    t.string   "end_date"
+    t.string   "place"
+  end
 
   create_table "roles", :force => true do |t|
     t.string   "name"
