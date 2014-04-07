@@ -21,12 +21,15 @@
         <thead>
       <tr>
         <th>Nome</th>
+        <%if can? :edit, Type%>
         <th></th>
+        <% end %>
         <%if can? :delete, Type%>
         <th></th>
+        <% end %>
 
       </tr>
-      <% end %>
+
     </thead>
 
    <tbody>

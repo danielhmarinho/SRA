@@ -82,7 +82,7 @@
       </table>
       </tr>
       <div class="actions">
-        <%if !(current_user.has_role? :student) %>
+        <%if can? :read, Atendimento%>
 
             <%= link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
                         atendimentos_path ,

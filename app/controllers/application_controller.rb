@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if current_user.has_role? :administrative
-      atendimentos_path
+      new_atendimento_path
     elsif current_user.has_role? :student
       new_atendimento_path
 
@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
       elsif current_user.has_role? :professor
         redirect_to new_atendimento_path
       elsif current_user.has_role? :administrative
-        redirect_to atendimentos_path
+        redirect_to new_atendimento_path
       end
     rescue => e
       redirect_to root_path
