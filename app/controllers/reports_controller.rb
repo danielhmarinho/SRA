@@ -4,7 +4,6 @@ require 'prawn/layout'
 
 class ReportsController < ApplicationController
   load_and_authorize_resource
- 
 
   def new
     @report = Report.new
@@ -31,12 +30,15 @@ class ReportsController < ApplicationController
 
   private
  
+
+
     def filter_atendimentos
       # The Atendimento date is datetime on the schema, so we need to convert it
       start_date = DateTime.strptime(params[:report][:start_date], "%d/%m/%Y")
       end_date = DateTime.strptime("#{params[:report][:end_date]} 23:59:59", "%d/%m/%Y %H:%M:%S")
       place_id = params[:report][:place]
-      
+
+      @place = Place.where(:id => place_id) 
 
       atendimentos = Atendimento.where(data: start_date...end_date, place_id: place_id)
     end
@@ -53,7 +55,6 @@ class ReportsController < ApplicationController
         user = atendimento.user
         role = verify_user user 
         type = atendimento.type.name
-        place = atendimento.place
         
         atendimentos_data += [[user.name, user.matricula, l(atendimento.try(:data), :format => :long), role, type ]]
       end
@@ -101,8 +102,8 @@ class ReportsController < ApplicationController
               
               pdf.move_down(20)
               pdf.text "RELATÓRIO DE ATENDIMENTO" , :align => :center, :size => 18, :style => :bold
-              pdf.text place.name, :align => :center, :size => 12, :style => :bold
-                         
+              pdf.text @place.first.name, :align => :center, :size => 12, :style => :bold
+                        
           end
 
             #Footer
