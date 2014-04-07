@@ -1,7 +1,11 @@
 # -*- encoding : utf-8 -*-
 SRA::Application.routes.draw do
 
+  resources :reports
+
   devise_for :users ,:path => '', :path_names => {:sign_in => "", :sign_out => ""}
+
+  #get "#{Rails.root}/app/assets/images/relatorio.pdf"
 
   resources :atendimentos do
 

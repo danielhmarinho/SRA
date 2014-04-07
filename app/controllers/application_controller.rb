@@ -51,13 +51,24 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
   helper_method :redirect_as_controller
-
-
 
   def redirect_as_controller(format, path, notice)
     format.html { redirect_to path, notice }
   end
 
+
+  helper_method :verify_user
+
+  def verify_user user
+    if user.has_role? :student
+      "Aluno"
+    elsif user.has_role? :professor
+      "Professor"
+    elsif user.has_role? :administrative
+      "Servidor Administrativo"
+    end  
+  end
 
 end
