@@ -5,6 +5,10 @@ gem 'rails', '3.2.15'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'pg'
+gem 'taps'
+gem 'capistrano', '2.9.0'
+
 gem 'sqlite3'
 gem 'execjs'
 gem 'therubyracer'
