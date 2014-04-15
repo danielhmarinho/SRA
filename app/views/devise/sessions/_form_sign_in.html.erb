@@ -1,11 +1,10 @@
-
     <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 
 
     <div class="form-inputs">
 
 
-      <%= f.input :username, :autofocus => true, :label => 'Nome de Usuário', :required => false%>
+      <%= f.input :username, :autofocus => true, :label => 'Matrícula', :required => false%>
       <%= f.input :password, :label => 'Senha' %>
 
       <%= button_tag :class => 'btn-success btn' ,:id => 'login' do %>
