@@ -38,8 +38,11 @@ gem "devise_ldap_authenticatable"
 gem 'jquery-datatables-rails'
 gem "rails-bootstrap-helpers"
 
-gem 'gmaps4rails'
-gem 'bootstrap-generators', '~> 3.1.1'
+gem 'chartkick'
+
+gem 'better_errors'
+
+gem 'groupdate'
 
 gem 'bootstrap-datepicker-rails'
 

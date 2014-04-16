@@ -12,12 +12,13 @@
 
     </div>
 
+    <%= column_chart Atendimento.group_by_hour_of_day(:created_at, format: "%l %P").count, locale: I18n.locale %>
+    <%= pie_chart Atendimento.group(:type).count %>
 
     <div id='registros'>
       <table id="atendimentos" class="display">
 
         <thead>
-
         <tr>
           <th>Nome</th>
           <th>Data</th>
