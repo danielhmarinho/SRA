@@ -3,6 +3,8 @@ SRA::Application.routes.draw do
 
   resources :reports
 
+  resources :users
+
   devise_for :users ,:path => '', :path_names => {:sign_in => "", :sign_out => ""}
 
   #get "#{Rails.root}/app/assets/images/relatorio.pdf"
