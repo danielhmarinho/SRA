@@ -7,6 +7,7 @@ gem 'rails', '3.2.15'
 
 gem 'pg'
 gem 'taps'
+gem 'net-ssh', '2.7.0'
 gem 'capistrano', '2.9.0'
 
 gem 'sqlite3'
