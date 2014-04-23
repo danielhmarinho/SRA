@@ -30,6 +30,8 @@ gem 'seed_dump'
 
 gem 'thin'
 
+gem 'better_errors'
+
 gem 'cancan'
 
 gem 'coveralls', require: false
