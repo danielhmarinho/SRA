@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :password, :password_confirmation, :remember_me,:name, :matricula
+  attr_accessible :username, :password, :password_confirmation, :encrypted_password, :remember_me,:name, :matricula, :external_user
 
   def email_required?
     false
@@ -20,30 +20,36 @@ class User < ActiveRecord::Base
     false
   end
 
-before_save :get_ldap_name
+before_save :get_ldap_name, :define_role
 
+def define_role
+  if self.external_user
+    self.add_role :external_user
+  end
+end
 
 def get_ldap_name
-  self.matricula = Devise::LDAP::Adapter.get_ldap_param(self.username,"uid")[0]
-  self.name = Devise::LDAP::Adapter.get_ldap_param(self.username,"givenName")[0]
+  unless self.external_user
+    self.matricula = Devise::LDAP::Adapter.get_ldap_param(self.username,"uid")[0]
+    self.name = Devise::LDAP::Adapter.get_ldap_param(self.username,"givenName")[0]
 
-  general_info = Devise::LDAP::Adapter.get_ldap_param(self.username,"dn")
+    general_info = Devise::LDAP::Adapter.get_ldap_param(self.username,"dn")
 
-  check = check_levels(general_info)
+    check = check_levels(general_info)
 
-  case check
-    when "Alunos"
-      return self.add_role :student
+    case check
+      when "Alunos"
+        return self.add_role :student
 
-    when "Professores"
-      return self.add_role :professor
+      when "Professores"
+        return self.add_role :professor
 
-    when "Servidores"
-      return self.add_role :administrative
+      when "Servidores"
+        return self.add_role :administrative
 
 
+    end
   end
-
   #self.add_role :admin
 end
 

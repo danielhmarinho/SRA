@@ -24,6 +24,8 @@ class ApplicationController < ActionController::Base
       end
     elsif current_user.has_role? :admin
       atendimentos_path
+    elsif current_user.has_role? :external_user
+      new_atendimento_path
     end
 
 
