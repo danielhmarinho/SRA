@@ -12,7 +12,7 @@ module Devise
 
           user = User.find_by_username(params[:user][:username])
           
-          if user && user.encrypted_password == params[:user][:password]
+          if user && user.encrypted_password == Digest::MD5::hexdigest(params[:user][:password])
             success!(user)
           else
             fail

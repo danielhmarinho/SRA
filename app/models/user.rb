@@ -20,13 +20,7 @@ class User < ActiveRecord::Base
     false
   end
 
-before_save :get_ldap_name, :define_role
-
-def define_role
-  if self.external_user
-    self.add_role :external_user
-  end
-end
+before_save :get_ldap_name
 
 def get_ldap_name
   unless self.external_user

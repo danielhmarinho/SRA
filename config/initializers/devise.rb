@@ -244,10 +244,8 @@ Devise.setup do |config|
   # change the failure app, you can configure them inside the config.warden block.
   #
   config.warden do |manager|
-    
     manager.default_strategies(:scope => :user).unshift :custom_strategy
     manager.default_strategies(:scope => :user).unshift :ldap_authenticatable
-    
   end
 
   # ==> Mountable engine configurations
