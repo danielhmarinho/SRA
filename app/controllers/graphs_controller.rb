@@ -3,9 +3,10 @@ class GraphsController < ApplicationController
       
 
   def show
-    #@graph = Graph.find(params[:id])
-    @graph = Graph.new
-  
+    @graph = @atendimentos
+    #graph = Graph.new
+   
+
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,9 +26,9 @@ class GraphsController < ApplicationController
         @atendimentos = Atendimento.new
           
         if @graph.valid?
-         @atendimentos = filter_graphs
-          redirect_to graph_path(1)
-
+           @atendimentos = filter_graphs
+           redirect_to graph_path(1)
+ 
       end
 
 

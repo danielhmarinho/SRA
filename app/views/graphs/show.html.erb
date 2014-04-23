@@ -1,1 +1,21 @@
-ola
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h1>Gráficos</h1>
+       <%= render partial: "shared/navbar_collapsible"%>
+    </div>
+     
+    <table>
+    	<p>
+			<font color = gray><h4>Atendimentos por hora:</h4></font>
+    	</p>
+        <%= column_chart Atendimento.group_by_hour_of_day(:created_at, format: "%l %P").count, locale: I18n.locale%>
+        <br>
+     	<p>
+     		<font color = gray><h4>Tipos de atendimento por local:</h4></font>
+    	</p>     
+        <%= pie_chart Atendimento.group(:type).count %>
+    </table>
+
+  </div>
+</div>
