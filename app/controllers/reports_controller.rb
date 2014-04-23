@@ -41,6 +41,7 @@ class ReportsController < ApplicationController
       @place = Place.where(:id => place_id) 
 
       atendimentos = Atendimento.where(data: start_date...end_date, place_id: place_id)
+      
     end
 
     def generate_data
