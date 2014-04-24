@@ -3,7 +3,7 @@ SRA::Application.routes.draw do
 
   resources :reports
 
-  resources :users
+  resources :permissions, :as => :user
 
   devise_for :users ,:path => '', :path_names => {:sign_in => "", :sign_out => ""}
 

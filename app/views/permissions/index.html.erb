@@ -21,7 +21,7 @@
             <tr>
               <td><%= user.try(:name) %></td>
                   <td><%= bs_button_to  raw("<i class=\"fa fa-pencil-square-o\"></i>"),
-                                        edit_user_path(user),tooltip: "Editar Perfil",
+                                        edit_permission_path(user),tooltip: "Editar Perfil",
                                         class: "btn btn-large btn-primary",
                                         method: :get %></td>
             </tr>
