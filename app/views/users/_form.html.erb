@@ -1,15 +1,17 @@
-<h2>Caadastro de Usuario Externo</h2>
-
 <%= simple_form_for @user, url: {action: "create"} do |f| %>
-    <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= f.input :name, :required => true %>
-      <%= f.input :username, :required => true %>
-      <%= f.input :password, :required => true %>
+      <%= f.input :name, :label => 'Nome do Usuário', :required => true %>
+      <%= f.input :matricula, :label => 'CPF', :required => true %>
+      <%= f.input :username, :label => 'Login', :required => true %>
+      <%= f.input :password, :label => 'Senha', :required => true %>
     </div>
 
-    <div class="form-actions">
-      <%= f.button :submit, "Sign up" %>
-    </div>
+    <%= link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"), root_path, 
+    	class: "btn btn-warning"%>
+
+    <%= button_tag :class => 'btn-success btn', :id => 'cadastrar-usuario-externo' do %>
+        <i class='fa fa-plus-circle'></i> Cadastrar Usuário
+    <% end %>
+
 <% end %>
