@@ -101,3 +101,5 @@ Type.create!([
                  #{name: "Outros", :places => Place.find(1,2,3)}
              ])
 
+
+

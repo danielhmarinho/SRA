@@ -1,0 +1,14 @@
+<%= simple_form_for(@user, :html => {:class => 'form-vertical' }) do |f| %>
+
+
+    <div class="places-form">
+
+      <div class="field">
+        <%= f.label :roles, "Perfis" %>
+        <%= f.input :role_ids, :collection => Role.all, :as => :check_boxes, :label_method => lambda {|t| t.display_name.titleize}, :label => false, :item_wrapper_class => 'inline', checked: @user.role_ids %>
+
+
+        <%= f.submit %>
+      </div>
+
+   <% end%>
