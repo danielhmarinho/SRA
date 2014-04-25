@@ -3,7 +3,9 @@ SRA::Application.routes.draw do
 
   resources :reports
 
-  resources :permissions, :as => :user
+  resources :permissions, :except => :show
+  post '/permissions/:id/edit', to: 'permissions#update'
+  get '/permissions/:id', to: 'permissions#index'
 
   devise_for :users ,:path => '', :path_names => {:sign_in => "", :sign_out => ""}
 
