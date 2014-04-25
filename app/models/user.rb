@@ -33,15 +33,19 @@ def get_ldap_name
 
   case check
     when "Alunos"
-      return self.add_role :student
+	self.add_role :student 
+	Role.find_by_name("student").update_attribute(:display_name, "Aluno")
+	return
 
     when "Professores"
-      return self.add_role :professor
+        self.add_role :professor
+	Role.find_by_name("professor").update_attribute(:display_name, "Professor")
+	return
 
     when "Servidores"
-      return self.add_role :administrative
-
-
+      self.add_role :administrative
+      Role.find_by_name("administrative").update_attribute(:display_name, "Servidor Administrativo")
+      return
   end
 
   #self.add_role :admin
