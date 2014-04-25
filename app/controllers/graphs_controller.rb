@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class GraphsController < ApplicationController
-      
+  load_and_authorize_resource   
 
   def show
     #graph = Graph.new
@@ -11,9 +11,8 @@ class GraphsController < ApplicationController
     filter_attributes[:end_date] = @graph.end_date
     filter_attributes[:place] = @graph.place
     
-
-
     @atendimentos = filter_atendimentos filter_attributes
+    @types = get_types
     
     respond_to do |format|
       format.html # show.html.erb
@@ -34,15 +33,27 @@ class GraphsController < ApplicationController
       redirect_to return_path   
   end
 
-  def return_path
-    if @graph.valid?
-      graph_path(@graph.id)
-    else
-      @graph.errors.each do |key, error|
-        flash[:error] = "O gráfico não pode ser gerado: #{error}"
+  private
+
+    def return_path
+      if @graph.valid?
+        graph_path(@graph.id)
+      else
+        @graph.errors.each do |key, error|
+          flash[:error] = "O gráfico não pode ser gerado: #{error}"
+        end
+        new_graph_path
       end
-      new_graph_path
     end
-  end
+
+    def get_types
+      type_ids = []
+
+      @atendimentos.each do |atendimento|
+        type_ids.push atendimento.type
+      end
+
+      Type.where(:id => type_ids)
+    end
 
 end

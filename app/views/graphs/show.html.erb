@@ -14,7 +14,8 @@
      	<p>
      		<font color = gray><h4>Tipos de atendimento por local:</h4></font>
     	</p>     
-        <%= pie_chart Atendimento.group(:type).count %>
+        <%= pie_chart @types.group(:name).count %>
+        <%= pie_chart @atendimentos.group(:type_id).count %>
     </table>
 
   </div>
