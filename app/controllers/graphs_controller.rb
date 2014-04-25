@@ -26,7 +26,7 @@ class GraphsController < ApplicationController
         @atendimentos = Atendimento.new
           
         if @graph.valid?
-           @atendimentos = filter_graphs
+           @atendimentos = filter_atendimentos params[:graph]
            redirect_to graph_path(1)
  
       end
@@ -34,16 +34,7 @@ class GraphsController < ApplicationController
 
   end
 
-  def filter_graphs
-      # The Atendimento date is datetime on the schema, so we need to convert it
-      start_date = DateTime.strptime(params[:graph][:start_date], "%d/%m/%Y")
-      end_date = DateTime.strptime("#{params[:graph][:end_date]} 23:59:59", "%d/%m/%Y %H:%M:%S")
-      place_id = params[:graph][:place]
-
-      @place = Place.where(:id => place_id) 
-
-      atendimentos = Atendimento.where(data: start_date...end_date, place_id: place_id)
-    end
+  
 
 
 end

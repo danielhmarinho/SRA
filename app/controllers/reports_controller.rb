@@ -29,28 +29,14 @@ class ReportsController < ApplicationController
   end
 
   private
- 
 
-
-    def filter_atendimentos
-      # The Atendimento date is datetime on the schema, so we need to convert it
-      start_date = DateTime.strptime(params[:report][:start_date], "%d/%m/%Y")
-      end_date = DateTime.strptime("#{params[:report][:end_date]} 23:59:59", "%d/%m/%Y %H:%M:%S")
-      place_id = params[:report][:place]
-
-      @place = Place.where(:id => place_id) 
-
-      atendimentos = Atendimento.where(data: start_date...end_date, place_id: place_id)
-      
-    end
-
-    def generate_data
+     def generate_data
 
       place = nil
 
       atendimentos_data = [ format_titles( ["Nome", "Matrícula", "Data/Hora", "Público-alvo", "Tipo de Atendimento"] ) ]
 
-      atendimentos = filter_atendimentos
+      atendimentos = filter_atendimentos params[:report]
 
       atendimentos.each do |atendimento|
         user = atendimento.user
