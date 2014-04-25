@@ -39,16 +39,16 @@
   </script>
 	
 
-<%= simple_form_for @graph , url: {action: "create"} do |f| %>
+<%= simple_form_for @graph  do |f| %>
   <%= f.error_notification %>
 	<table>
   	<tr>
     	<td><%= f.label "Data de início: " %></td>
-		<td><%= f.text_field :start_date, 'data-behaviour' => 'datepicker' %></td>
+		<td><%= f.text_field :start_date, 'data-behaviour' => 'datepicker', :required => true %></td>
   	</tr> 
     <tr>
         <td><%= f.label "Data de fim: " %></td>
-        <td><%= f.text_field :end_date, 'data-behaviour' => 'datepicker' %></td>\  
+        <td><%= f.text_field :end_date, 'data-behaviour' => 'datepicker', :required => true %></td>
 
   	<tr>         
   	  <td><%= f.label "Local dos atendimentos" %></td>

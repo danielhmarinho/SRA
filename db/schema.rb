@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140423141654) do
+ActiveRecord::Schema.define(:version => 20140416202716) do
 
   create_table "atendimentos", :force => true do |t|
     t.integer  "user_id"
@@ -27,12 +27,11 @@ ActiveRecord::Schema.define(:version => 20140423141654) do
   add_index "atendimentos", ["user_id"], :name => "index_atendimentos_on_user_id"
 
   create_table "graphs", :force => true do |t|
-    t.string   "date"
+    t.string   "start_date"
+    t.string   "end_date"
     t.string   "place"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "start_date"
-    t.string   "end_date"
   end
 
   create_table "listatendimentos", :force => true do |t|
