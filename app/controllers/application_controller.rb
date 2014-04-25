@@ -70,6 +70,8 @@ class ApplicationController < ActionController::Base
       "Professor"
     elsif user.has_role? :administrative
       "Servidor Administrativo"
+    elsif user.has_role? :external_user
+      "Usuário Externo"
     end  
   end
 

@@ -38,11 +38,8 @@ def get_ldap_name
 
       when "Servidores"
         return self.add_role :administrative
-
-
     end
   end
-  #self.add_role :admin
 end
 
 
