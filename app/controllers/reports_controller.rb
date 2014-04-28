@@ -24,8 +24,6 @@ class ReportsController < ApplicationController
 
       redirect_to new_report_path
     end
-
-    
   end
 
   private

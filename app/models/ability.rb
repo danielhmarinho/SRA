@@ -7,6 +7,10 @@ class Ability
     if user.has_role?  :student
       can :create, Atendimento
     end
+
+    if user.has_role?  :external_user
+      can :create, Atendimento
+    end
     
     if user.has_role?  :professor
       can :create, Atendimento

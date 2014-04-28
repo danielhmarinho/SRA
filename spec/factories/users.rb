@@ -38,4 +38,11 @@ end
     password "ACB7872"
     after(:create) {|user| user.add_role(:admin)}
   end
+
+   factory :external_user, :class => User do
+    username "120136198"
+    password "TFB6198"
+    after(:create) {|user| user.add_role(:external_user)}
+  end
+
 end
