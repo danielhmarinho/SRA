@@ -5,10 +5,10 @@
 
       <div class="field">
         <%= f.label :roles, "Perfis" %>
-        <%= f.input :role_ids, :collection => Role.where(Role.arel_table[:name].not_eq(:student)), :as => :check_boxes, :label_method => lambda {|t| t.display_name.titleize}, :label => false, :item_wrapper_class => 'inline', checked: :role_ids %>
+        <%= f.input :role_ids, :collection => Role.where('name not in (?)', [:student, :administrative]), :as => :check_boxes, :label_method => lambda {|t| t.display_name.titleize}, :label => false, :item_wrapper_class => 'inline', checked_value: :role_ids%>
 
 
-        <%= f.submit :method => :get %>
+        <%= f.submit "Alterar permissões", :method => :get %>
       </div>
 
    <% end%>
