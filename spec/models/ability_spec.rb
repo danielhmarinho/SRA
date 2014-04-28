@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require "cancan/matchers"
 require 'spec_helper'
  

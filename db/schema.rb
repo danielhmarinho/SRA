@@ -13,7 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20140416202716) do
 
-
   create_table "atendimentos", :force => true do |t|
     t.integer  "user_id"
     t.datetime "data"

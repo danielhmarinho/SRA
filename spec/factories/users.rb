@@ -1,16 +1,15 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
- 
+# -*- encoding : utf-8 -*- 
 FactoryGirl.define do
 
   factory :administrative, :class => User do
-    username "1006509"
-    password "JADS6509"
-    after(:create) {|user| user.add_role(:administrative)}
+    username "100125271"
+    password "TDSFR5271"
+    after(:create) {|user| user.add_role(:administrative)}  
   end
 
   factory :manager, :class => User do
-    username "1006509"
-    password "JADS6509"
+    username "100125271"
+    password "TDSFR5271"
   after(:create) {|user| user.add_role(:manager)}
 end
 
