@@ -5,39 +5,38 @@
 
       <div class="field">
 
-       <div class="panel-group" id="accordion">
-  	  <div class="panel panel-default">
-    	   <div class="panel-heading">
-      	     <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+       <div class="accordion" id="accordion2">
+  	  <div class="accordion-group">
+    	   <div class="accordion-heading">
+      	     <h4 class="accordion-title">
+        <a class= "accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
           Gerente
         </a>
       </h4>
     </div>
-    <div id="collapseOne" class="panel-collapse collapse in">
-      <div class="panel-body">
+    <div id="collapseOne" class="accordion-body collapse">
+      <div class="accordion-inner">
        <ul>
-	<li>Criar Atendimento</li>
-
-
+         <li>Criar e mudar tipo e local de atendimento</li>
+         <li>Alterar permissões</li>
        </ul>
 	<%= f.input :role_ids, :collection => Role.where(:name => :manager), :as => :check_boxes, :label_method => lambda {|t| t.display_name.titleize}, :label => false, :item_wrapper_class => 'inline', checked_value: :role_ids%>
 
-
+      </div>
 </div>
     </div>
-  	  <div class="panel panel-default">
-    	   <div class="panel-heading">
-      	     <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+  	  <div class="accordion-group">
+    	   <div class="accordion-heading">
+      	     <h4 class="accordion-title">
+        <a class= "accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
           Administrador
         </a>
       </h4>
     </div>
-    <div id="collapseTwo" class="panel-collapse collapse in">
-      <div class="panel-body">
+    <div id="collapseTwo" class="accordion-body collapse">
+      <div class="accordion-inner">
        <ul>
-	<li>Criar Atendimento</li>
+	<li>Permissão total</li>
 
 
        </ul>
@@ -51,7 +50,14 @@
 </div>
 
 
-        <%= f.submit "Alterar permissões", :method => :get %>
+       <%# f.submit "Alterar permissões", :method => :get %>
+           <%= link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
+                        permissions_path ,
+                        class: "btn  btn-warning"%>
+         <%= button_tag :class => 'btn-success btn', :id => 'alterar-permissoes' do %>
+            <i class='fa fa-plus-circle'></i> Alterar permissões
+          <% end %>
+
       </div>
 
    <% end%>
