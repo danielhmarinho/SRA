@@ -35,17 +35,8 @@
               <tr>
                 <td><%= atendimento.user.try(:name) %></td>
                 <td><%= l(atendimento.try(:data), :format => :long) if atendimento.data %></td>
-                <%  if atendimento.user.has_role? :student %>
-                    <td><%="Estudante"%></td>
-                <% elsif atendimento.user.has_role? :administrative %>
-                    <td><%="Servidor Administrativo"%></td>
-
-                <% elsif atendimento.user.has_role? :professor %>
-                    <td><%="Professor"%></td>
-
-
-                <% end %>
-
+                <td><%= verify_user atendimento.user %></td>
+                
                 <td><%= atendimento.place.try(:name) %></td>
                 <td><%= atendimento.type.try(:name) %></td>
                 <%if can? :edit, Atendimento%>

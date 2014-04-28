@@ -1,0 +1,15 @@
+<%= simple_form_for @user, url: {action: "create"} do |f| %>
+
+      <%= f.input :name, :label => 'Nome do Usuário' %>
+      <%= f.input :matricula, :label => 'CPF' %>
+      <%= f.input :username, :label => 'Login' %>
+      <%= f.input :password, :label => 'Senha' %>
+
+    <%= link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"), root_path, 
+    	class: "btn btn-warning"%>
+
+    <%= button_tag :class => 'btn-success btn', :id => 'cadastrar-usuario-externo' do %>
+        <i class='fa fa-plus-circle'></i> Cadastrar Usuário
+    <% end %>
+
+<% end %>

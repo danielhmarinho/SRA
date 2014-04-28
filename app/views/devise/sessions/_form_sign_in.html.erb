@@ -6,12 +6,13 @@
 
       <%= f.input :username, :autofocus => true, :label => 'Matrícula', :required => false%>
       <%= f.input :password, :label => 'Senha' %>
+      
+      <%= link_to raw("<i class=\"icon-white icon-share\"> Usuário Externo? </i>"), new_user_path, 
+    	class: "btn btn-info"%>
 
       <%= button_tag :class => 'btn-success btn' ,:id => 'login' do %>
           <i class='fa fa-sign-in'></i> Login
       <% end %>
-
-
 
     </div>
 

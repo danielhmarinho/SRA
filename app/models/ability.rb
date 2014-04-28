@@ -7,6 +7,10 @@ class Ability
     if user.has_role?  :student
       can :create, Atendimento
     end
+
+    if user.has_role?  :external_user
+      can :create, Atendimento
+    end
     
     if user.has_role?  :professor
       can :create, Atendimento
@@ -17,7 +21,6 @@ class Ability
       can [:create, :read, :edit, :update], Type
       can [:create, :read, :edit, :update], Place
       can :manage, Report
-
     end
 
     if user.has_role? :administrative
