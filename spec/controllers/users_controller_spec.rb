@@ -8,7 +8,7 @@ describe UsersController do
 
 	let(:invalid_attributes) { { name: "", matricula: "123abc", username: "externo", 
 											password: "13123", external_user: true } }
-	let(:valid_attributes) { { name: "Usuário Externo", matricula: "12312312312", username: "externo", 
+	let(:valid_attributes) { { name: "Usuário Externo", matricula: "25391659310", username: "externo", 
 												password: "13123", external_user: true } }
 
 	describe "GET new" do

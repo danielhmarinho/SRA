@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
         errors.add(:matricula, "não pode ficar em branco")
       else
         # Test if the cpf is valid (just if has 11 numbers, and just numbers. No further validations are made.)
-        if self.matricula.length != 11 or (self.matricula =~ /^[0-9]+$/i) == nil
+        if self.matricula.length != 11 or !Cpf.new(self.matricula).valido?
           errors.add(:matricula, "cpf inválido")
         end
       end  

@@ -5,7 +5,7 @@ require 'spec_helper'
 describe User do
 
 	let(:external_user_invalid_attributes) { { external_user: true } }
-	let(:external_user_valid_attributes) { { name: "Usuário Externo", matricula: "12312312312", username: "externo", 
+	let(:external_user_valid_attributes) { { name: "Usuário Externo", matricula: "25391659310", username: "externo", 
 												password: "13123", external_user: true } }
 	let(:external_user_invalid_cpf) { { name: "Usuário Externo", matricula: "123", username: "externo", 
 											password: "13123", external_user: true } }

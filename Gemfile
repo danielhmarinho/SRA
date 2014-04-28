@@ -16,6 +16,7 @@ gem 'therubyracer'
 gem "twitter-bootstrap-rails"
 
 gem 'devise'
+gem 'brazilian-rails'
 
 gem 'simple_form'
 
