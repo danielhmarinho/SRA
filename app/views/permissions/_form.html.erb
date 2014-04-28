@@ -18,7 +18,8 @@
       <div class="accordion-inner">
        <ul>
          <li>Criar e mudar tipo e local de atendimento</li>
-         <li>Alterar permissões</li>
+         <li>Gerar relatórios</li>
+         <li>Visualizar Gráficos</li>
        </ul>
 	<%= f.input :role_ids, :collection => Role.where(:name => :manager), :as => :check_boxes, :label_method => lambda {|t| t.display_name.titleize}, :label => false, :item_wrapper_class => 'inline', checked_value: :role_ids%>
 
@@ -35,10 +36,10 @@
     </div>
     <div id="collapseTwo" class="accordion-body collapse">
       <div class="accordion-inner">
-       <ul>
-	<li>Permissão total</li>
-
-
+        <ul>
+          <li>Todas as permissões de gerente</li>
+          <li>Deletar dados</li>
+          <li>Alterar permissões</li>
        </ul>
 	<%= f.input :role_ids, :collection => Role.where(:name => :admin), :as => :check_boxes, :label_method => lambda {|t| t.display_name.titleize}, :label => false, :item_wrapper_class => 'inline', checked_value: :role_ids%>
 

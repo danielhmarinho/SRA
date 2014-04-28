@@ -14,7 +14,7 @@ class PermissionsController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        redirect_as_controller(format, permission_path, notice: 'Permissões alteradas com sucesso')
+        redirect_as_controller(format, permission_path, notice: "Permissões alteradas com sucesso")
       else
         format.html { render action: "edit" }
 
