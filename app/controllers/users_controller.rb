@@ -18,12 +18,10 @@ class UsersController < ApplicationController
     @user.external_user = true
     @user.encrypted_password = Digest::MD5::hexdigest params[:user][:password]
 
-    respond_to do |format|
-      if @user.save
-        redirect_as_controller(format, root_path, notice: 'Usuário Externo criado com sucesso.')
-      else
-        format.html { render action: "new" }
-      end
+    if @user.save
+      redirect_as_controller(format, root_path, notice: 'Usuário Externo criado com sucesso.')
+    else
+      render action: "new"
     end
   end
 
