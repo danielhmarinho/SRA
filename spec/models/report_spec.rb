@@ -16,7 +16,7 @@ describe Report do
   it { should validate_presence_of(:start_date) }
   it { should validate_presence_of(:end_date) }
 
-  describe "Test with invalide dates" do
+  describe "Test with invalid dates" do
 
   	before do
   		place = Place.create(name: "Secretaria")
@@ -31,5 +31,4 @@ describe Report do
   		report.should_not be_valid
   	end
   end
-
 end
