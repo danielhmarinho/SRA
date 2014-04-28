@@ -24,6 +24,7 @@ gem 'simple_form'
 gem 'rails3-jquery-autocomplete'
 
 gem 'font-awesome-less'
+gem "less-rails"
 
 gem 'watir'
 
