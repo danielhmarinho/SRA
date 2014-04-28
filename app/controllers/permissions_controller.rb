@@ -2,7 +2,7 @@
 class PermissionsController < ApplicationController
   authorize_resource :class => false
   def index
-    @user = User.where(User.arel_table[:id].not_eq(current_user.id))
+    @user = User.joins(:roles).where(roles: {:name => [:administrative, :professor]})
   end
 
   def edit
