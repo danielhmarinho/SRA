@@ -16,11 +16,16 @@ class User < ActiveRecord::Base
   def external_user_needs
     if external_user
       if self.name.nil? or self.name.blank?
-        errors.add(:name, "não pode ficar em branco.")
+        errors.add(:name, "não pode ficar em branco")
       end
 
       if self.matricula.nil? or self.matricula.blank?
-        errors.add(:matricula, "não pode ficar em branco.")
+        errors.add(:matricula, "não pode ficar em branco")
+      else
+        # Test if the cpf is valid (just if has 11 numbers, and just numbers. No further validations are made.)
+        if self.matricula.length != 11 or (self.matricula =~ /[0-9]+/i) == nil
+          errors.add(:matricula, "cpf inválido")
+        end
       end  
     end
   end
