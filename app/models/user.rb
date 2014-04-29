@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   validate :external_user_needs
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :password, :password_confirmation, :encrypted_password, :remember_me,:name, :matricula, :external_user
+  attr_accessible :username, :password, :password_confirmation, :encrypted_password, :remember_me,:name, :matricula, :external_user, :role_ids
 
   def external_user_needs
     if external_user
@@ -51,15 +51,19 @@ class User < ActiveRecord::Base
 
       case check
         when "Alunos"
-          return self.add_role :student
+          self.add_role :student 
+	  Role.find_by_name("student").update_attribute(:display_name, "Aluno")
+	  return
 
         when "Professores"
-          return self.add_role :professor
+          self.add_role :professor
+	  Role.find_by_name("professor").update_attribute(:display_name, "Professor")
+	  return
 
         when "Servidores"
-          return self.add_role :administrative
-      end
-    end
+          self.add_role :administrative
+          Role.find_by_name("administrative").update_attribute(:display_name, "Servidor Administrativo")
+          return
   end
 
 

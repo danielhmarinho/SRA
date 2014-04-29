@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h1>Painel de Controle</h1>
+      <%= render partial: "shared/navbar_collapsible"%>
+    </div>
+
+
+
+    <div id='registros'>
+      <table id="users" class="display">
+        <thead>
+        <tr>
+          <th>Nome</th>
+          <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @user.each do |user| %>
+            <tr>
+              <td><%= user.try(:name) %></td>
+                  <td><%= bs_button_to  raw("<i class=\"fa fa-pencil-square-o\"></i>"),
+                                        edit_permission_path(user),tooltip: "Editar Perfil",
+                                        class: "btn btn-large btn-primary",
+                                        method: :get %></td>
+            </tr>
+        <% end %>
+        </tbody>
+
+      </table>
+    </div>
+    <br/>
+  </div>
+</div>
