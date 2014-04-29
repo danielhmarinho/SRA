@@ -64,6 +64,8 @@ class User < ActiveRecord::Base
           self.add_role :administrative
           Role.find_by_name("administrative").update_attribute(:display_name, "Servidor Administrativo")
           return
+        end
+    end
   end
 
 
