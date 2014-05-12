@@ -54,7 +54,7 @@ class TypesController < ApplicationController
   end
 
   def type_by_place
-    @type = Place.find(params[:id]).types.order('name ASC')
+    @type = Place.find(params[:id]).types.where('active is true').order('name ASC')
 
     respond_to do |format|
       format.js { render json: @type }

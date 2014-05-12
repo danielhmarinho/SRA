@@ -11,15 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140416202716) do
+ActiveRecord::Schema.define(:version => 20140512182810) do
 
   create_table "atendimentos", :force => true do |t|
     t.integer  "user_id"
     t.datetime "data"
     t.integer  "place_id"
     t.integer  "type_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.boolean  "active",     :default => true
   end
 
   add_index "atendimentos", ["place_id"], :name => "index_atendimentos_on_place_id"
@@ -75,8 +76,9 @@ ActiveRecord::Schema.define(:version => 20140416202716) do
 
   create_table "types", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.boolean  "active",     :default => true
   end
 
   create_table "users", :force => true do |t|
