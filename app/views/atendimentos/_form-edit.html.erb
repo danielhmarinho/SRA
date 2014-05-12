@@ -72,7 +72,7 @@
           </br>
         <tr>
           <td><%= User.find_by_id(@atendimento.user_id).name %></td>
-          <td><%=  l(@atendimento.data, :format => '%d/%m/%Y %R')%></td>
+          <td><%=  l(@atendimento.created_at, :format => '%d/%m/%Y %R')%></td>
           <td id='place'>
             <%= f.select :place_id, Place.order('name ASC').collect { |p| [p.name, p.id] } %></td>
           <td id="type"><%= f.select :type_id, Type.order('name ASC').collect { |t| [t.name, t.id] } %></td>

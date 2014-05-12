@@ -3,11 +3,10 @@ class CreateAtendimentos < ActiveRecord::Migration
   def change
     create_table :atendimentos do |t|
       t.references :user
-      t.datetime :data
       t.references :place
       t.references :type
 
-      t.timestamps
+      .timestamps
     end
     add_index :atendimentos, :user_id
     add_index :atendimentos, :place_id

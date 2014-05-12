@@ -5,7 +5,7 @@ class AtendimentosController < ApplicationController
   # GET /atendimentos
   # GET /atendimentos.json
   def index
-    @atendimentos = Atendimento.order(:updated_at)
+    @atendimentos = Atendimento.order(:created_at)
   end
 
   # GET /atendimentos/new

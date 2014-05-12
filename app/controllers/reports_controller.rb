@@ -41,7 +41,7 @@ class ReportsController < ApplicationController
         role = verify_user user 
         type = atendimento.type.name
         
-        atendimentos_data += [[user.name, user.matricula, l(atendimento.try(:data), :format => :long), role, type ]]
+        atendimentos_data += [[user.name, user.matricula, l(atendimento.try(:created_at), :format => :long), role, type ]]
       end
 
 
