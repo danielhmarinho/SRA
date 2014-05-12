@@ -1,0 +1,12 @@
+<%= simple_form_for @user, url: {action: "update"} do |f| %>
+
+    <div class="form-inputs">
+      <%= f.input :matricula, :label => 'CPF', :required => true %>
+      <%= f.input :password, :label => 'Nova Senha', :required => true %>
+       <%= f.input :username, :label => 'username', :required => true %>
+      <%= f.button :submit %>
+    </div>
+
+
+      
+<% end %>
