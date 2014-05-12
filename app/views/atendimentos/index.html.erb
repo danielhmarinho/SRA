@@ -31,7 +31,7 @@
         <% @atendimentos.each do |atendimento| %>
               <tr>
                 <td><%= atendimento.user.try(:name) %></td>
-                <td><%= l(atendimento.try(:data), :format => :long) if atendimento.data %></td>
+                <td><%= l(atendimento.try(:updated_at), :format => :long) if atendimento.updated_at %></td>
                 <td><%= verify_user atendimento.user %></td>
                 
                 <td><%= atendimento.place.try(:name) %></td>

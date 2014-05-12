@@ -8,7 +8,7 @@ class GraphsController < ApplicationController
     
     filter_attributes[:start_date] = @graph.start_date
     filter_attributes[:end_date] = @graph.end_date
-    filter_attributes[:place] = @graph.place
+    filter_attributes[:place] = @graph.place_id
     
     @atendimentos = filter_atendimentos filter_attributes
   end

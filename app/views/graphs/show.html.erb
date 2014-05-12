@@ -9,14 +9,14 @@
     	<p>
 			<font color = gray><h4>Atendimentos por hora:</h4></font>
     	</p>
-        <%= column_chart @atendimentos.group_by_hour_of_day(:created_at, format: "%l %P").count, locale: I18n.locale%>
+        <%= column_chart @atendimentos.group_by_hour_of_day(:updated_at, format: "%l %P").count, locale: I18n.locale%>
         <br>
      	<p>
      		<font color = gray><h4>Tipos de atendimento por local:</h4></font>
     	</p>     
       
 
-      <%= pie_chart @atendimentos.group(:type.to_s).count %>                %>
+      <%= pie_chart @atendimentos.group(:type.to_s).count %>
 
     
     </table>

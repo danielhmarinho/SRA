@@ -29,10 +29,12 @@ ActiveRecord::Schema.define(:version => 20140416202716) do
   create_table "graphs", :force => true do |t|
     t.string   "start_date"
     t.string   "end_date"
-    t.string   "place"
+    t.integer  "place_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "graphs", ["place_id"], :name => "index_graphs_on_place_id"
 
   create_table "listatendimentos", :force => true do |t|
   end
