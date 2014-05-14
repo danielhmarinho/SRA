@@ -6,7 +6,7 @@ class CreateAtendimentos < ActiveRecord::Migration
       t.references :place
       t.references :type
 
-      .timestamps
+      t.timestamps
     end
     add_index :atendimentos, :user_id
     add_index :atendimentos, :place_id

@@ -139,11 +139,11 @@ describe PlacesController do
   end
 
   describe "DELETE destroy" do
-    it "destroys the requested place" do
+    it "disable the requested place" do
       place = Place.create! valid_attributes
       expect {
         delete :destroy, {:id => place.to_param}, valid_session
-      }.to change(Place, :count).by(-1)
+      }.to change(Place.where('active is false'), :count).by(1)
     end
 
     it "redirects to the places list" do
