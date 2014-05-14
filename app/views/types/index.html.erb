@@ -21,6 +21,7 @@
         <thead>
       <tr>
         <th>Nome</th>
+        <th>Status</th> 
         <%if can? :edit, Type%>
         <th></th>
         <% end %>
@@ -38,6 +39,7 @@
       <% @types.each do |type| %>
           <tr>
             <td><%= type.try(:name) %></td>
+            <td><%= type.try(:active) ? "Habilitado" : "Desabilitado" %></td>
             <%if can? :edit, Type%>
             <td><%= bs_button_to  raw("<i class=\"fa fa-pencil-square-o\"></i>"),
                                   edit_type_path(type),tooltip: "Editar Tipo de Atendimento",
@@ -46,10 +48,10 @@
 
              <%end%>
             <%if can? :delete, Type%>
-            <td><%= bs_button_to raw("<i class=\"fa fa-trash-o\"></i>"),
-                                 type, tooltip: "Excluir Tipo de Atendimento",
-                                 class: "btn btn-large btn-danger",
-                                 method: :delete, data: {confirm: 'Tem certeza que deseja excluir?'} %></td>
+            <td><%= bs_button_to raw("<i class=\"fa %s \"></i>" % (type.active ? "fa-lock": "fa-unlock")),
+                                 type, tooltip: "%s Tipo de Atendimento" % (type.active ? "Desabilitar" : "Habilitar"),
+                                 class: "btn btn-large btn-warning",
+                                 method: :delete, data: {confirm: 'Tem certeza que deseja %s?' % (type.active ? "Desabilitar" : "Habilitar")} %></td>
 
 
             <%end%>
