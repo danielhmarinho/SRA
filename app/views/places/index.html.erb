@@ -19,9 +19,10 @@
         <tr>
         <th>Nome</th>
           <%if can? :delete, Place%>
-        <th></th>
+        <th>Status</th>
+        <th>Editar</th>
           <% end %>
-        <th></th>
+        <th>Habilitar/Desabilitar</th>
       </tr>
       </thead>
 
@@ -29,6 +30,7 @@
       <% @places.each do |place| %>
           <tr>
             <td><%= place.try(:name) %></td>
+            <td><%= place.try(:active) ? "Habilitado" : "Desabilitado" %></td>
             <%if can? :edit, Place%>
             <td><%= bs_button_to  raw("<i class=\"fa fa-pencil-square-o\"></i>"),
                                   edit_place_path(place),tooltip: "Editar Local de Atendimento",
@@ -38,10 +40,10 @@
 
 
             <%if can? :delete, Place%>
-                <td><%= bs_button_to raw("<i class=\"fa fa-trash-o\"></i>"),
-                                     place, tooltip: "Excluir Local de Atendimento",
-                                     class: "btn btn-large btn-danger",
-                                     method: :delete, data: {confirm: 'Tem certeza que deseja excluir?'} %></td>
+                <td><%= bs_button_to raw("<i class=\"fa %s\"></i>" % (place.active ? "fa-unlock" : "fa-lock")),
+                                     place, tooltip: "%s Local de Atendimento" % (place.active ? "Desabilitar" : "Habilitar"),
+                                     class: "btn btn-large btn-warning",
+                                     method: :delete, data: {confirm: 'Tem certeza que deseja %s?' % (place.active ? "desabilitar" : "habilitar")} %></td>
             <%end%>
 
 
