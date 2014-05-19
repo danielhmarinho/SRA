@@ -61,14 +61,26 @@ external_user: true } }
 	end
 end
 
-
-
   describe "GET index" do
     it "assigns all users as @users" do
       get :index, {}
       expect(assigns(:user)).to be_a_new(User)
     end    
   end
+
+  describe "GET retrieve_password" do
+    it "retrieve with valid CPF" do
+      user = User.create! valid_attributes
+      get :retrieve_password, {:id => user.to_param, :user => valid_attributes}
+      expect(response).to redirect_to edit_user_path(user)
+    end
+    it   "retrieve with invalid CPF" do
+      user = User.create! valid_attributes
+      get :retrieve_password, {:id => user.to_param, :user => invalid_attributes}
+      expect(response).to redirect_to users_path
+    end
+  end
+
 
   describe "GET edit" do
     it "assigns the requested user as @user" do
