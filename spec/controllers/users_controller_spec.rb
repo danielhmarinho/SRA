@@ -120,8 +120,8 @@ end
         user = User.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(User).to receive(:save).and_return(false)
-        put :update, {:id => @user.to_param, :user => invalid_attributes }
-        expect(response).to redirect_to users_path
+        put :update, {:id => user.to_param, :user => invalid_attributes }
+        expect(assigns(:user)).to eq(user)
       end
 
       it "re-renders the 'edit' template" do
