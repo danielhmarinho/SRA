@@ -14,6 +14,7 @@ gem 'capistrano', '2.9.0'
 gem 'sqlite3'
 gem 'execjs'
 gem 'therubyracer'
+gem 'rmagick'
 
 gem "twitter-bootstrap-rails"
 

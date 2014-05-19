@@ -73,4 +73,11 @@ describe GraphsController do
     end
   end
 
+  describe "Send graphs" do
+    it "should send the report to download" do
+      post :send_graph, { }
+      expect(response.status).to be(200)
+    end
+  end
+
 end
