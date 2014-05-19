@@ -8,7 +8,7 @@ describe UsersController do
  
 		let(:invalid_attributes) { { name: "Nome", matricula: "123abc", username: "externo", password: "13123", external_user: true } }
 		
-		let(:valid_attributes) { { name: "Usuario Externo", matricula: "25391659310", username: "externo", password: "13123", encrypted_password: Digest::MD5::hexdigest("13123"),
+		let(:valid_attributes) { { name: "Usuario Externo", matricula: "25391659310", username: "externo1", password: "12345",
 external_user: true } }
  
 	describe "GET new" do
@@ -65,10 +65,9 @@ end
 
   describe "GET index" do
     it "assigns all users as @users" do
-      user = User.create! valid_attributes
       get :index, {}
-      expect(assigns(:users)).to eq(user)
-    end
+      expect(assigns(:user)).to be_a_new(User)
+    end    
   end
 
   describe "GET edit" do
@@ -87,8 +86,8 @@ end
         # specifies that the User created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        expect_any_instance_of(User).to receive(:update_attributes).with({ "these" => "params" })
-        put :update, {:id => user.to_param, :user => { "these" => "params" }}
+        expect_any_instance_of(User).to receive(:update_attributes).with( valid_attributes )
+        put :update, {:id => user.to_param, :user =>  valid_attributes }
       end
 
       it "assigns the requested user as @user" do
@@ -109,15 +108,15 @@ end
         user = User.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(User).to receive(:save).and_return(false)
-        put :update, {:id => @user.to_param, :user => {  }}
-        expect(assigns(:user)).to eq(user)
+        put :update, {:id => @user.to_param, :user => invalid_attributes }
+        expect(response).to redirect_to users_path
       end
 
       it "re-renders the 'edit' template" do
         user = User.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(User).to receive(:save).and_return(false)
-        put :update, {:id => user.to_param, :user => {  }}
+        put :update, {:id => user.to_param, :user => invalid_attributes }
         expect(response).to render_template("edit")
       end
     end
