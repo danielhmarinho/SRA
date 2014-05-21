@@ -7,9 +7,9 @@ class User < ActiveRecord::Base
   devise :ldap_authenticatable, :trackable, :validatable, :timeoutable, :authentication_keys => [:username]
 
   validates_presence_of :username
-  validates_uniqueness_of :username
+  validates_uniqueness_of :username, :matricula
   validate :external_user_needs
-
+  
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :password, :password_confirmation, :encrypted_password, :remember_me,:name, :matricula, :external_user, :role_ids
 

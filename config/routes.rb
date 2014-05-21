@@ -15,6 +15,8 @@ SRA::Application.routes.draw do
 
   devise_for :users ,:path => '', :path_names => {:sign_in => "", :sign_out => ""}
 
+  post '/users/retrieve_password', to: 'users#retrieve_password', as: 'retrieve_password'
+
   resources :users
 
   post '/users/retrieve_password', to: 'users#retrieve_password', as: 'retrieve_password'

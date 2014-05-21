@@ -2,8 +2,8 @@
 FactoryGirl.define do
 
   factory :administrative, :class => User do
-    username "100125271"
-    password "TDSFR5271"
+    username "132225"
+    password "VGDC2225"
     after(:create) {|user| user.add_role(:administrative)}  
   end
 

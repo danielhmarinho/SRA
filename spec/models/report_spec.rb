@@ -5,9 +5,13 @@ describe Report do
 
   let(:invalid_attributes) { { start_date: "01/01/2014", end_date: "02/02/2013", place: 1 } }
 
+
   it "Pode ser instanciado" do
     Report.new.should be_an_instance_of(Report)
   end
+
+
+
 
   it { should allow_mass_assignment_of(:start_date) }
   it { should allow_mass_assignment_of(:end_date) }

@@ -1,0 +1,34 @@
+<%= simple_form_for @user, url: {action: "retrieve_password"} do |f| %>
+
+      <% if @user.errors.any? %>
+         <div class="alert alert-danger">
+            
+           <ul>
+             <% @atendimento.errors.full_messages.each do |msg| %>
+  
+                <li><%= msg %></li>
+  
+              <% end %>
+  
+           </ul>
+         </div>
+      <% end %>
+
+
+    <div class="form-inputs">
+      <hi>Digite seu CPF:</hi>
+      <%= f.input :matricula, :label => false, :required => true%>
+      
+
+    <div class="actions">
+      <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
+                 root_path ,
+                 class: "btn btn-warning"%>
+      <%= button_tag :class => 'btn-success btn' , :id => 'search-cpf' do %>
+          <i class='fa fa-search'></i> Buscar CPF
+      <% end %>
+      </ul>
+    </div>
+
+    </div>
+<% end %>

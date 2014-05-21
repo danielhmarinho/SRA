@@ -9,8 +9,6 @@ describe "User" do
     let(:user){ nil }
  
  
- 
- 
     context "when is an Student" do
 
       let(:user) { FactoryGirl.create(:student) }
