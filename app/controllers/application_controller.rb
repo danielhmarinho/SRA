@@ -85,6 +85,6 @@ class ApplicationController < ActionController::Base
 
       @place = Place.where(:id => place_id) 
 
-      atendimentos = Atendimento.where(data: start_date...end_date, place_id: place_id)
+      atendimentos = Atendimento.where(created_at: start_date...end_date, place_id: place_id)
   end
 end

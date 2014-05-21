@@ -46,15 +46,16 @@ class TypesController < ApplicationController
 
   def destroy
     @type = Type.find(params[:id])
-    @type.destroy
+    @type.update_attributes(active: !@type.active)
+    @type.save
 
     respond_to do |format|
-      redirect_as_controller(format, types_path, notice: 'Tipo de Atendimento deletado com sucesso.')
+      redirect_as_controller(format, types_path, notice: 'Tipo de Atendimento %s com sucesso.' % (@type.active ? "habilitado" : "desabilitado"))
     end
   end
 
   def type_by_place
-    @type = Place.find(params[:id]).types.order('name ASC')
+    @type = Place.find(params[:id]).types.where('active is true').order('name ASC')
 
     respond_to do |format|
       format.js { render json: @type }

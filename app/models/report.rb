@@ -1,13 +1,22 @@
   # -*- encoding : utf-8 -*-
   
-class Report < ActiveRecord::Base
+class Report
+  include ActiveModel::Validations
+  include ActiveModel::Conversion
+  extend ActiveModel::Naming
 
-  attr_accessible :start_date, :end_date, :place
+  attr_accessor :start_date, :end_date, :place
   
   validates_presence_of :start_date
   validates_presence_of :end_date
   
   validate :dates_are_valid
+
+  def initialize(attributes = {})
+    attributes.each do |name, value|
+      send("#{name}=", value) 
+    end
+  end
 
   def dates_are_valid
   	if self.end_date.present? && self.start_date.present?
@@ -18,5 +27,9 @@ class Report < ActiveRecord::Base
   			errors.add(:end_date, "A data final deve ser após a data de início do relatório.")
   		end
   	end
+  end
+
+  def persisted?
+    false
   end
 end

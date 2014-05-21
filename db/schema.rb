@@ -11,11 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140416202716) do
+ActiveRecord::Schema.define(:version => 20140514112842) do
 
   create_table "atendimentos", :force => true do |t|
     t.integer  "user_id"
-    t.datetime "data"
     t.integer  "place_id"
     t.integer  "type_id"
     t.datetime "created_at", :null => false
@@ -29,18 +28,21 @@ ActiveRecord::Schema.define(:version => 20140416202716) do
   create_table "graphs", :force => true do |t|
     t.string   "start_date"
     t.string   "end_date"
-    t.string   "place"
+    t.integer  "place_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "graphs", ["place_id"], :name => "index_graphs_on_place_id"
 
   create_table "listatendimentos", :force => true do |t|
   end
 
   create_table "places", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.boolean  "active",     :default => true
   end
 
   create_table "places_types", :id => false, :force => true do |t|
@@ -73,8 +75,9 @@ ActiveRecord::Schema.define(:version => 20140416202716) do
 
   create_table "types", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.boolean  "active",     :default => true
   end
 
   create_table "users", :force => true do |t|

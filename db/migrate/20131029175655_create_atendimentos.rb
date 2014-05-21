@@ -3,7 +3,6 @@ class CreateAtendimentos < ActiveRecord::Migration
   def change
     create_table :atendimentos do |t|
       t.references :user
-      t.datetime :data
       t.references :place
       t.references :type
 

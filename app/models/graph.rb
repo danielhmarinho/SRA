@@ -1,10 +1,12 @@
 #encoding : utf-8 
 class Graph < ActiveRecord::Base
 
-  attr_accessible :start_date, :end_date, :place
+  attr_accessible :start_date, :end_date, :place_id
 
   validates_presence_of :start_date , :end_date
-  
+
+  has_one :place
+
   validate :dates_are_valid
 
   def dates_are_valid

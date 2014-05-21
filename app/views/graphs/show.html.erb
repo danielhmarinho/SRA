@@ -28,6 +28,7 @@ $(document).ready(function(){
       <h1>Gráficos</h1>
        <%= render partial: "shared/navbar_collapsible"%>
     </div>
+
         <span class="pull-right">
           <%= link_to raw("<i class=\"icon-white icon-save\"> Salvar Relatório </i>"), send_graph_path, 
               class: "btn-success btn", id: 'btnSave' %>
@@ -37,6 +38,7 @@ $(document).ready(function(){
       <font color = gray><h4>Atendimentos por hora:</h4></font>
       </p>
         <%= column_chart @atendimentos.group_by_hour_of_day(:created_at, format: "%Hh " ).count, {library: {hAxis: {title: "Hora"}, vAxis: {title: "Quantidade de Atendimentos"}}} %>
+
         <br>
       <p>
         <font color = gray><h4>Tipos de atendimento por local:</h4></font>
