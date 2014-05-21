@@ -4,7 +4,7 @@ class GraphsController < ApplicationController
 
   def show
     @graph = Graph.find(params[:id])
-    filter_attributes = {}
+    filter_attributes = {} 
     
     filter_attributes[:start_date] = @graph.start_date
     filter_attributes[:end_date] = @graph.end_date
@@ -19,8 +19,13 @@ class GraphsController < ApplicationController
   end
 
   def create
-      @graph = Graph.create(params[:graph])                
-      redirect_to return_path   
+    @graph = Graph.create(params[:graph])                
+    redirect_to return_path   
+  end
+
+  def send_graph
+    path = Rails.root.join("app", "assets", "relatorio.pdf")
+    send_file path, :filename => "RelatorioAtendimentos.pdf", :type => "application/pdf"
   end
 
   private
