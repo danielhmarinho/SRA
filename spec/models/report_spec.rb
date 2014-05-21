@@ -10,13 +10,6 @@ describe Report do
     Report.new.should be_an_instance_of(Report)
   end
 
-
-
-
-  it { should allow_mass_assignment_of(:start_date) }
-  it { should allow_mass_assignment_of(:end_date) }
-  it { should allow_mass_assignment_of(:place) }
-
   it { should validate_presence_of(:start_date) }
   it { should validate_presence_of(:end_date) }
 

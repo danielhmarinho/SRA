@@ -118,7 +118,7 @@ describe TypesController do
       type = Type.create! valid_attributes
       expect {
         delete :destroy, {:id => type.to_param}, valid_session
-      }.to change(Type.where('active is false'), :count).by(1)
+      }.to change(Type.where('active' => false), :count).by(1)
     end
 
     it "redirects to the types list" do

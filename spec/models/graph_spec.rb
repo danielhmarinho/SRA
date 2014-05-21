@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe Graph do
   
-  let(:invalid_attributes) { { start_date: "01/01/2014", end_date: "02/02/2013", place: 1 } }
+  let(:invalid_attributes) { { start_date: "01/01/2014", end_date: "02/02/2013", place_id: "1" } }
 
   it "Pode ser instanciado" do
     Graph.new.should be_an_instance_of(Graph)
@@ -11,7 +11,7 @@ describe Graph do
 
   it { should allow_mass_assignment_of(:start_date) }
   it { should allow_mass_assignment_of(:end_date) }
-  it { should allow_mass_assignment_of(:place) }
+  it { should allow_mass_assignment_of(:place_id) }
 
   it { should validate_presence_of(:start_date) }
   it { should validate_presence_of(:end_date) }

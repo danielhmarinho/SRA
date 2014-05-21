@@ -5,12 +5,12 @@ describe GraphsController do
 
   login_admin
 
-  let(:valid_attributes) { { start_date: "01/01/2014", end_date: "02/02/2014", place: 1 } }
+  let(:valid_attributes) { { start_date: "01/01/2014", end_date: "02/02/2014", place_id: "1" } }
 
   before :each do
     place = Place.create(name: "Laboratório")
     type = Type.create(:name => "Multa")
-    Atendimento.create(:data => "2014-01-05 14:08:00" , :place => place, :type => type, :user_id => 1)
+    Atendimento.create(:created_at => "2014-01-05 14:08:00" , :place => place, :type => type, :user_id => 1)
   end
 
   after :each do
