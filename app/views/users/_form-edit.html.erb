@@ -1,6 +1,24 @@
 <%= simple_form_for @user, url: {action: "update"} do |f| %>
 
     <div class="form-inputs">
+<<<<<<< HEAD
+      <hi>Login:</hi>
+      <%= f.input :username, :label => false, :enabled => false, :readonly => true %>
+      <hi>Nova Senha:</hi>
+      <%= f.input :password, :label => false, :required => true, unchecked_value: true%>
+
+       
+      <div class="actions">
+        <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
+                 root_path ,
+                 class: "btn btn-warning"%>
+        <%= button_tag :class => 'btn-success btn' , :id => 'search-cpf' do %>
+          <i class='fa fa-refresh'></i> Alterar Senha
+        <% end %>
+       </ul>
+      </div>
+    </div>
+=======
       <%= f.input :matricula, :label => 'CPF', :required => true %>
       <%= f.input :password, :label => 'Nova Senha', :required => true %>
        <%= f.input :username, :label => 'username', :required => true %>
@@ -9,4 +27,5 @@
 
 
       
+>>>>>>> approval
 <% end %>

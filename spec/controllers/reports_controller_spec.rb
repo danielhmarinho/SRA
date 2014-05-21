@@ -80,5 +80,27 @@ describe ReportsController do
     end
   end 
 
+  describe "Graphs to images" do
+    let(:valid_svg) { "<div><svg height=\"100\" width=\"100\"><circle cx=\"50\" cy=\"50\" r=\"40\" stroke=\"black\" stroke-width=\"3\" fill=\"red\" /></svg></div>" }
+
+    it "should save the images from svg" do
+      post :save_report_with_graph, {:graphs => {:graph1 => valid_svg, :graph2 => valid_svg, :attributes => valid_attributes}}
+      expect(response.status).to be(200)
+    end
+  end
+
+  describe "Clean svg data" do
+    let(:valid_svg) { "<div><svg height=\"100\" width=\"100\"><circle cx=\"50\" cy=\"50\" r=\"40\" stroke=\"black\" stroke-width=\"3\" fill=\"red\" /><text font-face=\"'Lucida Grande', 'Lucida Sans Unicode, '\" x=\"0\" y=\"15\" fill=\"red\"></text></svg></div>" }
+
+    it "should return just the svg tags" do
+      clean_svg_data = ReportsController.new.send(:clean_svg_data, valid_svg)
+      clean_svg_data.should_not include("div")
+    end
+
+    it "should remove the invalid font-face attributes" do
+      clean_svg_data = ReportsController.new.send(:clean_svg_data, valid_svg)
+      clean_svg_data.should_not include("'Lucida Grande', 'Lucida Sans Unicode, '")
+    end
+  end
 
 end

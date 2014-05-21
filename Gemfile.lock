@@ -187,6 +187,7 @@ GEM
     ref (1.0.5)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rmagick (2.13.2)
     rolify (3.4.0)
     rspec-collection_matchers (0.0.4)
       rspec-expectations (>= 2.99.0.beta1)
@@ -309,6 +310,7 @@ DEPENDENCIES
   rails (= 3.2.15)
   rails-bootstrap-helpers
   rails3-jquery-autocomplete
+  rmagick
   rolify
   rspec-rails (~> 3.0.0.beta)
   sass-rails (~> 3.2.3)
