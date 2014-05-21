@@ -21,6 +21,7 @@ class Ability
       can [:create, :read, :edit, :update], Type
       can [:create, :read, :edit, :update], Place
       can :manage, Report
+      can :manage, Graph
     end
 
     if user.has_role? :administrative

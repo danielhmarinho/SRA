@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
-
+Encoding.default_external = Encoding::UTF_8
+Encoding.default_internal = Encoding::UTF_8
 gem 'rails', '3.2.15'
 
 # Bundle edge Rails instead:
@@ -7,6 +8,7 @@ gem 'rails', '3.2.15'
 
 gem 'pg'
 gem 'taps'
+gem 'net-ssh', '2.7.0'
 gem 'capistrano', '2.9.0'
 
 gem 'sqlite3'
@@ -16,12 +18,14 @@ gem 'therubyracer'
 gem "twitter-bootstrap-rails"
 
 gem 'devise'
+gem 'brazilian-rails'
 
 gem 'simple_form'
 
 gem 'rails3-jquery-autocomplete'
 
 gem 'font-awesome-less'
+gem "less-rails"
 
 gem 'watir'
 
@@ -38,8 +42,11 @@ gem "devise_ldap_authenticatable"
 gem 'jquery-datatables-rails'
 gem "rails-bootstrap-helpers"
 
-gem 'gmaps4rails'
-gem 'bootstrap-generators', '~> 3.1.1'
+gem 'chartkick'
+
+gem 'better_errors'
+
+gem 'groupdate'
 
 gem 'bootstrap-datepicker-rails'
 

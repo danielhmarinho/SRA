@@ -1,14 +1,24 @@
-# -*- encoding : utf-8 -*-
+# -*- encoding : utf-8 -*-post '/permissions/:id/edit', to: 'permissions#update'
 SRA::Application.routes.draw do
 
+  resources :graphs
+
+
   resources :reports
+
+  resources :permissions, :except => :show
+  post '/permissions/:id/edit', to: 'permissions#update'
+  get '/permissions/:id', to: 'permissions#index'
+
+  post '/reports/save_report', to: 'reports#save_report_with_graph'
+  get '/send_graph', to: 'graphs#send_graph', as: 'send_graph'
 
   devise_for :users ,:path => '', :path_names => {:sign_in => "", :sign_out => ""}
 
   resources :users
 
-  #get "#{Rails.root}/app/assets/images/relatorio.pdf"
-
+  post '/users/retrieve_password', to: 'users#retrieve_password', as: 'retrieve_password'
+  
   resources :atendimentos do
 
      get :autocomplete_user_name, :on => :collection

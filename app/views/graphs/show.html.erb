@@ -1,0 +1,49 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+  function downloadInnerHtml(filename, elId, mimeType) {
+    var elHtml = document.getElementById(elId).innerHTML;
+  
+    return elHtml;
+  }
+
+  $('#btnSave').click(function(){
+    var graph1 = downloadInnerHtml('graph1.svg', 'chart-1','text/html');
+    var graph2 = downloadInnerHtml('graph2.svg', 'chart-2','text/html');
+
+    var end_date = '<%= @graph.end_date %>'
+    var start_date = '<%= @graph.start_date %>'
+    var place = '<%= @graph.place %>'
+
+    $.post("/reports/save_report", {graphs: {graph1: graph1, graph2: graph2, attributes: {start_date: start_date, end_date: end_date, place: place}}})
+  });
+
+});
+</script>
+
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h1>Gráficos</h1>
+       <%= render partial: "shared/navbar_collapsible"%>
+    </div>
+        <span class="pull-right">
+          <%= link_to raw("<i class=\"icon-white icon-save\"> Salvar Relatório </i>"), send_graph_path, 
+              class: "btn-success btn", id: 'btnSave' %>
+        </span>
+
+      <p>
+      <font color = gray><h4>Atendimentos por hora:</h4></font>
+      </p>
+        <%= column_chart @atendimentos.group_by_hour_of_day(:created_at, format: "%Hh " ).count, {library: {hAxis: {title: "Hora"}, vAxis: {title: "Quantidade de Atendimentos"}}} %>
+        <br>
+      <p>
+        <font color = gray><h4>Tipos de atendimento por local:</h4></font>
+      </p>     
+      
+      <%= pie_chart @atendimentos.group(:type.to_s).count %>  
+
+  </div>    
+
+</div>

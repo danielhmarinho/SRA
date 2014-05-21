@@ -1,5 +1,10 @@
 # encoding: UTF-8
 
+Role.find_or_create_by_name!({name: "manager"}, without_protection: true)
+Role.find_or_create_by_name!({name: "admin"}, without_protection: true)
+
+Role.find_by_name("manager").update_attribute(:display_name, "Gerente")
+Role.find_by_name("admin").update_attribute(:display_name, "Administrador")
 
 Type.create!([
 
@@ -100,4 +105,5 @@ Type.create!([
 
                  #{name: "Outros", :places => Place.find(1,2,3)}
              ])
+
 

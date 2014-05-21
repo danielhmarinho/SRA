@@ -5,12 +5,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-
-  def edit
-    @user = User.find(params[:id])
-  end
-
-
   def create
     @user = User.new(params[:user])
 
@@ -27,6 +21,7 @@ class UsersController < ApplicationController
       end
     end
   end
+
 
 
   def update

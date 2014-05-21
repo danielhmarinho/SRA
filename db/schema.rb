@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140416142258) do
+ActiveRecord::Schema.define(:version => 20140416202716) do
 
   create_table "atendimentos", :force => true do |t|
     t.integer  "user_id"
@@ -25,6 +25,14 @@ ActiveRecord::Schema.define(:version => 20140416142258) do
   add_index "atendimentos", ["place_id"], :name => "index_atendimentos_on_place_id"
   add_index "atendimentos", ["type_id"], :name => "index_atendimentos_on_type_id"
   add_index "atendimentos", ["user_id"], :name => "index_atendimentos_on_user_id"
+
+  create_table "graphs", :force => true do |t|
+    t.string   "start_date"
+    t.string   "end_date"
+    t.string   "place"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "listatendimentos", :force => true do |t|
   end
@@ -52,12 +60,14 @@ ActiveRecord::Schema.define(:version => 20140416142258) do
 
   create_table "roles", :force => true do |t|
     t.string   "name"
+    t.string   "display_name"
     t.integer  "resource_id"
     t.string   "resource_type"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
 
+  add_index "roles", ["display_name"], :name => "index_roles_on_display_name"
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
 

@@ -75,4 +75,16 @@ class ApplicationController < ActionController::Base
     end  
   end
 
+  helper_method :filter_atendimentos
+
+  def filter_atendimentos(params)
+      # The Atendimento date is datetime on the schema, so we need to convert it
+      start_date = DateTime.strptime(params[:start_date], "%d/%m/%Y")
+      end_date = DateTime.strptime("#{params[:end_date]} 23:59:59", "%d/%m/%Y %H:%M:%S")
+      place_id = params[:place]
+
+      @place = Place.where(:id => place_id) 
+
+      atendimentos = Atendimento.where(data: start_date...end_date, place_id: place_id)
+  end
 end
