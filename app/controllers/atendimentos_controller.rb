@@ -28,7 +28,7 @@ class AtendimentosController < ApplicationController
       if @atendimento.save
         redirect_as_controller(format, new_atendimento_path, notice: 'Atendimento criado com sucesso')
       else
-        format.html { render action: "new" }
+        format.html { render 'new' }
       end
     end
   end
@@ -42,7 +42,7 @@ class AtendimentosController < ApplicationController
       if @atendimento.update_attributes(params[:atendimento])
         redirect_as_controller(format, atendimentos_path, notice: 'Atendimento alterado com sucesso')
       else
-        format.html { render action: "edit" }
+        format.html { render 'edit' }
 
       end
     end

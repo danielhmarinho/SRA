@@ -1,15 +1,15 @@
 # -*- encoding : utf-8 -*-
 class GraphsController < ApplicationController
-  load_and_authorize_resource   
+  load_and_authorize_resource
 
   def show
     @graph = Graph.find(params[:id])
-    filter_attributes = {} 
-    
+    filter_attributes = {}
+
     filter_attributes[:start_date] = @graph.start_date
     filter_attributes[:end_date] = @graph.end_date
     filter_attributes[:place] = @graph.place_id
-    
+
     @atendimentos = filter_atendimentos filter_attributes
   end
 
@@ -19,8 +19,8 @@ class GraphsController < ApplicationController
   end
 
   def create
-    @graph = Graph.create(params[:graph])                
-    redirect_to return_path   
+    @graph = Graph.create(params[:graph])
+    redirect_to return_path
   end
 
   def send_graph

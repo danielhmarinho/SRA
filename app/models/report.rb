@@ -1,20 +1,20 @@
   # -*- encoding : utf-8 -*-
-  
+
 class Report
   include ActiveModel::Validations
   include ActiveModel::Conversion
   extend ActiveModel::Naming
 
   attr_accessor :start_date, :end_date, :place
-  
+
   validates_presence_of :start_date
   validates_presence_of :end_date
-  
+
   validate :dates_are_valid
 
   def initialize(attributes = {})
     attributes.each do |name, value|
-      send("#{name}=", value) 
+      send("#{name}=", value)
     end
   end
 

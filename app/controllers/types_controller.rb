@@ -4,7 +4,7 @@ class TypesController < ApplicationController
   load_and_authorize_resource :except => [:type_by_place]
 
   def index
-    @types = Type.all(:order => ('name ASC'))
+    @types = Type.ordened
 
   end
 
@@ -25,7 +25,7 @@ class TypesController < ApplicationController
       if @type.save
         redirect_as_controller(format, types_path, notice: 'Tipo de Atendimento criado com sucesso.')
       else
-        format.html { render action: "new" }
+        format.html { render  'new' }
       end
     end
   end
@@ -38,7 +38,7 @@ class TypesController < ApplicationController
       if @type.update_attributes(params[:type])
         redirect_as_controller(format, types_path, notice: 'Tipo de Atendimento alterado com sucesso.')
       else
-        format.html { render action: "edit" }
+        format.html { render 'edit' }
       end
     end
   end

@@ -28,23 +28,23 @@ class ReportsController < ApplicationController
   end
 
   def save_report_with_graph
-    
+
     svg_graph1 = clean_svg_data(params[:graphs][:graph1])
     svg_graph2 = clean_svg_data(params[:graphs][:graph2])
     filter_attributes = params[:graphs][:attributes]
-    
+
     save_graph(svg_graph1, "graph1")
     save_graph(svg_graph2, "graph2")
 
     save_report(filter_attributes,true)
-    
+
   end
 
 
   private
 
     def save_graph(svg, file_name)
-      img = Magick::Image::from_blob(svg)  { self.format = 'SVG'; }.first
+      img = Magick::Image::from_blob(svg) { self.format = 'SVG'; }.first
       img.format = 'PNG'
       path = "#{Rails.root}/app/assets/images/#{file_name}.png"
       img.write(path)
@@ -63,9 +63,9 @@ class ReportsController < ApplicationController
 
       atendimentos.each do |atendimento|
         user = atendimento.user
-        role = verify_user user 
+        role = verify_user user
         type = atendimento.type.name
-        
+
         atendimentos_data += [[user.name, user.matricula, l(atendimento.try(:created_at), :format => :long), role, type ]]
       end
 
@@ -85,19 +85,19 @@ class ReportsController < ApplicationController
         cell = "<font size='14'><b>#{cell}</b></font>"
       end
     end
-    
+
 
   def pdf(atendimentos_data, has_image)
-      
+
     pdf_options = {
       :page_size => "A4",
       :page_layout => :landscape,
       :margin => [20, 20]
     }
-      
+
     Prawn::Document.new(pdf_options) do |pdf|
       generate_pdf_layout(pdf, has_image, atendimentos_data)
-          
+
       count_pdf_pages(pdf)
 
       pdf.repeat :all do
@@ -110,11 +110,11 @@ class ReportsController < ApplicationController
 
     def generate_pdf_layout(pdf, has_image, atendimentos_data)
       pdf.bounding_box [pdf.bounds.left, pdf.bounds.top - 90], :width => pdf.bounds.width, :height => 440 do
-        
+
         add_image_to_pdf(pdf, has_image)
-           
+
         generate_pdf_columns_and_tables(pdf, atendimentos_data)
-      
+
       end
     end
 
@@ -143,7 +143,7 @@ class ReportsController < ApplicationController
       pdf.bounding_box [pdf.bounds.left, pdf.bounds.top], :width => pdf.bounds.width do
         pdf.image "#{Rails.root}/app/assets/images/UNB4.jpg", :vposition => 10
         pdf.move_up(4)
-              
+
         pdf.move_down(20)
         pdf.text "RELATÓRIO DE ATENDIMENTO" , :align => :center, :size => 18, :style => :bold
         pdf.text @place.first.name, :align => :center, :size => 12, :style => :bold

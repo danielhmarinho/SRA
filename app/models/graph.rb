@@ -1,4 +1,4 @@
-#encoding : utf-8 
+#encoding : utf-8
 class Graph < ActiveRecord::Base
 
   attr_accessible :start_date, :end_date, :place_id

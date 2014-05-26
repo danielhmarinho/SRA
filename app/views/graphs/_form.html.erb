@@ -1,5 +1,5 @@
 <script type="text/javascript">
-  
+
   $(document).ready(function(){
     $('[data-behaviour~=datepicker]').datepicker({
     		format: 'dd/mm/yyyy',
@@ -33,11 +33,11 @@
   });
   get_types($('#atendimento_place_id').val());
 
-  
+
   });
 
   </script>
-	
+
 
 <%= simple_form_for @graph  do |f| %>
   <%= f.error_notification %>
@@ -45,12 +45,12 @@
   	<tr>
     	<td><%= f.label "Data de início: " %></td>
 		<td><%= f.text_field :start_date, 'data-behaviour' => 'datepicker', :required => true %></td>
-  	</tr> 
+  	</tr>
     <tr>
         <td><%= f.label "Data de fim: " %></td>
         <td><%= f.text_field :end_date, 'data-behaviour' => 'datepicker', :required => true %></td>
 
-  	<tr>         
+  	<tr>
   	  <td><%= f.label "Local dos atendimentos" %></td>
    	  <td><%= f.select :place_id, Place.order('name ASC').collect { |p| [p.name, p.id] }  %></td>
  	</tr>
@@ -61,6 +61,6 @@
   	<% end %>
 
 
- 	
+
 <% end %>
 

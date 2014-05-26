@@ -1,5 +1,5 @@
 <script type="text/javascript">
-  
+
   $(document).ready(function(){
     $('[data-behaviour~=datepicker]').datepicker({
     		format: 'dd/mm/yyyy',
@@ -33,7 +33,7 @@
   });
   get_types($('#atendimento_place_id').val());
 
-  
+
   });
 
 </script>
@@ -53,7 +53,7 @@
       <td><%= f.select :place, Place.order('name ASC').collect { |p| [p.name, p.id] }  %></td>
     </tr>
   </table>
-  
+
     <%= button_tag :class => 'btn-success btn', :id => 'gerar-relatorio' do %>
       <i class='fa fa-plus-circle'></i> Gerar Relatório
     <% end %>

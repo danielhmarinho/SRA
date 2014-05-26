@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-   
+
     @user.add_role :external_user
     @user.external_user = true
     @user.encrypted_password = Digest::MD5::hexdigest params[:user][:password]
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
       if @user.save
         redirect_as_controller(format, root_path, notice: 'Usuário Externo criado com sucesso.')
       else
-        format.html { render action: "new" }
+        format.html { render 'new' }
       end
     end
   end
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
         redirect_as_controller(format, root_path, notice: 'Usuário Externo alterado com sucesso.')
 
       else
-        format.html { render action: "edit" }
+        format.html { render 'edit' }
       end
     end
   end
