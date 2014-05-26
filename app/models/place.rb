@@ -4,7 +4,7 @@ class Place < ActiveRecord::Base
   has_and_belongs_to_many :types
   
   attr_accessible :name, :type_ids, :types, :active
-  validates_presence_of :name
+  validates_presence_of :name, :types
   validates_uniqueness_of :name, :case_sensitive => false
 
 end

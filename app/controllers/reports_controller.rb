@@ -87,59 +87,76 @@ class ReportsController < ApplicationController
     end
     
 
-    def pdf(atendimentos_data, has_image)
+  def pdf(atendimentos_data, has_image)
       
-      pdf_options = {
-        :page_size => "A4",
-        :page_layout => :landscape,
-        :margin => [20, 20]
-      }
+    pdf_options = {
+      :page_size => "A4",
+      :page_layout => :landscape,
+      :margin => [20, 20]
+    }
       
-      Prawn::Document.new(pdf_options) do |pdf|
+    Prawn::Document.new(pdf_options) do |pdf|
+      generate_pdf_layout(pdf, has_image, atendimentos_data)
           
-          pdf.bounding_box [pdf.bounds.left, pdf.bounds.top - 90], :width => pdf.bounds.width, :height => 440 do
-          
-            if(has_image)
-              pdf.image "#{Rails.root}/app/assets/images/graph1.png", :vposition => :center, :height => 300, :width => 900
-              pdf.start_new_page
-              pdf.image "#{Rails.root}/app/assets/images/graph2.png", :vposition => :center, :height => 230, :width => 900
-              pdf.start_new_page
-            end
-            
+      count_pdf_pages(pdf)
 
-            columns = { 0 => 190, 1 => 75, 2 => 185, 3 => 100, 4 => 250}
-            pdf.table(atendimentos_data, :header => true, :cell_style => { :inline_format => true, :align => :center } ,:column_widths => columns )
-          
-          end
+      pdf.repeat :all do
+        generate_pdf_header(pdf)
 
-          pdf.page_count.times do |i|
-            pdf.go_to_page(i+1)
-            pdf.draw_text "#{i+1} / #{pdf.page_count}", :at=>[1,1]
-          end
-
-          pdf.repeat :all do
-
-            #Header Title
-            pdf.bounding_box [pdf.bounds.left, pdf.bounds.top], :width => pdf.bounds.width do
-              pdf.image "#{Rails.root}/app/assets/images/UNB4.jpg", :vposition => 10
-              pdf.move_up(4)
-              
-              pdf.move_down(20)
-              pdf.text "RELATÓRIO DE ATENDIMENTO" , :align => :center, :size => 18, :style => :bold
-              pdf.text @place.first.name, :align => :center, :size => 12, :style => :bold
-                        
-          end
-
-            #Footer
-            pdf.bounding_box [pdf.bounds.left, pdf.bounds.bottom + 40], :width => pdf.bounds.width do
-              pdf.stroke_horizontal_rule
-              pdf.move_down(5)
-              pdf.text "Brasília, #{Time.now.strftime("%d/%m/%Y")}", :align => :center
-              pdf.move_down(10)
-              pdf.text "#{current_user.name}: ___________________________________________", :align => :center
-            end
-          end
+        generate_pdf_footer(pdf)
       end
+    end
+  end
 
+    def generate_pdf_layout(pdf, has_image, atendimentos_data)
+      pdf.bounding_box [pdf.bounds.left, pdf.bounds.top - 90], :width => pdf.bounds.width, :height => 440 do
+        
+        add_image_to_pdf(pdf, has_image)
+           
+        generate_pdf_columns_and_tables(pdf, atendimentos_data)
+      
+      end
+    end
+
+    def add_image_to_pdf(pdf, has_image)
+      if(has_image)
+        pdf.image "#{Rails.root}/app/assets/images/graph1.png", :vposition => :center, :height => 300, :width => 900
+        pdf.start_new_page
+        pdf.image "#{Rails.root}/app/assets/images/graph2.png", :vposition => :center, :height => 230, :width => 900
+        pdf.start_new_page
+      end
+    end
+
+    def generate_pdf_columns_and_tables(pdf, atendimentos_data)
+      columns = { 0 => 190, 1 => 75, 2 => 185, 3 => 100, 4 => 250}
+      pdf.table(atendimentos_data, :header => true, :cell_style => { :inline_format => true, :align => :center } ,:column_widths => columns )
+    end
+
+    def count_pdf_pages(pdf)
+      pdf.page_count.times do |i|
+        pdf.go_to_page(i+1)
+        pdf.draw_text "#{i+1} / #{pdf.page_count}", :at=>[1,1]
+      end
+    end
+
+    def generate_pdf_header(pdf)
+      pdf.bounding_box [pdf.bounds.left, pdf.bounds.top], :width => pdf.bounds.width do
+        pdf.image "#{Rails.root}/app/assets/images/UNB4.jpg", :vposition => 10
+        pdf.move_up(4)
+              
+        pdf.move_down(20)
+        pdf.text "RELATÓRIO DE ATENDIMENTO" , :align => :center, :size => 18, :style => :bold
+        pdf.text @place.first.name, :align => :center, :size => 12, :style => :bold
+      end
+    end
+
+    def generate_pdf_footer(pdf)
+      pdf.bounding_box [pdf.bounds.left, pdf.bounds.bottom + 40], :width => pdf.bounds.width do
+        pdf.stroke_horizontal_rule
+        pdf.move_down(5)
+        pdf.text "Brasília, #{Time.now.strftime("%d/%m/%Y")}", :align => :center
+        pdf.move_down(10)
+        pdf.text "#{current_user.name}: ___________________________________________", :align => :center
+      end
     end
 end
