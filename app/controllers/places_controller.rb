@@ -23,11 +23,7 @@ class PlacesController < ApplicationController
     @place = Place.new(params[:place])
 
     respond_to do |format|
-      if @place.save
-        redirect_as_controller(format, places_path, notice: 'Local de Atendimento criado com sucesso.')
-      else
-        format.html { render 'new' }
-      end
+      respond_redirect_save(format)
     end
   end
 
@@ -37,11 +33,7 @@ class PlacesController < ApplicationController
 
 
     respond_to do |format|
-      if @place.update_attributes(params[:place])
-        redirect_as_controller(format, places_path, notice: 'Local de Atendimento alterado com sucesso.')
-      else
-        format.html { render 'edit' }
-      end
+      respond_redirect_update(format)
     end
   end
 
@@ -55,5 +47,21 @@ class PlacesController < ApplicationController
     end
   end
 
+  def respond_redirect_save(format)
+
+    if @place.save
+      redirect_as_controller(format, places_path, notice: 'Local de Atendimento criado com sucesso.')
+    else
+      format.html { render 'new' }
+    end
+  end
+
+  def respond_redirect_update(format)
+    if @place.update_attributes(params[:place])
+      redirect_as_controller(format, places_path, notice: 'Local de Atendimento alterado com sucesso.')
+    else
+      format.html { render 'edit' }
+    end
+  end
 
 end
