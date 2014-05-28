@@ -36,7 +36,7 @@
           <tbody>
          <% type.each do |type| %>
               <tr>
-                <td><%= f.association :types, :label => false, :as => :check_boxes, class: 'form-control', :collection => Array.wrap(Type.find(type.id))%></td>
+                <td><%= f.association :types, :label => false, :as => :check_boxes, class: 'form-control', :collection => Array.wrap(type_find(type.id))%></td>
 
                 <td><%= type.places.map(&:name).to_sentence  %></td>
 

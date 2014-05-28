@@ -54,4 +54,8 @@ class PlacesController < ApplicationController
       redirect_as_controller(format, places_path, notice: "Local de Atendimento %s com sucesso." % (@place.active ? "habilitado" : "desabilitado"))
     end
   end
+
+  def  type_find (id)
+    @type = Type.find(id)
+  end
 end
