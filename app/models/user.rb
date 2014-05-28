@@ -53,6 +53,7 @@ class User < ActiveRecord::Base
           return
         else
           #nothing to do here
+        return
       end
     end
   end
