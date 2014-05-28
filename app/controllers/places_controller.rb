@@ -48,8 +48,7 @@ class PlacesController < ApplicationController
 
   def destroy
     @place = Place.find(params[:id])
-    @place.update_attributes(active: !@place.active)
-    @place.save
+    @place.set_status
 
     respond_to do |format|
       redirect_as_controller(format, places_path, notice: "Local de Atendimento %s com sucesso." % (@place.active ? "habilitado" : "desabilitado"))

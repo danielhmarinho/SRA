@@ -1,10 +1,10 @@
-<%= simple_form_for @user, url: {action: "retrieve_password"} do |f| %>
+<%= simple_form_for user, url: {action: "retrieve_password"} do |f| %>
 
-      <% if @user.errors.any? %>
+      <% if user.errors.any? %>
          <div class="alert alert-danger">
 
            <ul>
-             <% @atendimento.errors.full_messages.each do |msg| %>
+             <% atendimento.errors.full_messages.each do |msg| %>
 
                 <li><%= msg %></li>
 

@@ -46,8 +46,7 @@ class TypesController < ApplicationController
 
   def destroy
     @type = Type.find(params[:id])
-    @type.update_attributes(active: !@type.active)
-    @type.save
+    @type.set_status
 
     respond_to do |format|
       redirect_as_controller(format, types_path, notice: 'Tipo de Atendimento %s com sucesso.' % (@type.active ? "habilitado" : "desabilitado"))
