@@ -29,12 +29,12 @@ class ReportsController < ApplicationController
 
   def save_report_with_graph
 
-    svg_graph1 = clean_svg_data(params[:graphs][:graph1])
-    svg_graph2 = clean_svg_data(params[:graphs][:graph2])
+    histogram_graph = clean_svg_data(params[:graphs][:graph1])
+    piechart_graph = clean_svg_data(params[:graphs][:graph2])
     filter_attributes = params[:graphs][:attributes]
 
-    save_graph(svg_graph1, "graph1")
-    save_graph(svg_graph2, "graph2")
+    save_graph(histogram_graph, "graph1")
+    save_graph(piechart_graph, "graph2")
 
     save_report(filter_attributes,true)
 
