@@ -61,6 +61,10 @@ class ReportsController < ApplicationController
 
       atendimentos = filter_atendimentos params
 
+      generate_atendimentos_data(atendimentos, atendimentos_data)
+    end
+
+    def generate_atendimentos_data(atendimentos, atendimentos_data)
       atendimentos.each do |atendimento|
         user = atendimento.user
         role = verify_user user
