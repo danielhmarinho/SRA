@@ -26,6 +26,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def email_required?
+    false
+  end
+
+  def email_changed?
+    false
+  end
+
   before_save :get_ldap_name
 
   def get_ldap_name
@@ -33,7 +41,7 @@ class User < ActiveRecord::Base
       self.matricula = Devise::LDAP::Adapter.get_ldap_param(self.username,"uid")[0]
       self.name = Devise::LDAP::Adapter.get_ldap_param(self.username,"givenName")[0]
       general_info = Devise::LDAP::Adapter.get_ldap_param(self.username,"dn")
-      check = check_levels(general_info)
+      check = User.check_levels(general_info)
 
       case check
       when "Alunos"
