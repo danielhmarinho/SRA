@@ -50,7 +50,7 @@ class AtendimentosController < ApplicationController
     end
   end
 
-  def respond_redirect_save
+  def respond_redirect_save(format)
     if @atendimento.save
       redirect_as_controller(format, new_atendimento_path, notice: 'Atendimento criado com sucesso')
     else

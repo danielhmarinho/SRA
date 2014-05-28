@@ -9,7 +9,8 @@
 
 </script>
 
-<%= simple_form_for @report, url: {action: "create"} do |f| %>
+
+<%= simple_form_for (report), url: {action: "create"} do |f| %>
   <table>
     <tr>
       <td><%= f.label "Data de início: " %></td>
