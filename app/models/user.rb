@@ -1,10 +1,9 @@
 # -*- encoding : utf-8 -*-
-
 class User < ActiveRecord::Base
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :ldap_authenticatable, :trackable, :validatable, :timeoutable, :authentication_keys => [:username]
+  devise :ldap_authenticatable, :trackable, :validatable, :timeoutable, authentication_keys: [:username]
   validates_presence_of :username
   validates_uniqueness_of :username, :matricula
   validate :external_user_needs
@@ -37,29 +36,29 @@ class User < ActiveRecord::Base
       check = check_levels(general_info)
 
       case check
-        when "Alunos"
-         self.add_role :student
-	       Role.find_by_name("student").update_attribute(:display_name, "Aluno")
-	      return
-
-        when "Professores"
-          self.add_role :professor
-	        Role.find_by_name("professor").update_attribute(:display_name, "Professor")
+      when "Alunos"
+        self.add_role :student
+        Role.find_by_name("student").update_attribute(:display_name, "Aluno")
         return
 
-        when "Servidores"
-          self.add_role :administrative
-          Role.find_by_name("administrative").update_attribute(:display_name, "Servidor Administrativo")
-          return
-        else
-          #nothing to do here
+      when "Professores"
+        self.add_role :professor
+        Role.find_by_name("professor").update_attribute(:display_name, "Professor")
+        return
+
+      when "Servidores"
+        self.add_role :administrative
+        Role.find_by_name("administrative").update_attribute(:display_name, "Servidor Administrativo")
+        return
+      else
+        #nothing to do here
         return
       end
     end
   end
 
 
-  def check_levels(general_info)
+  def self.check_levels(general_info)
     if general_info.at("Professores") != nil
       return "Professores"
     elsif general_info.at("Servidores") != nil

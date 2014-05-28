@@ -7,14 +7,14 @@ class Place < ActiveRecord::Base
   validates_uniqueness_of :name, :case_sensitive => false
   scope :ordened, :order => "name ASC"
 
-    def set_status
-  	if self.active == false
-  		self.active = true
-  	else
-  		self.active = false
-  	end
+  def set_status
+    if self.active == false
+      self.active = true
+    else
+      self.active = false
+    end
 
-  	self.save
+    self.save
   end
 
 end
