@@ -55,7 +55,5 @@ class PlacesController < ApplicationController
     end
   end
 
-  def  type_find (id)
-    @type = Type.find(id)
-  end
+
 end
