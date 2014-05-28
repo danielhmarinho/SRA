@@ -9,13 +9,13 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-   def edit
+  def edit
     @user = User.find(params[:id])
   end
 
   def retrieve_password
     cpf_confirmation = params[:user][:matricula]
-    user = User.where(:matricula => cpf_confirmation)
+    user = User.where(matricula: cpf_confirmation)
 
     respond_to do |format|
       if user.first
@@ -35,31 +35,20 @@ class UsersController < ApplicationController
     @user.encrypted_password = Digest::MD5::hexdigest params[:user][:password]
 
     respond_to do |format|
-      if @user.save
-        redirect_as_controller(format, root_path, notice: 'Usuário Externo criado com sucesso.')
-      else
-        format.html { render 'new' }
-      end
+
+      respond_redirect_save(format)
+
     end
   end
-
-
-
 
   def update
     @user = User.find(params[:id])
     @user.encrypted_password = Digest::MD5::hexdigest params[:user][:password]
 
     respond_to do |format|
-      if @user.update_attributes(params[:user])
-        redirect_as_controller(format, root_path, notice: 'Usuário Externo alterado com sucesso.')
-
-      else
-        format.html { render 'edit' }
-      end
+      respond_redirect_update(format)
     end
   end
-
 
   def destroy
     @user = User.find(params[:id])
@@ -68,5 +57,25 @@ class UsersController < ApplicationController
     respond_to do |format|
       redirect_as_controller(format, users_path, notice: 'Usuário Externo removido com sucesso.')
     end
+  end
+
+  def respond_redirect_save(format)
+
+    if @user.save
+      redirect_as_controller(format, root_path, notice: 'Usuário Externo criado com sucesso.')
+    else
+      format.html { render 'new' }
+    end
+  end
+
+  def respond_redirect_update(format)
+
+    if @user.update_attributes(params[:user])
+      redirect_as_controller(format, root_path, notice: 'Usuário Externo alterado com sucesso.')
+
+    else
+      format.html { render 'edit' }
+    end
+
   end
 end
