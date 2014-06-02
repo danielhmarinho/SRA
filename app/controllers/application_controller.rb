@@ -48,21 +48,6 @@ class ApplicationController < ActionController::Base
     format.html { redirect_to path, notice }
   end
 
-
-  helper_method :verify_user
-
-  def verify_user(user)
-    if user.has_role? :student
-      "Aluno"
-    elsif user.has_role? :professor
-      "Professor"
-    elsif user.has_role? :administrative
-      "Servidor Administrativo"
-    elsif user.has_role? :external_user
-      "Usuário Externo"
-    end
-  end
-
   helper_method :filter_atendimentos
 
   def filter_atendimentos(params)
@@ -75,4 +60,6 @@ class ApplicationController < ActionController::Base
 
     atendimentos = Atendimento.where(created_at: start_date...end_date, place_id: place_id)
   end
+
+
 end

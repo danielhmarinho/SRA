@@ -43,52 +43,52 @@ class ReportsController < ApplicationController
 
   private
 
-    def save_graph(svg, file_name)
-      img = Magick::Image::from_blob(svg) { self.format = 'SVG'; }.first
-      img.format = 'PNG'
-      path = "#{Rails.root}/app/assets/images/#{file_name}.png"
-      img.write(path)
+  def save_graph(svg, file_name)
+    img = Magick::Image::from_blob(svg) { self.format = 'SVG'; }.first
+    img.format = 'PNG'
+    path = "#{Rails.root}/app/assets/images/#{file_name}.png"
+    img.write(path)
+  end
+
+  def clean_svg_data(svg)
+    svg_graph = svg.match(/<svg(.)*<\/svg>/)[0]
+    svg_graph.gsub("'Lucida Grande', 'Lucida Sans Unicode, '", "")
+  end
+
+  def generate_data(params)
+
+    atendimentos_data = [ format_titles( ["Nome", "Matrícula", "Data/Hora", "Público-alvo", "Tipo de Atendimento"] ) ]
+
+    atendimentos = filter_atendimentos params
+
+    generate_atendimentos_data(atendimentos, atendimentos_data)
+  end
+
+  def generate_atendimentos_data(atendimentos, atendimentos_data)
+    atendimentos.each do |atendimento|
+      user = atendimento.user
+      role = User.verify_user user
+      type = atendimento.type.name
+
+      atendimentos_data += [[user.name, user.matricula, l(atendimento.try(:created_at), :format => :long), role, type ]]
     end
 
-    def clean_svg_data(svg)
-      svg_graph = svg.match(/<svg(.)*<\/svg>/)[0]
-      svg_graph.gsub("'Lucida Grande', 'Lucida Sans Unicode, '", "")
+    atendimentos_data
+  end
+
+  def save_report(params, has_image)
+    path = Rails.root.join("app", "assets", "relatorio.pdf")
+    atendimentos_data = generate_data params
+
+    pdf(atendimentos_data, has_image).render_file(path)
+  end
+
+
+  def format_titles(content)
+    content.map do |cell|
+      cell = "<font size='14'><b>#{cell}</b></font>"
     end
-
-    def generate_data(params)
-
-      atendimentos_data = [ format_titles( ["Nome", "Matrícula", "Data/Hora", "Público-alvo", "Tipo de Atendimento"] ) ]
-
-      atendimentos = filter_atendimentos params
-
-      generate_atendimentos_data(atendimentos, atendimentos_data)
-    end
-
-    def generate_atendimentos_data(atendimentos, atendimentos_data)
-      atendimentos.each do |atendimento|
-        user = atendimento.user
-        role = verify_user user
-        type = atendimento.type.name
-
-        atendimentos_data += [[user.name, user.matricula, l(atendimento.try(:created_at), :format => :long), role, type ]]
-      end
-
-      atendimentos_data
-    end
-
-    def save_report(params, has_image)
-      path = Rails.root.join("app", "assets", "relatorio.pdf")
-      atendimentos_data = generate_data params
-
-      pdf(atendimentos_data, has_image).render_file(path)
-    end
-
-
-    def format_titles(content)
-      content.map do |cell|
-        cell = "<font size='14'><b>#{cell}</b></font>"
-      end
-    end
+  end
 
 
   def pdf(atendimentos_data, has_image)
@@ -112,55 +112,55 @@ class ReportsController < ApplicationController
     end
   end
 
-    def generate_pdf_layout(pdf, has_image, atendimentos_data)
-      pdf.bounding_box [pdf.bounds.left, pdf.bounds.top - 90], :width => pdf.bounds.width, :height => 440 do
+  def generate_pdf_layout(pdf, has_image, atendimentos_data)
+    pdf.bounding_box [pdf.bounds.left, pdf.bounds.top - 90], :width => pdf.bounds.width, :height => 440 do
 
-        add_image_to_pdf(pdf, has_image)
+      add_image_to_pdf(pdf, has_image)
 
-        generate_pdf_columns_and_tables(pdf, atendimentos_data)
+      generate_pdf_columns_and_tables(pdf, atendimentos_data)
 
-      end
     end
+  end
 
-    def add_image_to_pdf(pdf, has_image)
-      if(has_image)
-        pdf.image "#{Rails.root}/app/assets/images/graph1.png", :vposition => :center, :height => 300, :width => 900
-        pdf.start_new_page
-        pdf.image "#{Rails.root}/app/assets/images/graph2.png", :vposition => :center, :height => 230, :width => 900
-        pdf.start_new_page
-      end
+  def add_image_to_pdf(pdf, has_image)
+    if(has_image)
+      pdf.image "#{Rails.root}/app/assets/images/graph1.png", :vposition => :center, :height => 300, :width => 900
+      pdf.start_new_page
+      pdf.image "#{Rails.root}/app/assets/images/graph2.png", :vposition => :center, :height => 230, :width => 900
+      pdf.start_new_page
     end
+  end
 
-    def generate_pdf_columns_and_tables(pdf, atendimentos_data)
-      columns = { 0 => 190, 1 => 75, 2 => 185, 3 => 100, 4 => 250}
-      pdf.table(atendimentos_data, :header => true, :cell_style => { :inline_format => true, :align => :center } ,:column_widths => columns )
+  def generate_pdf_columns_and_tables(pdf, atendimentos_data)
+    columns = { 0 => 190, 1 => 75, 2 => 185, 3 => 100, 4 => 250}
+    pdf.table(atendimentos_data, :header => true, :cell_style => { :inline_format => true, :align => :center } ,:column_widths => columns )
+  end
+
+  def count_pdf_pages(pdf)
+    pdf.page_count.times do |i|
+      pdf.go_to_page(i+1)
+      pdf.draw_text "#{i+1} / #{pdf.page_count}", :at=>[1,1]
     end
+  end
 
-    def count_pdf_pages(pdf)
-      pdf.page_count.times do |i|
-        pdf.go_to_page(i+1)
-        pdf.draw_text "#{i+1} / #{pdf.page_count}", :at=>[1,1]
-      end
+  def generate_pdf_header(pdf)
+    pdf.bounding_box [pdf.bounds.left, pdf.bounds.top], :width => pdf.bounds.width do
+      pdf.image "#{Rails.root}/app/assets/images/UNB4.jpg", :vposition => 10
+      pdf.move_up(4)
+
+      pdf.move_down(20)
+      pdf.text "RELATÓRIO DE ATENDIMENTO" , :align => :center, :size => 18, :style => :bold
+      pdf.text @place.first.name, :align => :center, :size => 12, :style => :bold
     end
+  end
 
-    def generate_pdf_header(pdf)
-      pdf.bounding_box [pdf.bounds.left, pdf.bounds.top], :width => pdf.bounds.width do
-        pdf.image "#{Rails.root}/app/assets/images/UNB4.jpg", :vposition => 10
-        pdf.move_up(4)
-
-        pdf.move_down(20)
-        pdf.text "RELATÓRIO DE ATENDIMENTO" , :align => :center, :size => 18, :style => :bold
-        pdf.text @place.first.name, :align => :center, :size => 12, :style => :bold
-      end
+  def generate_pdf_footer(pdf)
+    pdf.bounding_box [pdf.bounds.left, pdf.bounds.bottom + 40], :width => pdf.bounds.width do
+      pdf.stroke_horizontal_rule
+      pdf.move_down(5)
+      pdf.text "Brasília, #{Time.now.strftime("%d/%m/%Y")}", :align => :center
+      pdf.move_down(10)
+      pdf.text "#{current_user.name}: ___________________________________________", :align => :center
     end
-
-    def generate_pdf_footer(pdf)
-      pdf.bounding_box [pdf.bounds.left, pdf.bounds.bottom + 40], :width => pdf.bounds.width do
-        pdf.stroke_horizontal_rule
-        pdf.move_down(5)
-        pdf.text "Brasília, #{Time.now.strftime("%d/%m/%Y")}", :align => :center
-        pdf.move_down(10)
-        pdf.text "#{current_user.name}: ___________________________________________", :align => :center
-      end
-    end
+  end
 end
