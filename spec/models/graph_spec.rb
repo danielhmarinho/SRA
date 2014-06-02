@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe Graph do
-  
+
   let(:invalid_attributes) { { start_date: "01/01/2014", end_date: "02/02/2013", place_id: "1" } }
 
   it "Pode ser instanciado" do
@@ -18,17 +18,19 @@ describe Graph do
 
   describe "Test with invalide dates" do
 
-  	before do
-  		place = Place.create(name: "Secretaria")
-  	end
+    before do
+      type = Type.create(:name => "Multa")
+      place = Place.create(name: "Secretaria", :types => Type.where("name in ('Multa')"))
+    end
 
-  	after do
-  		Place.where(:name => "Secretaria").first.destroy
-  	end
+    after do
+      Place.where(:name => "Secretaria").first.destroy
+      Type.where(:name => "Multa").first.destroy
+    end
 
-  	it "should not be valid" do
-  		graph = Graph.new(invalid_attributes)
-  		graph.should_not be_valid
-  	end
+    it "should not be valid" do
+      graph = Graph.new(invalid_attributes)
+      graph.should_not be_valid
+    end
   end
 end

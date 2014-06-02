@@ -26,13 +26,13 @@ describe ReportsController do
   let(:valid_attributes) { { start_date: "01/01/2014", end_date: "02/02/2014", place: 1 } }
 
   before :each do
-    place = Place.create(name: "Laboratório")
     type = Type.create(:name => "Multa")
+    place = Place.create(name: "Laboratorio", :types => Type.where("name in ('Multa')"))
     Atendimento.create(:created_at => "2014-01-05 14:08:00" , :place => place, :type => type, :user_id => 1)
   end
 
   after :each do
-    Place.where(:name => "Laboratório").first.destroy
+    Place.where(:name => "Laboratorio").first.destroy
     Type.where(:name => "Multa").first.destroy
   end
 
@@ -42,7 +42,7 @@ describe ReportsController do
       #expect(assigns(:report)).to be_a_new(Report)
     end
   end
-  
+
 
   describe "POST create" do
 
@@ -68,7 +68,7 @@ describe ReportsController do
         expect(response).to redirect_to(new_report_path)
       end
     end
-  end 
+  end
 
   describe "Graphs to images" do
     let(:valid_svg) { "<div><svg height=\"100\" width=\"100\"><circle cx=\"50\" cy=\"50\" r=\"40\" stroke=\"black\" stroke-width=\"3\" fill=\"red\" /></svg></div>" }
