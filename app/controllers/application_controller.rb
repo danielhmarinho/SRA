@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
 
     resource
-    if current_user.has_role? :administrative or  current_user.has_role? :student or current_user.has_role? :professor or current_user.has_role? :manager
+    if current_user.has_role? :administrative or  current_user.has_role? :student or current_user.has_role? :professor or current_user.has_role? :manager or current_user.has_role? :external_user or current_user.has_role? :admin
       new_atendimento_path
     else
       atendimentos_path
@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
 
     begin
       user
-      if current_user.has_role? :student or current_user.has_role? :professor or current_user.has_role? :administrative or current_user.has_role? :manager
+      if current_user.has_role? :student or current_user.has_role? :professor or current_user.has_role? :administrative or current_user.has_role? :manager or current_user.has_role? :external_user or current_user.has_role? :admin
         redirect_to new_atendimento_path
       else
         redirect_to root_path

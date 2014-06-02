@@ -26,9 +26,9 @@ describe ReportsController do
   let(:valid_attributes) { { start_date: "01/01/2014", end_date: "02/02/2014", place: 1 } }
 
   before :each do
-    type = Type.create(:name => "Multa")
-    place = Place.create(name: "Laboratorio", :types => Type.where("name in ('Multa')"))
-    Atendimento.create(:created_at => "2014-01-05 14:08:00" , :place => place, :type => type, :user_id => 1)
+    @type = Type.create(:name => "Multa")
+    @place = Place.create(name: "Laboratorio", :types => Type.where("name in ('Multa')"))
+    Atendimento.create(:created_at => "2014-01-05 14:08:00" , :place => @place, :type => @type, :user_id => 1)
   end
 
   after :each do
