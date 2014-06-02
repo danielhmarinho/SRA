@@ -11,15 +11,18 @@ class User < ActiveRecord::Base
   attr_accessible :username, :password, :password_confirmation, :encrypted_password, :remember_me,:name, :matricula, :external_user, :role_ids
 
   def external_user_needs
+
+    self.matricula = matricula
+
     if external_user
       if self.name.blank?
         errors.add(:name, "não pode ficar em branco")
       end
-      if  self.matricula.blank?
+      if  matricula.blank?
         errors.add(:matricula, "não pode ficar em branco")
       else
         # Test if the cpf is valid (just if has 11 numbers, and just numbers. No further validations are made.)
-        if self.matricula.length != 11 or !Cpf.new(self.matricula).valido?
+        if matricula.length != 11 or !Cpf.new(matricula).valido?
           errors.add(:matricula, "cpf inválido")
         end
       end
@@ -37,10 +40,12 @@ class User < ActiveRecord::Base
   before_save :get_ldap_name
 
   def get_ldap_name
+
+    self.username = username
     unless self.external_user
-      self.matricula = Devise::LDAP::Adapter.get_ldap_param(self.username,"uid")[0]
-      self.name = Devise::LDAP::Adapter.get_ldap_param(self.username,"givenName")[0]
-      general_info = Devise::LDAP::Adapter.get_ldap_param(self.username,"dn")
+      self.matricula = Devise::LDAP::Adapter.get_ldap_param(username,"uid")[0]
+      self.name = Devise::LDAP::Adapter.get_ldap_param(username,"givenName")[0]
+      general_info = Devise::LDAP::Adapter.get_ldap_param(username,"dn")
       check = User.check_levels(general_info)
 
       case check
@@ -75,4 +80,23 @@ class User < ActiveRecord::Base
       return "Alunos"
     end
   end
+
+
+  def self.verify_user user
+    if user.has_role? :student
+      "Aluno"
+    elsif user.has_role? :professor
+      "Professor"
+    elsif user.has_role? :administrative
+      "Servidor Administrativo"
+    elsif user.has_role? :external_user
+      "Usuário Externo"
+    end
+  end
+
+
+
+
+
+
 end
