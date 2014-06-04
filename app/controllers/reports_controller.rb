@@ -124,9 +124,10 @@ class ReportsController < ApplicationController
 
   def add_image_to_pdf(pdf, has_image)
     if(has_image)
-      pdf.image "#{Rails.root}/app/assets/images/graph1.png", :vposition => :center, :height => 300, :width => 900
+      root = Rails.root
+      pdf.image "#{root}/app/assets/images/graph1.png", :vposition => :center, :height => 300, :width => 900
       pdf.start_new_page
-      pdf.image "#{Rails.root}/app/assets/images/graph2.png", :vposition => :center, :height => 230, :width => 900
+      pdf.image "#{root}/app/assets/images/graph2.png", :vposition => :center, :height => 230, :width => 900
       pdf.start_new_page
     end
   end
@@ -137,9 +138,9 @@ class ReportsController < ApplicationController
   end
 
   def count_pdf_pages(pdf)
-    pdf.page_count.times do |i|
-      pdf.go_to_page(i+1)
-      pdf.draw_text "#{i+1} / #{pdf.page_count}", :at=>[1,1]
+    pdf.page_count.times do |iterator|
+      pdf.go_to_page(iterator+1)
+      pdf.draw_text "#{iterator+1} / #{pdf.page_count}", :at=>[1,1]
     end
   end
 

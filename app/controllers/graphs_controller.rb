@@ -29,15 +29,15 @@ class GraphsController < ApplicationController
   end
 
   private
-    def return_path
-      if @graph.valid?
-        graph_path(@graph.id)
-      else
-        @graph.errors.each do |key, error|
-          flash[:error] = "O gráfico não pode ser gerado: #{error}"
-        end
-        new_graph_path
+  def return_path
+    if @graph.valid?
+      graph_path(@graph.id)
+    else
+      @graph.errors.each do |key, error|
+        flash[:error] = "O gráfico não pode ser gerado: #{error}"
       end
+      new_graph_path
     end
+  end
 
 end
