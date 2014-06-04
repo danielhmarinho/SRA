@@ -48,15 +48,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-
-    respond_to do |format|
-      redirect_as_controller(format, users_path, notice: 'Usuário Externo removido com sucesso.')
-    end
-  end
-
   def respond_redirect_save(format)
     if @user.save
       redirect_as_controller(format, root_path, notice: 'Usuário Externo criado com sucesso.')

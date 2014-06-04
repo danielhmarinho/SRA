@@ -19,8 +19,6 @@ SRA::Application.routes.draw do
 
   resources :users, :except => [:destroy]
 
-  post '/users/retrieve_password', to: 'users#retrieve_password', as: 'retrieve_password'
-
   resources :atendimentos, :except => [:show] do
 
     get :autocomplete_user_name, :on => :collection
