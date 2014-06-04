@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates_presence_of :username
   validates_uniqueness_of :username, :matricula
   validate :external_user_needs
+  validates :name, :format => {:with => /\A[a-zA-Z]+\z/, :message => "Caractere inválido"}
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :password, :password_confirmation, :encrypted_password, :remember_me,:name, :matricula, :external_user, :role_ids
 
@@ -23,7 +24,7 @@ class User < ActiveRecord::Base
       else
         # Test if the cpf is valid (just if has 11 numbers, and just numbers. No further validations are made.)
         if matricula.length != 11 or !Cpf.new(matricula).valido?
-          errors.add(:matricula, "cpf inválido")
+          errors.add(:matricula, "CPF inválido")
         end
       end
     end
