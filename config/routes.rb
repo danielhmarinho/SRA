@@ -18,13 +18,13 @@ SRA::Application.routes.draw do
   post '/users/retrieve_password', to: 'users#retrieve_password', as: 'retrieve_password'
   get '/users/:id/edit', to: 'users#update'
 
-  resources :users, :only => [:new, :create]
+  resources :users
 
   post '/users/retrieve_password', to: 'users#retrieve_password', as: 'retrieve_password'
 
   resources :atendimentos, :except => [:show] do
 
-     get :autocomplete_user_name, :on => :collection
+    get :autocomplete_user_name, :on => :collection
   end
 
   resources :types, :except => [:show]  do
