@@ -13,18 +13,27 @@ class ReportsController < ApplicationController
   def create
     @report = Report.new(params[:report])
 
-    if @report.valid?
-      save_report(params[:report],false)
+    check_if_report_is_valid
 
-      path = Rails.root.join("app", "assets", "relatorio.pdf")
-      send_file path, :filename => "RelatorioAtendimentos.pdf", :type => "application/pdf"
+  end
+
+  def check_if_report_is_valid
+    if @report.valid?
+      send_report_to_user
     else
       @report.errors.each do |key, error|
         flash[:error] = "O relatório não pode ser gerado: #{error}"
       end
 
-      redirect_to new_report_path
     end
+  end
+
+  def send_report_to_user
+    save_report(params[:report],false)
+
+    path = Rails.root.join("app", "assets", "relatorio.pdf")
+    send_file path, :filename => "RelatorioAtendimentos.pdf", :type => "application/pdf"
+
   end
 
   def save_report_with_graph
@@ -114,22 +123,20 @@ class ReportsController < ApplicationController
 
   def generate_pdf_layout(pdf, has_image, atendimentos_data)
     pdf.bounding_box [pdf.bounds.left, pdf.bounds.top - 90], :width => pdf.bounds.width, :height => 440 do
-
-      add_image_to_pdf(pdf, has_image)
-
+      if(has_image)
+        add_image_to_pdf(pdf)
+      end
       generate_pdf_columns_and_tables(pdf, atendimentos_data)
 
     end
   end
 
-  def add_image_to_pdf(pdf, has_image)
-    if(has_image)
-      root = Rails.root
-      pdf.image "#{root}/app/assets/images/graph1.png", :vposition => :center, :height => 300, :width => 900
-      pdf.start_new_page
-      pdf.image "#{root}/app/assets/images/graph2.png", :vposition => :center, :height => 230, :width => 900
-      pdf.start_new_page
-    end
+  def add_image_to_pdf(pdf)
+    root = Rails.root
+    pdf.image "#{root}/app/assets/images/graph1.png", :vposition => :center, :height => 300, :width => 900
+    pdf.start_new_page
+    pdf.image "#{root}/app/assets/images/graph2.png", :vposition => :center, :height => 230, :width => 900
+    pdf.start_new_page
   end
 
   def generate_pdf_columns_and_tables(pdf, atendimentos_data)
@@ -139,8 +146,9 @@ class ReportsController < ApplicationController
 
   def count_pdf_pages(pdf)
     pdf.page_count.times do |iterator|
-      pdf.go_to_page(iterator+1)
-      pdf.draw_text "#{iterator+1} / #{pdf.page_count}", :at=>[1,1]
+      page = iterator+1
+      pdf.go_to_page(page)
+      pdf.draw_text "#{page} / #{pdf.page_count}", :at=>[1,1]
     end
   end
 
