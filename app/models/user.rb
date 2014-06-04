@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
   validates_presence_of :username
   validates_uniqueness_of :username, :matricula
   validate :external_user_needs
-  validates :name, :format => {:with => /\A[a-zA-Z]+\z/, :message => "Caractere inválido"}
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :password, :password_confirmation, :encrypted_password, :remember_me,:name, :matricula, :external_user, :role_ids
 
@@ -18,6 +17,8 @@ class User < ActiveRecord::Base
     if external_user
       if self.name.blank?
         errors.add(:name, "não pode ficar em branco")
+      elsif self.name.match(/[^a-zA-Z]/)
+        errors.add(:name, "caractere inválido")
       end
       if  matricula.blank?
         errors.add(:matricula, "não pode ficar em branco")
