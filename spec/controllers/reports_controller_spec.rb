@@ -23,7 +23,7 @@ describe ReportsController do
 
   login_admin
 
-  let(:valid_attributes) { { start_date: "01/01/2014", end_date: "02/02/2014", place: 1 } }
+  let(:valid_attributes) { { start_date: "01/01/2014", end_date: "02/02/2014", place_id: 1 } }
 
   before :each do
     @type = Type.create(:name => "Multa")

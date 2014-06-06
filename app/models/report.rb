@@ -16,6 +16,7 @@ class Report
     attributes.each do |name, value|
       send("#{name}=", value)
     end
+    @errors = ActiveModel::Errors.new(self)
   end
 
   def dates_are_valid
@@ -30,9 +31,8 @@ class Report
   end
 
   def set_date
-    start_date = DateTime.strptime(self.start_date, "%d/%m/%Y")
+    start_date = DateTime.strptime("#{self.start_date} 00:00:00", "%d/%m/%Y %H:%M:%S")
     end_date = DateTime.strptime("#{self.end_date} 23:59:59", "%d/%m/%Y %H:%M:%S")
-
   end
 
   def persisted?
