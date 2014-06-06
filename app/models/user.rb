@@ -17,7 +17,8 @@ class User < ActiveRecord::Base
     if external_user
       if self.name.blank?
         errors.add(:name, "não pode ficar em branco")
-      elsif self.name.match(/[^a-zA-Z]/)
+      elsif self.name.match(/@"^[ a-zA-Z á]*$"/)
+
         errors.add(:name, "caractere inválido")
       end
       if  matricula.blank?

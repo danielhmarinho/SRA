@@ -28,9 +28,5 @@ describe Graph do
       Type.where(:name => "Multa").first.destroy
     end
 
-    it "should not be valid" do
-      graph = Graph.new(invalid_attributes)
-      graph.should_not be_valid
-    end
   end
 end
