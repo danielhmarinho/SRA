@@ -1,10 +1,10 @@
 # -*- encoding : utf-8 -*-post '/permissions/:id/edit', to: 'permissions#update'
 SRA::Application.routes.draw do
 
-  resources :graphs, :only => [:show, :new, :create]
+  resources :graphs, :only => [:show, :new, :create,:index]
 
 
-  resources :reports, :only => [:new, :create]
+  resources :reports, :only => [:new, :create,:index]
 
   resources :permissions, :only => [:update, :edit, :index]
   post '/permissions/:id/edit', to: 'permissions#update'
