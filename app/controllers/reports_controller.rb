@@ -37,8 +37,8 @@ class ReportsController < ApplicationController
 
   def save_report_with_graph
 
-    histogram_graph = clean_svg_data(params[:graphs][:graph1])
-    piechart_graph = clean_svg_data(params[:graphs][:graph2])
+    histogram_graph = Pdf.clean_svg_data(params[:graphs][:graph1])
+    piechart_graph = Pdf.clean_svg_data(params[:graphs][:graph2])
     filter_attributes = params[:graphs][:attributes]
 
     save_graph(histogram_graph, "graph1")
@@ -102,7 +102,7 @@ class ReportsController < ApplicationController
       Pdf.count_pdf_pages(pdf)
 
       pdf.repeat :all do
-        Pdf.generate_pdf_header(pdf, @place.first.name)
+        Pdf.generate_pdf_header(pdf, @place.name)
 
         Pdf.generate_pdf_footer(pdf,current_user.name)
       end

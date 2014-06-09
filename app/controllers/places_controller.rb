@@ -48,7 +48,6 @@ class PlacesController < ApplicationController
   end
 
   def respond_redirect_save(format)
-
     if @place.save
       redirect_as_controller(format, places_path, notice: 'Local de Atendimento criado com sucesso.')
     else
@@ -63,5 +62,4 @@ class PlacesController < ApplicationController
       format.html { render 'edit' }
     end
   end
-
 end
