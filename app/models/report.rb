@@ -16,7 +16,7 @@ class Report
     attributes.each do |name, value|
       send("#{name}=", value)
     end
-    self.errors = ActiveModel::Errors.new(self)
+    @errors = ActiveModel::Errors.new(self)
   end
 
   def dates_are_valid
@@ -25,7 +25,7 @@ class Report
       set_date
 
       if end_date < start_date
-        self.errors.add(end_date, "A data final deve ser após a data de início do relatório.")
+        errors.add(end_date, "A data final deve ser após a data de início do relatório.")
       end
     end
   end

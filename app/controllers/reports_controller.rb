@@ -24,6 +24,7 @@ class ReportsController < ApplicationController
         flash[:error] = "O relatório não pode ser gerado: #{error}"
       end
 
+      redirect_to new_report_path
     end
   end
 

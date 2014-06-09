@@ -23,17 +23,20 @@ describe ReportsController do
 
   login_admin
 
-  let(:valid_attributes) { { start_date: "01/01/2014", end_date: "02/02/2014", place: 1 } }
+  let(:valid_attributes) { { start_date: "01/01/2014", end_date: "02/02/2014", place: Place.last.id } }
 
   before :each do
     @type = Type.create(:name => "Multa")
     @place = Place.create(name: "Laboratorio", :types => Type.where("name in ('Multa')"))
-    Atendimento.create(:created_at => "2014-01-05 14:08:00" , :place => @place, :type => @type, :user_id => 1)
+    Atendimento.create(:created_at => "2014-01-05 14:08:00" , :place => @place, :type => @type, :user_id => User.last.id)
   end
 
   after :each do
     Place.where(:name => "Laboratorio").first.destroy
     Type.where(:name => "Multa").first.destroy
+    Atendimento.all.each do |atendimento|
+      atendimento.destroy
+    end
   end
 
   describe "GET new" do
@@ -55,7 +58,7 @@ describe ReportsController do
       end
 
       it "redirects to the created report" do
-        post :create, {:report => valid_attributes}
+        post :create, {:report => valid_attributes, }
         expect(response.status).to be(200)
       end
     end

@@ -56,7 +56,7 @@ class ApplicationController < ActionController::Base
     end_date = DateTime.strptime("#{params[:end_date]} 23:59:59", "%d/%m/%Y %H:%M:%S")
     place_id = params[:place]
 
-    @place = Place.where(id: place_id)
+    @place = Place.find(place_id)
 
     atendimentos = Atendimento.where(created_at: start_date...end_date, place_id: place_id)
   end
