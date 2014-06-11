@@ -22,7 +22,7 @@ module Pdf
 
   def self.clean_svg_data(svg)
     svg_graph = svg.match(/<svg(.)*<\/svg>/)[0]
-    svg_graph.gsub("'Lucida Grande', 'Lucida Sans Unicode, '", "")
+    svg_graph.gsub("'Lucida Grande', 'Lucida Sans Unicode', ", "")
   end
 
 
