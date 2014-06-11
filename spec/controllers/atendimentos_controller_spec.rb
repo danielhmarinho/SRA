@@ -12,8 +12,7 @@ describe AtendimentosController do
 
   describe "GET index" do
     it "assigns all atendimentos as @atendimentos" do
-      atendimento = Atendimento.create(:created_at => "2014-02-19 14:08:00" , :place => Place.create(:name => "Local") ,
-                                         :type => Type.create(:name => "Documentação"))
+      atendimento = Atendimento.create! valid_attributes
       get :index, {}
       expect(assigns(:atendimentos)).to eq([atendimento])
     end

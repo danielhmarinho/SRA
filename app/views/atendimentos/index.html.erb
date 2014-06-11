@@ -32,8 +32,8 @@
               <tr>
                 <td><%= atendimento.user.try(:name) %></td>
                 <td><%= l(atendimento.try(:created_at), :format => :long) if atendimento.updated_at %></td>
-                <td><%= verify_user atendimento.user %></td>
-                
+                <td><%= User.verify_user atendimento.user %></td>
+
                 <td><%= atendimento.place.try(:name) %></td>
                 <td><%= atendimento.type.try(:name) %></td>
                 <%if can? :edit, Atendimento%>

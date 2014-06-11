@@ -11,10 +11,6 @@ describe AtendimentosController do
       expect(:get => "/atendimentos/new").to route_to("atendimentos#new")
     end
 
-    it "routes to #show" do
-      expect(:get => "/atendimentos/1").to route_to("atendimentos#show", :id => "1")
-    end
-
     it "routes to #edit" do
       expect(:get => "/atendimentos/1/edit").to route_to("atendimentos#edit", :id => "1")
     end

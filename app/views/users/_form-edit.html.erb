@@ -1,4 +1,4 @@
-<%= simple_form_for @user, url: {action: "update"} do |f| %>
+<%= simple_form_for user, url: {action: "update"} do |f| %>
 
     <div class="form-inputs">
       <hi>Login:</hi>
@@ -6,7 +6,7 @@
       <hi>Nova Senha:</hi>
       <%= f.input :password, :label => false, :required => true, unchecked_value: true%>
 
-       
+
       <div class="actions">
         <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
                  root_path ,
@@ -19,5 +19,5 @@
     </div>
 
 
-      
+
 <% end %>

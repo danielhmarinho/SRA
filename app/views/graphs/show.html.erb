@@ -3,7 +3,7 @@ $(document).ready(function(){
 
   function downloadInnerHtml(filename, elId, mimeType) {
     var elHtml = document.getElementById(elId).innerHTML;
-  
+
     return elHtml;
   }
 
@@ -30,7 +30,7 @@ $(document).ready(function(){
     </div>
 
         <span class="pull-right">
-          <%= link_to raw("<i class=\"icon-white icon-save\"> Salvar Relatório </i>"), send_graph_path, 
+          <%= link_to raw("<i class=\"icon-white icon-save\"> Salvar Relatório </i>"), send_graph_path,
               class: "btn-success btn", id: 'btnSave' %>
         </span>
 
@@ -42,10 +42,10 @@ $(document).ready(function(){
         <br>
       <p>
         <font color = gray><h4>Tipos de atendimento por local:</h4></font>
-      </p>     
-      
-      <%= pie_chart @atendimentos.group(:type.to_s).count %>  
+      </p>
 
-  </div>    
+      <%= pie_chart @atendimentos.group(:type.to_s).count %>
+
+  </div>
 
 </div>
