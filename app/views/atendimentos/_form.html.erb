@@ -36,7 +36,6 @@
   </script>
 
 
-
   <%= simple_form_for(atendimento, :html => {:class => 'form-horizontal'}) do |f| %>
 
 
@@ -75,7 +74,7 @@
           <td id='place'>
             <%= f.select :place_id, Place.where('active' => true).order('name ASC').collect { |p| [p.name, p.id] } %></td>
           <td id="type">
-            <%= f.select :type_id, Type.order('name ASC').collect { |t| [t.name, t.id] }, { prompt: "Selecione um Tipo de Atendimento", index: nil } %>
+            <%= f.select :type_id, Type.order('name ASC').collect { |t| [t.name, t.id] }, { prompt: "Selecione um Tipo de Atendimento", index: nil }, style: "width:30vw" %>
           </td>
 
           <script>
