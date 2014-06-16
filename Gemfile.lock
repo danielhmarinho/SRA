@@ -295,6 +295,7 @@ GEM
     seed_dump (3.1.0)
       activerecord
       activesupport
+    selectize-rails (0.9.1)
     selenium-webdriver (2.41.0)
       childprocess (>= 0.5.0)
       multi_json (~> 1.0)
@@ -394,6 +395,7 @@ DEPENDENCIES
   rspec-rails (~> 3.0.0.beta)
   sass-rails (~> 3.2.3)
   seed_dump
+  selectize-rails
   shoulda-matchers
   simple_form
   simplecov
