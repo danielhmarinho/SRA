@@ -33,8 +33,6 @@
           get_types($('#atendimento_place_id').val());
       });
 
-      
-
   </script>
 
 
@@ -76,7 +74,10 @@
           <%= f.input :created_at, input_html: {value: f.object.created_at || l(DateTime.current, :format => '%d/%m/%Y %R')}, label: false, :as => :hidden, error: false, :readonly => true %>
           <td id='place'>
             <%= f.select :place_id, Place.where('active' => true).order('name ASC').collect { |p| [p.name, p.id] } %></td>
-          <td id="type"><%= f.select :type_id, Type.order('name ASC').collect { |t| [t.name, t.id] } %></td>
+          <td id="type">
+            <%= f.select :type_id, Type.order('name ASC').collect { |t| [t.name, t.id] }, { prompt: "Selecione um Tipo de Atendimento", index: nil } %>
+          </td>
+
           <script>
               $("#atendimento_type_id").selectize();
           </script>
