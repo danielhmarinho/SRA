@@ -38,6 +38,9 @@ class ApplicationController < ActionController::Base
       else
         redirect_to root_path
       end
+    rescue => e
+      redirect_to root_path
+
     end
   end
 
