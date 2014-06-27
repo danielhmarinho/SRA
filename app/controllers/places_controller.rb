@@ -38,6 +38,7 @@ class PlacesController < ApplicationController
   end
 
   def configuration
+    @place = Place.new
   end
 
   def set_place

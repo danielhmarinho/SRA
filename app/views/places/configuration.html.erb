@@ -21,7 +21,7 @@
           <tr>
             <td><%= place.try(:name) %></td>
 
-                <td><%= bs_button_to  raw("<i class=\"fa fa-pencil-square-o\"></i>"),
+                <td><%= bs_button_to  raw("<i class=\"fa fa-check\"></i>"),
                                   set_place_path(place),tooltip: "Escolher Local de Atendimento",
                                   class: "btn btn-large btn-primary",
                                   method: :get %></td>
