@@ -37,6 +37,19 @@ class PlacesController < ApplicationController
     end
   end
 
+  def configuration
+    @place = Place.new
+  end
+
+  def set_place
+    @place = Place.find(params[:id])
+
+    cookies.permanent[:place_name] = "#{@place.name}"
+    respond_to do |format|
+      redirect_as_controller(format, place_configuration_path, notice: 'Local de Atendimento alterado com sucesso.')
+    end
+  end
+
 
   def destroy
     @place = Place.find(params[:id])
