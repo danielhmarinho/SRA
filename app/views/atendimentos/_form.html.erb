@@ -28,18 +28,12 @@
 
               get_types(value);
           });
-
-          // When the page html is already, set the select option for type base on the first value of the place
-          get_types($('#atendimento_place_id').val());
       });
 
   </script>
-
+  </div>
 
   <%= simple_form_for(atendimento, :html => {:class => 'form-horizontal'}) do |f| %>
-
-
-      </div>
 
       <% if atendimento.errors.any? %>
           <div class="alert alert-danger">
@@ -51,8 +45,6 @@
           </div>
       <% end %>
 
-
-
       <table>
         <tr>
           <th><%= f.label "Nome" %>
@@ -63,18 +55,16 @@
             <br/></th>
           <th><%= f.label "Tipo de Atendimento" %>
             <br/></th>
-
-
-          </tr>
+        </tr>
         <tr>
           <td><%= current_user.name %></td>
-          <%= f.input :user_id, label: false, input_html: {value: f.object.created_at || current_user.id}, :as => :hidden %>
+          <%= f.input :user_id, label: false, input_html: {value: current_user.id}, :as => :hidden %>
           <td><%=  l(DateTime.current, :format => '%d/%m/%Y %R')%></td>
           <%= f.input :created_at, input_html: {value: f.object.created_at || l(DateTime.current, :format => '%d/%m/%Y %R')}, label: false, :as => :hidden, error: false, :readonly => true %>
           <td id='place'>
             <%= f.select :place_id, check_cookie.order('name ASC').collect { |p| [p.name, p.id] } %></td>
           <td id="type">
-            <%= f.select :type_id, Type.order('name ASC').collect { |t| [t.name, t.id] }, { prompt: "Selecione um Tipo de Atendimento", index: nil }, style: "width:30vw" %>
+            <%= f.select :type_id, Type.order('name ASC').collect { |t| [t.name, t.id] }, { prompt: "Selecione um Tipo de Atendimento", index: 0 }, style: "width:30vw" %>
           </td>
 
           <script>
@@ -86,30 +76,18 @@
       </tr>
       <div class="actions">
 
-
         <%if can? :read, Atendimento%>
-
 
             <%= link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
                         atendimentos_path ,
                         class: "btn  btn-warning"%>
-
-
-         <% else  %>
-
-        <!-- nothing to do here!-->
-
-
+        <% else  %>
+          <!-- nothing to do here!-->
         <% end%>
 
         <%= button_tag :class => 'btn-success btn', :id => 'criar-atendimento' do %>
             <i class='fa fa-plus-circle'></i> Criar Atendimento
         <% end %>
-
-
       </div>
-
-
-
   <% end %>
 
