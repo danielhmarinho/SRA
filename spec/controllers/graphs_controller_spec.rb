@@ -5,20 +5,20 @@ describe GraphsController do
 
   login_admin
 
-  let(:valid_attributes) { { start_date: "01/01/2014", end_date: "02/02/2014", place_id: "1" } }
+  let(:valid_attributes) { { start_date: "01/01/2014", end_date: "02/02/2014", place_id: Place.last.id } }
 
   before :each do
-    place = Place.create(name: "Laboratório")
     type = Type.create(:name => "Multa")
-    Atendimento.create(:created_at => "2014-01-05 14:08:00" , :place => place, :type => type, :user_id => 1)
+    place = Place.create(name: "Laboratorio", :types => Type.where("name in ('Multa')"))
+    Atendimento.create(:created_at => "2014-01-05 14:08:00" , :place => place, :type => type, :user_id => User.last.id)
   end
 
   after :each do
-    Place.where(:name => "Laboratório").first.destroy
-    #place.destroy
-
+    Place.where(:name => "Laboratorio").first.destroy
     Type.where(:name => "Multa").first.destroy
-    #type.destroy
+    Atendimento.all.each do |atendimento|
+      atendimento.destroy
+    end
   end
 
   describe "GET show" do
@@ -35,7 +35,7 @@ describe GraphsController do
       expect(assigns(:graph)).to be_a_new(Graph)
     end
   end
-  
+
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Graph" do
@@ -54,7 +54,7 @@ describe GraphsController do
         post :create, {:graph => valid_attributes}
         expect(response).to redirect_to graph_path(Graph.last.id)
       end
-   end
+    end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved graph as @graph" do
@@ -65,7 +65,7 @@ describe GraphsController do
       end
 
       it "re-renders the 'new' template" do
-        #Trigger the behavior that occurs when invalid params are submitted        
+        #Trigger the behavior that occurs when invalid params are submitted
         Graph.any_instance.stub(:save).and_return(false)
         post :create, {:graph => {  }}
         expect(response).to redirect_to new_graph_path

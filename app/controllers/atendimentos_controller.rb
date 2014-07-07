@@ -25,11 +25,7 @@ class AtendimentosController < ApplicationController
     @atendimento = Atendimento.new(params[:atendimento])
 
     respond_to do |format|
-      if @atendimento.save
-        redirect_as_controller(format, new_atendimento_path, notice: 'Atendimento criado com sucesso')
-      else
-        format.html { render action: "new" }
-      end
+      respond_redirect_save(format)
     end
   end
 
@@ -39,12 +35,7 @@ class AtendimentosController < ApplicationController
     @atendimento = Atendimento.find(params[:id])
 
     respond_to do |format|
-      if @atendimento.update_attributes(params[:atendimento])
-        redirect_as_controller(format, atendimentos_path, notice: 'Atendimento alterado com sucesso')
-      else
-        format.html { render action: "edit" }
-
-      end
+      respond_redirect_update(format)
     end
   end
 
@@ -58,4 +49,23 @@ class AtendimentosController < ApplicationController
       redirect_as_controller(format, atendimentos_path, notice: 'Atendimento deletado com sucesso')
     end
   end
+
+  def respond_redirect_save(format)
+    if @atendimento.save
+      redirect_as_controller(format, new_atendimento_path, notice: 'Atendimento criado com sucesso')
+    else
+      format.html { render 'new' }
+    end
+  end
+
+  def respond_redirect_update(format)
+    if @atendimento.update_attributes(params[:atendimento])
+      redirect_as_controller(format, atendimentos_path, notice: 'Atendimento alterado com sucesso')
+    else
+      format.html { render 'edit' }
+
+    end
+  end
+
+
 end

@@ -37,18 +37,15 @@
 
 
 
-  <%= simple_form_for(@atendimento, :html => {:class => 'form-horizontal'}) do |f| %>
+  <%= simple_form_for(atendimento, :html => {:class => 'form-horizontal'}) do |f| %>
 
 
       </div>
 
-      <% if @atendimento.errors.any? %>
+      <% if atendimento.errors.any? %>
           <div class="alert alert-danger">
-            <!-- <div id="error_explanation">
-      <h2><%= pluralize(@atendimento.errors.count, "Erro") %> Cadastro de Atendimento invalido:</h2>
-    -->
             <ul>
-              <% @atendimento.errors.full_messages.each do |msg| %>
+              <% atendimento.errors.full_messages.each do |msg| %>
                   <li><%= msg %></li>
               <% end %>
             </ul>
@@ -69,14 +66,14 @@
             <br/></th>
 
 
-          </br>
+          </tr>
         <tr>
           <td><%= current_user.name %></td>
           <%= f.input :user_id, label: false, input_html: {value: f.object.created_at || current_user.id}, :as => :hidden %>
           <td><%=  l(DateTime.current, :format => '%d/%m/%Y %R')%></td>
           <%= f.input :created_at, input_html: {value: f.object.created_at || l(DateTime.current, :format => '%d/%m/%Y %R')}, label: false, :as => :hidden, error: false, :readonly => true %>
           <td id='place'>
-            <%= f.select :place_id, Place.where('active is true').order('name ASC').collect { |p| [p.name, p.id] } %></td>
+            <%= f.select :place_id, Place.where('active' => true).order('name ASC').collect { |p| [p.name, p.id] } %></td>
           <td id="type"><%= f.select :type_id, Type.order('name ASC').collect { |t| [t.name, t.id] } %></td>
 
 
@@ -96,8 +93,8 @@
 
          <% else  %>
 
-        <!-- nothing to do here!-->          
-           
+        <!-- nothing to do here!-->
+
 
         <% end%>
 

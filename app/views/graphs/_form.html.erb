@@ -1,58 +1,29 @@
 <script type="text/javascript">
-  
+
   $(document).ready(function(){
     $('[data-behaviour~=datepicker]').datepicker({
     		format: 'dd/mm/yyyy',
     		language: 'pt-BR'
     });
-
-     function get_types(value) { // value = place id
-         $.ajax({
-           url: "/types/type_by_place",
-           type: "GET",
-           dataType: "json",
-           data: {"id": value},
-           success: function (response) {
-                var select = $("#type select");
-                select.html("");
-
-                    for (var i = 0; i < response.length; i++) {
-                          select.append("<option value=" + response[i].id + ">" + response[i].name + "</option>");
-                    }
-                },
-            error: function () {
-                    console.log("Erro ao buscar type");
-            }
-       });
-     }
-
-  $('#place select').change(function () {
-              var value = $(this).val();
-
-              get_types(value);
-  });
-  get_types($('#atendimento_place_id').val());
-
-  
   });
 
   </script>
-	
 
-<%= simple_form_for @graph  do |f| %>
+
+<%= simple_form_for (graph)  do |f| %>
   <%= f.error_notification %>
 	<table>
   	<tr>
     	<td><%= f.label "Data de início: " %></td>
 		<td><%= f.text_field :start_date, 'data-behaviour' => 'datepicker', :required => true %></td>
-  	</tr> 
+  	</tr>
     <tr>
         <td><%= f.label "Data de fim: " %></td>
         <td><%= f.text_field :end_date, 'data-behaviour' => 'datepicker', :required => true %></td>
 
-  	<tr>         
+  	<tr>
   	  <td><%= f.label "Local dos atendimentos" %></td>
-   	  <td><%= f.select :place_id, Place.order('name ASC').collect { |p| [p.name, p.id] }  %></td>
+   	  <td><%= f.select :place_id, Place.where('active is true').order('name ASC').collect { |p| [p.name, p.id] }  %></td>
  	</tr>
 	</table>
 
@@ -61,6 +32,6 @@
   	<% end %>
 
 
- 	
+
 <% end %>
 

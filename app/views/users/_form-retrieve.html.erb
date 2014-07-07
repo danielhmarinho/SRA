@@ -1,15 +1,15 @@
-<%= simple_form_for @user, url: {action: "retrieve_password"} do |f| %>
+<%= simple_form_for user, url: {action: "retrieve_password"} do |f| %>
 
-      <% if @user.errors.any? %>
+      <% if user.errors.any? %>
          <div class="alert alert-danger">
-            
+
            <ul>
-             <% @atendimento.errors.full_messages.each do |msg| %>
-  
+             <% atendimento.errors.full_messages.each do |msg| %>
+
                 <li><%= msg %></li>
-  
+
               <% end %>
-  
+
            </ul>
          </div>
       <% end %>
@@ -18,7 +18,7 @@
     <div class="form-inputs">
       <hi>Digite seu CPF:</hi>
       <%= f.input :matricula, :label => false, :required => true%>
-      
+
 
     <div class="actions">
       <%=link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),

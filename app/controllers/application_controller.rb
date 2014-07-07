@@ -11,21 +11,12 @@ class ApplicationController < ActionController::Base
 
 
   def after_sign_in_path_for(resource)
-    if current_user.has_role? :administrative
-      new_atendimento_path
-    elsif current_user.has_role? :student
-      new_atendimento_path
 
-    elsif current_user.has_role? :professor
-      if current_user.has_role? :admin
-        atendimentos_path
-      else
-        new_atendimento_path
-      end
-    elsif current_user.has_role? :admin
-      atendimentos_path
-    elsif current_user.has_role? :external_user
+    resource
+    if current_user.has_role? :administrative or  current_user.has_role? :student or current_user.has_role? :professor or current_user.has_role? :manager or current_user.has_role? :external_user or current_user.has_role? :admin
       new_atendimento_path
+    else
+      atendimentos_path
     end
 
 
@@ -41,15 +32,12 @@ class ApplicationController < ActionController::Base
   def redirect_as_user(user)
 
     begin
-      if current_user.has_role? :student
+      user
+      if current_user.has_role? :student or current_user.has_role? :professor or current_user.has_role? :administrative or current_user.has_role? :manager or current_user.has_role? :external_user or current_user.has_role? :admin
         redirect_to new_atendimento_path
-      elsif current_user.has_role? :professor
-        redirect_to new_atendimento_path
-      elsif current_user.has_role? :administrative
-        redirect_to new_atendimento_path
+      else
+        redirect_to root_path
       end
-    rescue => e
-      redirect_to root_path
     end
   end
 
@@ -60,31 +48,18 @@ class ApplicationController < ActionController::Base
     format.html { redirect_to path, notice }
   end
 
-
-  helper_method :verify_user
-
-  def verify_user user
-    if user.has_role? :student
-      "Aluno"
-    elsif user.has_role? :professor
-      "Professor"
-    elsif user.has_role? :administrative
-      "Servidor Administrativo"
-    elsif user.has_role? :external_user
-      "Usuário Externo"
-    end  
-  end
-
   helper_method :filter_atendimentos
 
   def filter_atendimentos(params)
-      # The Atendimento date is datetime on the schema, so we need to convert it
-      start_date = DateTime.strptime(params[:start_date], "%d/%m/%Y")
-      end_date = DateTime.strptime("#{params[:end_date]} 23:59:59", "%d/%m/%Y %H:%M:%S")
-      place_id = params[:place]
+    # The Atendimento date is datetime on the schema, so we need to convert it
+    start_date = DateTime.strptime(params[:start_date], "%d/%m/%Y")
+    end_date = DateTime.strptime("#{params[:end_date]} 23:59:59", "%d/%m/%Y %H:%M:%S")
+    place_id = params[:place]
 
-      @place = Place.where(:id => place_id) 
+    @place = Place.find(place_id)
 
-      atendimentos = Atendimento.where(created_at: start_date...end_date, place_id: place_id)
+    atendimentos = Atendimento.where(created_at: start_date...end_date, place_id: place_id)
   end
+
+
 end

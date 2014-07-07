@@ -2,10 +2,10 @@
 
 </div>
 
-<% if @place.errors.any? %>
+<% if place.errors.any? %>
     <div class="alert alert-danger">
       <ul>
-        <% @place.errors.full_messages.each do |msg| %>
+        <% place.errors.full_messages.each do |msg| %>
             <li>
               <%= msg %>
             </li>
@@ -15,7 +15,7 @@
 <% end %>
 
 
-<%= simple_form_for(@place, :html => {:class => 'form-vertical' }) do |f| %>
+<%= simple_form_for(place, :html => {:class => 'form-vertical' }) do |f| %>
 
 
     <div class="places-form">
@@ -34,10 +34,9 @@
           </tr>
           </thead>
           <tbody>
-          <% @type = Type.all %>
-          <% @type.each do |type| %>
+         <% type.each do |type| %>
               <tr>
-                <td><%= f.association :types, :label => false, :as => :check_boxes, class: 'form-control', :collection => Array.wrap(Type.find(type.id)) %></td>
+                <td><%= f.association :types, :label => false, :as => :check_boxes, class: 'form-control', :collection => Array.wrap(type_find(type.id))%></td>
 
                 <td><%= type.places.map(&:name).to_sentence  %></td>
 

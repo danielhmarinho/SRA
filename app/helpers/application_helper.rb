@@ -1,7 +1,6 @@
 # -*- encoding : utf-8 -*-
 module ApplicationHelper
 
-
   def bootstrap_class_for flash_type
     case flash_type
       when :success
@@ -28,5 +27,4 @@ module ApplicationHelper
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
-    
 end

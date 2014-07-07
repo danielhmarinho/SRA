@@ -46,6 +46,7 @@ gem "rails-bootstrap-helpers"
 gem 'chartkick'
 
 gem 'better_errors'
+gem 'metric_fu'
 
 gem 'groupdate'
 

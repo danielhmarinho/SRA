@@ -1,12 +1,12 @@
 # -*- encoding : utf-8 -*-post '/permissions/:id/edit', to: 'permissions#update'
 SRA::Application.routes.draw do
 
-  resources :graphs
+  resources :graphs, :only => [:show, :new, :create,:index]
 
 
-  resources :reports
+  resources :reports, :only => [:new, :create,:index]
 
-  resources :permissions, :except => :show
+  resources :permissions, :only => [:update, :edit, :index]
   post '/permissions/:id/edit', to: 'permissions#update'
   get '/permissions/:id', to: 'permissions#index'
 
@@ -17,19 +17,17 @@ SRA::Application.routes.draw do
 
   post '/users/retrieve_password', to: 'users#retrieve_password', as: 'retrieve_password'
 
-  resources :users
+  resources :users, :except => [:destroy]
 
-  post '/users/retrieve_password', to: 'users#retrieve_password', as: 'retrieve_password'
-  
-  resources :atendimentos do
+  resources :atendimentos, :except => [:show] do
 
-     get :autocomplete_user_name, :on => :collection
+    get :autocomplete_user_name, :on => :collection
   end
 
-  resources :types do
+  resources :types, :except => [:show]  do
     get 'type_by_place', :on => :collection
   end
-  resources :places
+  resources :places, :except => [:show]
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

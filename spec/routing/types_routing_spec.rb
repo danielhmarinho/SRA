@@ -11,10 +11,6 @@ describe TypesController do
       expect(:get => "/types/new").to route_to("types#new")
     end
 
-    it "routes to #show" do
-      expect(:get => "/types/1").to route_to("types#show", :id => "1")
-    end
-
     it "routes to #edit" do
       expect(:get => "/types/1/edit").to route_to("types#edit", :id => "1")
     end
