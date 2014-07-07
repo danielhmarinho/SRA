@@ -21,7 +21,8 @@
           <tr>
             <td><%= place.try(:name) %></td>
 
-                <td><%= bs_button_to  raw("<i class=\"fa fa-check\"></i>"),
+                <td><%= bs_button_to  raw("<i class=\"fa %s\"></i>" %
+                                ((cookies[:place_name] == place.name) ? "fa fa-check-square" : "fa-check-square-o")),
                                   set_place_path(place),tooltip: "Escolher Local de Atendimento",
                                   class: "btn btn-large btn-primary",
                                   method: :get %></td>
