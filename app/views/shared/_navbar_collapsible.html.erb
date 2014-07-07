@@ -9,6 +9,10 @@
         <li><a href="<%=new_report_path%>">Relatório</a></li>
         <li><a href="<%=new_graph_path%>">Gráficos</a></li>
         <li><a href="<%=permissions_path%>">Painel de Controle</a></li>
+        <% if (current_user.has_role(:admin).name = 'admin') %>
+        <li><a href="<%=place_configuration_path%>">Configurar Local de Atendimento</a></li>
+        <%end%>
+
 
 
   </div><!--/.nav-collapse -->

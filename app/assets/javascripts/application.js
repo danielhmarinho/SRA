@@ -17,3 +17,4 @@
 //= require dataTables/jquery.dataTables.bootstrap
 //= require twitter/bootstrap
 //= require bootstrap-datepicker
+//= require selectize

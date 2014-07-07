@@ -17,6 +17,9 @@ SRA::Application.routes.draw do
 
   post '/users/retrieve_password', to: 'users#retrieve_password', as: 'retrieve_password'
 
+  get '/places/configuration', to: 'places#configuration', as: 'place_configuration'
+  get '/places/set_place/:id', to: 'places#set_place', as: 'set_place'
+
   resources :users, :except => [:destroy]
 
   resources :atendimentos, :except => [:show] do
