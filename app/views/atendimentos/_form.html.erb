@@ -72,7 +72,7 @@
           <td><%=  l(DateTime.current, :format => '%d/%m/%Y %R')%></td>
           <%= f.input :created_at, input_html: {value: f.object.created_at || l(DateTime.current, :format => '%d/%m/%Y %R')}, label: false, :as => :hidden, error: false, :readonly => true %>
           <td id='place'>
-            <%= f.select :place_id, Place.where('active' => true, 'name' => cookies[:place_name]).order('name ASC').collect { |p| [p.name, p.id] } %></td>
+            <%= f.select :place_id, check_cookie.order('name ASC').collect { |p| [p.name, p.id] } %></td>
           <td id="type">
             <%= f.select :type_id, Type.order('name ASC').collect { |t| [t.name, t.id] }, { prompt: "Selecione um Tipo de Atendimento", index: nil }, style: "width:30vw" %>
           </td>
