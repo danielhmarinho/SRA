@@ -5,9 +5,9 @@ module AtendimentoHelper
     if cookies[:place_name]
       place_selected =  Place.where('active' => true, 'name' => cookies[:place_name])
     else
-      place_selected = Place.where('active' => true)
+      place_selected = nil
     end
-    place_selected
 
+    place_selected
   end
 end

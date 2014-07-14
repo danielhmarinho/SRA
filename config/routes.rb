@@ -10,6 +10,8 @@ SRA::Application.routes.draw do
   post '/permissions/:id/edit', to: 'permissions#update'
   get '/permissions/:id', to: 'permissions#index'
 
+  get '/undefined_place', to: 'atendimentos#undefined_place', as: 'undefined_place'
+
   post '/reports/save_report', to: 'reports#save_report_with_graph'
   get '/send_graph', to: 'graphs#send_graph', as: 'send_graph'
 
