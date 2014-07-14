@@ -14,7 +14,7 @@ class AtendimentosController < ApplicationController
     if cookies[:place_name]
       @atendimento = Atendimento.new
     else
-      redirect_to undefined_place_path
+      render :undefined_place
     end
   end
 

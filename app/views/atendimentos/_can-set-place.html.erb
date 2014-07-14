@@ -1,5 +1,16 @@
 <div class="container">
   <div class="row">
-  	<p class="error_page_message"> Solicite ao funcionário responsável a definição do local de atendimento. </p>
+  	<p class="error_page_message"> Defina o local de atendimento dessa máquina. </p>
+  	<p class="error_page_message_small"> Lembre-se de conferir se os cookies do navegador estão ativados. </p>
+  </div> 
+  	<br/> <br>
+  <div class="row">
+  	<%= link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
+                        atendimentos_path ,
+                        class: "btn  btn-warning "%>
+
+    <%= link_to raw("<i class=\"icon-white icon-map-marker\"> Selecionar Local </i>"),
+                    place_configuration_path ,
+                    class: "btn btn-success  " %>
   </div>
 </div>
