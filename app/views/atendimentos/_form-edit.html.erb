@@ -16,6 +16,7 @@
                       for (var i = 0; i < response.length; i++) {
                           select.append("<option value=" + response[i].id + ">" + response[i].name + "</option>");
                       }
+                      $("#atendimento_type_id").selectize();
                   },
                   error: function () {
                       console.log("Erro ao buscar type");
@@ -34,65 +35,59 @@
       });
 
   </script>
+</div>
 
+<%= simple_form_for(atendimento, :html => {:class => 'form-horizontal'}) do |f| %>
 
-
-  <%= simple_form_for(atendimento, :html => {:class => 'form-horizontal'}) do |f| %>
-
-
+  <% if atendimento.errors.any? %>
+      <div class="alert alert-danger">
+        <ul>
+          <% atendimento.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+        </ul>
       </div>
-
-      <% if atendimento.errors.any? %>
-          <div class="alert alert-danger">
-            <ul>
-              <% atendimento.errors.full_messages.each do |msg| %>
-                  <li><%= msg %></li>
-              <% end %>
-            </ul>
-          </div>
-      <% end %>
-
-
-
-      <table>
-        <tr>
-          <th><%= f.label "Nome" %>
-            <br/></th>
-          <th><%= f.label "Data" %>
-            <br/></th>
-          <th><%= f.label "Local de Atendimento" %>
-            <br/></th>
-          <th><%= f.label "Tipo de Atendimento" %>
-            <br/></th>
-
-
-          </br>
-        <tr>
-          <td><%= User.find_by_id(atendimento.user_id).name %></td>
-          <td><%=  l(atendimento.created_at, :format => '%d/%m/%Y %R')%></td>
-          <td id='place'>
-            <%= f.select :place_id, Place.order('name ASC').collect { |p| [p.name, p.id] } %></td>
-          <td id="type"><%= f.select :type_id, Type.order('name ASC').collect { |t| [t.name, t.id] } %></td>
-
-
-        </tr>
-      </table>
-      </tr>
-      <div class="actions">
-        <%if can? :read, Atendimento%>
-
-            <%= link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
-                        atendimentos_path ,
-                        class: "btn  btn-warning"%>
-
-        <% end%>
-        <%= button_tag :class => 'btn-success btn' do %>
-            <i class='fa fa-refresh'></i> Atualizar Atendimento
-        <% end %>
-
-      </div>
-
-
-
   <% end %>
+
+  <table>
+    <tr>
+      <th><%= f.label "Nome" %>
+        <br/></th>
+      <th><%= f.label "Data" %>
+        <br/></th>
+      <th><%= f.label "Local de Atendimento" %>
+        <br/></th>
+      <th><%= f.label "Tipo de Atendimento" %>
+        <br/></th>
+      </br>
+    <tr>
+      <td>
+        <%= User.find_by_id(atendimento.user_id).name %>
+      </td>
+      <td>
+        <%=  l(atendimento.created_at, :format => '%d/%m/%Y %R')%>
+      </td>
+      <td id='place'>
+        <%= f.select :place_id, Place.order('name ASC').collect { |p| [p.name, p.id] }, {}, readonly: true %>
+      </td>
+      <td id="type">
+        <%= f.select :type_id, Type.order('name ASC').collect { |t| [t.name, t.id] }, {}, style: "width:30vw" %>
+      </td>
+    </tr>
+  </table>
+
+  <div class="actions">
+    <%if can? :read, Atendimento%>
+
+        <%= link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"),
+            atendimentos_path, class: "btn  btn-warning"%>
+
+    <% end%>
+    
+    <%= button_tag :class => 'btn-success btn' do %>
+      <i class='fa fa-refresh'></i> Atualizar Atendimento
+    <% end %>
+
+  </div>
+<% end %>
 

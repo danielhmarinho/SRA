@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row text-center">
+    <div class="page-header">
+      <p class="error_page_header">Local de Atendimento Não Definido</p> 
+    </div>
+    	<br />
+    	<% if ((current_user.has_role? :admin) || (current_user.has_role? :manager))%>
+    		<%= render 'can-set-place' %>
+   		<% else %>
+    		<%= render 'cannot-set-place' %>
+    	<% end %>
+  </div>
+</div>

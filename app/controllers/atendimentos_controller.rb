@@ -11,7 +11,11 @@ class AtendimentosController < ApplicationController
   # GET /atendimentos/new
   # GET /atendimentos/new.json
   def new
-    @atendimento = Atendimento.new
+    if cookies[:place_name]
+      @atendimento = Atendimento.new
+    else
+      render :undefined_place
+    end
   end
 
   # GET /atendimentos/1/edit
@@ -48,6 +52,9 @@ class AtendimentosController < ApplicationController
     respond_to do |format|
       redirect_as_controller(format, atendimentos_path, notice: 'Atendimento deletado com sucesso')
     end
+  end
+
+  def undefined_place
   end
 
   def respond_redirect_save(format)
