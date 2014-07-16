@@ -38,7 +38,7 @@ class PlacesController < ApplicationController
   end
 
   def configuration
-    @place = Place.new
+    @active_places = Place.where(active: true).ordened
   end
 
   def set_place

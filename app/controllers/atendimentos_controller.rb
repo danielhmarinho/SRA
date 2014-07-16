@@ -11,7 +11,8 @@ class AtendimentosController < ApplicationController
   # GET /atendimentos/new
   # GET /atendimentos/new.json
   def new
-    if cookies[:place_name]
+    place = Place.where(name: cookies[:place_name], active: true)
+    unless place.empty?
       @atendimento = Atendimento.new
     else
       render :undefined_place
