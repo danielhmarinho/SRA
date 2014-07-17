@@ -29,7 +29,7 @@
       <td id='place'>
         <%= f.select :place_id, check_cookie.collect { |p| [p.name, p.id] }, {}, readonly: true %></td>
       <td id="type">
-        <%= f.select :type_id, @type_places.order('types.name ASC').collect { |t| [t.name, t.id] }, { prompt: "Selecione um Tipo de Atendimento", index: 0 }, style: "width:30vw"%>
+        <%= f.select :type_id, @type_places.order('types.name ASC').collect { |t| [t.name, t.id] }, { include_blank: "Selecione um Tipo de Atendimento"}, style: "width:30vw"%>
         <script>
           $("#atendimento_type_id").selectize();
         </script>

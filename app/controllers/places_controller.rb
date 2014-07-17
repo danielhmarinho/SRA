@@ -48,7 +48,8 @@ class PlacesController < ApplicationController
       set_place
     else
       respond_to do |format|
-        redirect_as_controller(format, places_path, alert: 'Local de Atendimento desativado.')
+        redirect_as_controller(format, places_path, error: '')
+        flash[:error] = "O Local de Atendimento deve estar ativado."
       end
     end
   end

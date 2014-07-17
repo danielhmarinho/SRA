@@ -63,7 +63,8 @@ class AtendimentosController < ApplicationController
     if @atendimento.save
       redirect_as_controller(format, new_atendimento_path, notice: 'Atendimento criado com sucesso')
     else
-      format.html { render 'new' }
+      redirect_as_controller(format, new_atendimento_path, error: '')
+      flash[:error] = "Tipo de Atendimento não selecionado"
     end
   end
 
@@ -72,7 +73,6 @@ class AtendimentosController < ApplicationController
       redirect_as_controller(format, atendimentos_path, notice: 'Atendimento alterado com sucesso')
     else
       format.html { render 'edit' }
-
     end
   end
 
