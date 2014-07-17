@@ -16,7 +16,6 @@
                       for (var i = 0; i < response.length; i++) {
                           select.append("<option value=" + response[i].id + ">" + response[i].name + "</option>");
                       }
-                      $("#atendimento_type_id").selectize();
                   },
                   error: function () {
                       console.log("Erro ao buscar type");
@@ -68,7 +67,7 @@
         <%=  l(atendimento.created_at, :format => '%d/%m/%Y %R')%>
       </td>
       <td id='place'>
-        <%= f.select :place_id, Place.order('name ASC').collect { |p| [p.name, p.id] }, {}, readonly: true %>
+        <%= f.select :place_id, Place.order('name ASC').collect { |p| [p.name, p.id] } %>
       </td>
       <td id="type">
         <%= f.select :type_id, Type.order('name ASC').collect { |t| [t.name, t.id] }, {}, style: "width:30vw" %>
