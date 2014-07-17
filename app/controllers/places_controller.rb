@@ -6,6 +6,7 @@ class PlacesController < ApplicationController
   def index
     @places = Place.ordened
     @types = Type.all
+    @active_places = Place.where(active: true).ordened
   end
 
   def new
@@ -46,7 +47,7 @@ class PlacesController < ApplicationController
 
     cookies.permanent[:place_name] = "#{@place.name}"
     respond_to do |format|
-      redirect_as_controller(format, place_configuration_path, notice: 'Local de Atendimento alterado com sucesso.')
+      redirect_as_controller(format, places_path, notice: 'Local de Atendimento alterado com sucesso.')
     end
   end
 
