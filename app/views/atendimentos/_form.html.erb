@@ -1,40 +1,3 @@
-<div class="page-header">
-  <script type="text/javascript">
-
-      $(document).ready(function () {
-          // Ajax to create the options for the type select
-          function get_types(value) { // value = place id
-              $.ajax({
-                  url: "/types/type_by_place",
-                  type: "GET",
-                  dataType: "json",
-                  data: {"id": value},
-                  success: function (response) {
-                      var select = $("#type select");
-                      select.html("");
-
-                      for (var i = 0; i < response.length; i++) {
-                          select.append("<option value=" + response[i].id + ">" + response[i].name + "</option>");
-                      }
-                      $("#atendimento_type_id").selectize();
-                  },
-                  error: function () {
-                      console.log("Erro ao buscar type");
-                  }
-              });
-          }
-          $('#place select').change(function () {
-              var value = $(this).val();
-
-              get_types(value);
-          });
-
-          // When the page html is already, set the select option for type base on the first value of the place
-          get_types($('#atendimento_place_id').val());
-      });
-  </script>
-</div>
-
 <%= simple_form_for(atendimento, :html => {:class => 'form-horizontal'}) do |f| %>
 
   <% if atendimento.errors.any? %>
@@ -64,10 +27,12 @@
       <td><%=  l(DateTime.current, :format => '%d/%m/%Y %R')%></td>
       <%= f.input :created_at, input_html: {value: f.object.created_at || l(DateTime.current, :format => '%d/%m/%Y %R')}, label: false, :as => :hidden, error: false, :readonly => true %>
       <td id='place'>
-       
         <%= f.select :place_id, check_cookie.collect { |p| [p.name, p.id] }, {}, readonly: true %></td>
       <td id="type">
-        <%= f.select :type_id, Type.order('name ASC').collect { |t| [t.name, t.id] }, { prompt: "Selecione um Tipo de Atendimento", index: 0 }, style: "width:30vw" %>
+        <%= f.select :type_id, @type_places.order('types.name ASC').collect { |t| [t.name, t.id] }, { prompt: "Selecione um Tipo de Atendimento", index: 0 }, style: "width:30vw"%>
+        <script>
+          $("#atendimento_type_id").selectize();
+        </script>
       </td>
     </tr>
   </table>
