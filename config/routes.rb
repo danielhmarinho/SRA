@@ -12,7 +12,7 @@ SRA::Application.routes.draw do
 
   get '/undefined_place', to: 'atendimentos#undefined_place', as: 'undefined_place'
 
-  post '/reports/save_report', to: 'reports#save_report_with_graph'
+  post '/reports/save_report', to: 'reports#save_report_with_graph', as: 'save_report'
   get '/send_graph', to: 'graphs#send_graph', as: 'send_graph'
 
   devise_for :users ,:path => '', :path_names => {:sign_in => "", :sign_out => ""}
