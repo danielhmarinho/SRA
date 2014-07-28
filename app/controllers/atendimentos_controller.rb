@@ -14,7 +14,7 @@ class AtendimentosController < ApplicationController
     place = Place.where(name: cookies[:place_name], active: true)
     unless place.empty?
       @atendimento = Atendimento.new
-      @type_places = Type.includes(:places).where("places.id" => place.first.id)
+      @type_places = Type.includes(:places).where("places.id" => place.first.id, "active" => true)
     else
       render :undefined_place
     end
