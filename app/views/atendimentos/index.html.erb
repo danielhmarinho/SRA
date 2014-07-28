@@ -30,7 +30,7 @@
         <tbody>
         <% @atendimentos.each do |atendimento| %>
               <tr>
-                <td><%= atendimento.user.try(:name) %></td>
+                <td width="20%"><%= atendimento.user.try(:name) %></td>
                 <td><%= l(atendimento.try(:created_at), :format => :long) if atendimento.updated_at %></td>
                 <td><%= User.verify_user atendimento.user %></td>
 

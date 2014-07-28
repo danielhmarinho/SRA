@@ -26,7 +26,7 @@ class Report
       end_date = DateTime.strptime("#{self.end_date} 23:59:59", "%d/%m/%Y %H:%M:%S")
 
       if end_date < start_date
-        errors.add(end_date, "A data final deve ser após a data de início do relatório.")
+        errors.add(:end_date, "A data final deve ser após a data de início do relatório.")
       end
     end
   end
