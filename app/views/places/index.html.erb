@@ -18,12 +18,12 @@
         <thead>
         <tr>
         <th>Nome</th>
-          <%if can? :delete, Place%>
         <th>Status</th>
         <th>Editar</th>
-          <% end %>
         <th>Selecionar Local</th>
-        <th>Ativar</th>
+        <%if can? :delete, Place%>
+          <th>Ativar</th>
+        <% end %>
       </tr>
       </thead>
 
