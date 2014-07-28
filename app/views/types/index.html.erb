@@ -49,9 +49,9 @@
              <%end%>
             <%if can? :delete, Type%>
             <td><%= bs_button_to raw("<i class=\"fa %s \"></i>" % (type.active ? "fa-lock": "fa-unlock")),
-                                 type, tooltip: "%s Tipo de Atendimento" % (type.active ? "Desabilitar" : "Habilitar"),
-                                 class: "btn btn-large btn-warning",
-                                 method: :delete, data: {confirm: 'Tem certeza que deseja %s?' % (type.active ? "Desabilitar" : "Habilitar")} %></td>
+                                 type, tooltip: "%s Tipo de Atendimento" % (type.active ? "desativar" : "ativar"),
+                                 class: "btn btn-large btn-danger",
+                                 method: :delete, data: {confirm: 'Tem certeza que deseja %s este tipo de atendimento para todo o Sistema de Registro de Atendimentos?' % (type.active ? "desativar" : "ativar")} %></td>
 
 
             <%end%>

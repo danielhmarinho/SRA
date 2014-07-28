@@ -50,9 +50,9 @@
             
             <%if can? :delete, Place%>
                 <td width="15%"><%= bs_button_to raw("<i class=\"fa %s\"></i>" % (place.active ? "fa-lock" : "fa-unlock")),
-                                     place, tooltip: "%s Local de Atendimento" % (place.active ? "Desabilitar" : "Habilitar"),
+                                     place, tooltip: "%s Local de Atendimento" % (place.active ? "desativar" : "ativar"),
                                      class: "btn btn-large btn-danger",
-                                     method: :delete, data: {confirm: 'Tem certeza que deseja %s este local para todo o Sistema de Registro de Atendimentos?' % (place.active ? "desabilitar" : "habilitar")} %></td>
+                                     method: :delete, data: {confirm: 'Tem certeza que deseja %s este local para todo o Sistema de Registro de Atendimentos?' % (place.active ? "desativar" : "ativar")} %></td>
             <%end%>
             
           </tr>
