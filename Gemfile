@@ -22,6 +22,7 @@ gem 'devise'
 gem 'brazilian-rails'
 
 gem 'simple_form'
+gem "selectize-rails"
 
 gem 'rails3-jquery-autocomplete'
 
