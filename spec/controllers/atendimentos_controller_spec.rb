@@ -68,7 +68,7 @@ describe AtendimentosController do
         # Trigger the behavior that occurs when invalid params are submitted
         Atendimento.any_instance.stub(:save).and_return(false)
         post :create, {:atendimento => {  }}
-        expect(response).to render_template("new")
+        expect(response).to redirect_to(new_atendimento_path)
       end
     end
   end
