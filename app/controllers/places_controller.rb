@@ -6,6 +6,7 @@ class PlacesController < ApplicationController
   def index
     @places = Place.ordened
     @types = Type.all
+    @active_places = Place.where(active: true).ordened
   end
 
   def new
@@ -38,15 +39,26 @@ class PlacesController < ApplicationController
   end
 
   def configuration
-    @place = Place.new
+    @active_places = Place.where(active: true).ordened
+  end
+
+  def check_active_place
+    @place = Place.find(params[:id])
+    if @place.active
+      set_place
+    else
+      respond_to do |format|
+        redirect_as_controller(format, places_path, error: '')
+        flash[:error] = "O Local de Atendimento deve estar ativado."
+      end
+    end
   end
 
   def set_place
     @place = Place.find(params[:id])
-
     cookies.permanent[:place_name] = "#{@place.name}"
     respond_to do |format|
-      redirect_as_controller(format, place_configuration_path, notice: 'Local de Atendimento alterado com sucesso.')
+      redirect_as_controller(format, places_path, notice: 'Local de Atendimento alterado com sucesso.')
     end
   end
 
