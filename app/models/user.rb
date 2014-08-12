@@ -13,11 +13,13 @@ class User < ActiveRecord::Base
   def external_user_needs
 
     self.matricula = matricula
+    regex_alpha = /^[aA-zZ]+((\s[aA-zZ]+)+)?$/
+
 
     if external_user
       if self.name.blank?
         errors.add(:name, "não pode ficar em branco")
-      elsif self.name.match(/@"^[ a-zA-Z á]*$"/)
+      elsif !(regex_alpha.match(self.name))
 
         errors.add(:name, "caractere inválido")
       end

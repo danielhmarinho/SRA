@@ -11,7 +11,13 @@ class AtendimentosController < ApplicationController
   # GET /atendimentos/new
   # GET /atendimentos/new.json
   def new
-    @atendimento = Atendimento.new
+    place = Place.where(name: cookies[:place_name], active: true)
+    unless place.empty?
+      @atendimento = Atendimento.new
+      @type_places = Type.includes(:places).where("places.id" => place.first.id, "active" => true)
+    else
+      render :undefined_place
+    end
   end
 
   # GET /atendimentos/1/edit
@@ -50,11 +56,15 @@ class AtendimentosController < ApplicationController
     end
   end
 
+  def undefined_place
+  end
+
   def respond_redirect_save(format)
     if @atendimento.save
       redirect_as_controller(format, new_atendimento_path, notice: 'Atendimento criado com sucesso')
     else
-      format.html { render 'new' }
+      redirect_as_controller(format, new_atendimento_path, error: '')
+      flash[:error] = "Tipo de Atendimento não selecionado"
     end
   end
 
@@ -63,7 +73,6 @@ class AtendimentosController < ApplicationController
       redirect_as_controller(format, atendimentos_path, notice: 'Atendimento alterado com sucesso')
     else
       format.html { render 'edit' }
-
     end
   end
 

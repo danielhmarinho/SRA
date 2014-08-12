@@ -13,40 +13,48 @@
 
 
 
-    <div id='registros'>
+    <div class='registros'>
       <table id="places" class="display">
         <thead>
         <tr>
         <th>Nome</th>
-          <%if can? :delete, Place%>
         <th>Status</th>
         <th>Editar</th>
-          <% end %>
-        <th>Habilitar/Desabilitar</th>
+        <th>Selecionar Local</th>
+        <%if can? :delete, Place%>
+          <th>Ativar</th>
+        <% end %>
       </tr>
       </thead>
 
       <tbody>
       <% @places.each do |place| %>
           <tr>
-            <td><%= place.try(:name) %></td>
-            <td><%= place.try(:active) ? "Habilitado" : "Desabilitado" %></td>
+            <td width="40%"><%= place.try(:name) %></td>
+            <td width="15%"><%= place.try(:active) ? "Ativado" : "Desativado" %></td>
             <%if can? :edit, Place%>
-            <td><%= bs_button_to  raw("<i class=\"fa fa-pencil-square-o\"></i>"),
+            <td width="15%"><%= bs_button_to  raw("<i class=\"fa fa-pencil-square-o\"></i>"),
                                   edit_place_path(place),tooltip: "Editar Local de Atendimento",
                                   class: "btn btn-large btn-primary",
-                                  method: :get %></td>
-            <%end%>
+                                  method: :get %>
+            </td>
+      <%end%>
 
+            <td width="15%"><%= bs_button_to  raw("<i class=\"fa %s\"></i>" %
+                                  ((cookies[:place_name] == place.name) ? "fa fa-check-square" : "fa-check-square-o")),
+                                  set_place_path(place),tooltip: "Escolher Local de Atendimento",
+                                  class: "btn btn-large btn-warning",
+                                  method: :get %>
+            </td>
 
+            
             <%if can? :delete, Place%>
-                <td><%= bs_button_to raw("<i class=\"fa %s\"></i>" % (place.active ? "fa-lock" : "fa-unlock")),
-                                     place, tooltip: "%s Local de Atendimento" % (place.active ? "Desabilitar" : "Habilitar"),
-                                     class: "btn btn-large btn-warning",
-                                     method: :delete, data: {confirm: 'Tem certeza que deseja %s?' % (place.active ? "desabilitar" : "habilitar")} %></td>
+                <td width="15%"><%= bs_button_to raw("<i class=\"fa %s\"></i>" % (place.active ? "fa-lock" : "fa-unlock")),
+                                     place, tooltip: "%s Local de Atendimento" % (place.active ? "desativar" : "ativar"),
+                                     class: "btn btn-large btn-danger",
+                                     method: :delete, data: {confirm: 'Tem certeza que deseja %s este local para todo o Sistema de Registro de Atendimentos?' % (place.active ? "desativar" : "ativar")} %></td>
             <%end%>
-
-
+            
           </tr>
       <% end %>
       </tbody>

@@ -29,6 +29,7 @@ jQuery ->
     aLengthMenu: [ 10, 30, 50, 100 ],
     iDisplayLength: 10
     bScrollCollapse: true
+    bPaginate: false
     bDestroy: true
     oLanguage:
       sInfo: "Exibindo _START_ à _END_ de _TOTAL_ de tipos de atendimentos"

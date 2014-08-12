@@ -1,23 +1,36 @@
 <script type="text/javascript">
+
+function downloadInnerHtml(filename, elId, mimeType) {
+  var elHtml = document.getElementById(elId).innerHTML;
+
+  return elHtml;
+}
+
+function function_success() {
+  alert('sucesso');
+}
+
+function function_error() {
+  alert('erro');
+}
+
 $(document).ready(function(){
-
-  function downloadInnerHtml(filename, elId, mimeType) {
-    var elHtml = document.getElementById(elId).innerHTML;
-
-    return elHtml;
-  }
 
   $('#btnSave').click(function(){
     var graph1 = downloadInnerHtml('graph1.svg', 'chart-1','text/html');
     var graph2 = downloadInnerHtml('graph2.svg', 'chart-2','text/html');
 
-    var end_date = '<%= @graph.end_date %>'
-    var start_date = '<%= @graph.start_date %>'
-    var place = '<%= @graph.place_id %>'
-
-    $.post("/reports/save_report", {graphs: {graph1: graph1, graph2: graph2, attributes: {start_date: start_date, end_date: end_date, place: place}}})
+    var end_date = '<%= @graph.end_date %>';
+    var start_date = '<%= @graph.start_date %>';
+    var place = '<%= @graph.place_id %>';
+    
+    $.ajax({
+      type: "POST",
+      url: "/reports/save_report",
+      dataType: "script",
+      data: { graphs: {graph1: graph1, graph2: graph2, attributes: {start_date: start_date, end_date: end_date, place: place } } }
+    });
   });
-
 });
 </script>
 
