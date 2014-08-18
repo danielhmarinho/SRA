@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
       new_atendimento_path
     else
       flash.discard(:notice)
-      flash[:error] = "Não foi possível recuperar informações do usuário"
+      flash[:error] = "Não foi possível recuperar informações do usuário. Procure o CPD."
       sign_out resource
       root_path
     end
