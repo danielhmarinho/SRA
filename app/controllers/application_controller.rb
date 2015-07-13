@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+require 'socket'
 require 'cancan'
 class ApplicationController < ActionController::Base
   rescue_from DeviseLdapAuthenticatable::LdapException do |exception|
@@ -67,5 +68,25 @@ class ApplicationController < ActionController::Base
     atendimentos = Atendimento.where(created_at: start_date...end_date, place_id: place_id)
   end
 
+
+  helper_method :place_client
+
+
+  def place_client(place_name)
+
+    loop { # o servidor nunca morre, fica sempre executando
+
+      client = $server.accept # aceita conexão do cliente
+
+      client.puts place_name
+
+      msg_cliente = client.recvfrom( 10000 ) # recebe mensagem - 10000 bytes - do cliente
+      place = msg_cliente.first
+
+      return place
+
+    }
+
+  end
 
 end
