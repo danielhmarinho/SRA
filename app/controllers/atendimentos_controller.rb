@@ -11,7 +11,9 @@ class AtendimentosController < ApplicationController
   # GET /atendimentos/new
   # GET /atendimentos/new.json
   def new
-    place = Place.where(name: cookies[:place_name], active: true)
+    place_name = place_client("none")
+
+    place = Place.where(name: place_name.chomp, active: true)
     unless place.empty?
       @atendimento = Atendimento.new
       @type_places = Type.includes(:places).where("places.id" => place.first.id, "active" => true)
