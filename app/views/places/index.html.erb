@@ -39,9 +39,8 @@
                                   method: :get %>
             </td>
       <%end%>
-
             <td width="15%"><%= bs_button_to  raw("<i class=\"fa %s\"></i>" %
-                                  ((cookies[:place_name] == place.name) ? "fa fa-check-square" : "fa-check-square-o")),
+                                  ((check_name_place == place.name) ? "fa fa-check-square" : "fa-check-square-o")),
                                   set_place_path(place),tooltip: "Escolher Local de Atendimento",
                                   class: "btn btn-large btn-warning",
                                   method: :get %>
