@@ -74,19 +74,16 @@ class ApplicationController < ActionController::Base
 
   def place_client(place_name)
 
-    loop { # o servidor nunca morre, fica sempre executando
+    # O servidor nunca morre, fica sempre executando.
+    loop {
+      Thread.start( $server.accept ) do |client|
+        client.puts place_name
 
-      client = $server.accept # aceita conexão do cliente
-
-      client.puts place_name
-
-      msg_cliente = client.recvfrom( 10000 ) # recebe mensagem - 10000 bytes - do cliente
-      place = msg_cliente.first
+        msg_client = client.recvfrom( 10000 )
+        place = msg_cliente.first
 
       return place.chomp
-
     }
 
   end
-
 end
