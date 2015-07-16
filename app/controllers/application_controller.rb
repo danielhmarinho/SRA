@@ -83,7 +83,7 @@ class ApplicationController < ActionController::Base
       msg_cliente = client.recvfrom( 10000 ) # recebe mensagem - 10000 bytes - do cliente
       place = msg_cliente.first
 
-      return place
+      return place.chomp
 
     }
 

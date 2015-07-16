@@ -13,7 +13,7 @@ class AtendimentosController < ApplicationController
   def new
     place_name = place_client("none")
 
-    place = Place.where(name: place_name.chomp, active: true)
+    place = Place.where(name: place_name, active: true)
     unless place.empty?
       @atendimento = Atendimento.new
       @type_places = Type.includes(:places).where("places.id" => place.first.id, "active" => true)
