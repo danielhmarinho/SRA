@@ -6,10 +6,8 @@ class ApplicationController < ActionController::Base
     render :text => exception, :status => 500
   end
 
-
   protect_from_forgery
   include ApplicationHelper
-
 
   def after_sign_in_path_for(resource)
     if current_user.nil?
@@ -30,7 +28,6 @@ class ApplicationController < ActionController::Base
     redirect_as_user (current_user)
   end
 
-
   def redirect_as_user(user)
 
     begin
@@ -47,7 +44,6 @@ class ApplicationController < ActionController::Base
 
     end
   end
-
 
   helper_method :redirect_as_controller
 
@@ -68,11 +64,9 @@ class ApplicationController < ActionController::Base
     atendimentos = Atendimento.where(created_at: start_date...end_date, place_id: place_id)
   end
 
-
   helper_method :place_client
 
-
-  def place_client(place_name)
+  def place_client( place_name )
 
     # O servidor nunca morre, fica sempre executando.
     loop {
@@ -80,7 +74,7 @@ class ApplicationController < ActionController::Base
         client.puts place_name
 
         msg_client = client.recvfrom( 10000 )
-        place = msg_cliente.first
+        place = msg_client.first
 
         return place.chomp
       end

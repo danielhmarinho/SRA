@@ -56,7 +56,8 @@ class PlacesController < ApplicationController
 
   def set_place
     @place = Place.find(params[:id])
-    place_client (@place.name)
+    place_client(@place.name)
+
     respond_to do |format|
       redirect_as_controller(format, places_path, notice: 'Local de Atendimento alterado com sucesso.')
     end
