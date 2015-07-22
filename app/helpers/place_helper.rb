@@ -9,5 +9,5 @@ end
 def check_name_place
 	place_name = place_client("none")
 
-	place_name.chomp.force_encoding("UTF-8")
+	place_name.force_encoding("UTF-8")
 end
