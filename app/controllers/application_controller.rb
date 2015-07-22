@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 require 'socket'
 require 'cancan'
+require 'net/http'
 class ApplicationController < ActionController::Base
   rescue_from DeviseLdapAuthenticatable::LdapException do |exception|
     render :text => exception, :status => 500
@@ -66,19 +67,23 @@ class ApplicationController < ActionController::Base
 
   helper_method :place_client
 
-  def place_client( place_name )
+  def place_client( place_name ) 
+    mutex = Mutex.new
 
-    # O servidor nunca morre, fica sempre executando.
-    loop {
-      Thread.start( $server.accept ) do |client|
+    server = TCPServer.open(3001)
+
+    Thread.start(server.accept) do |client|  
+
+      mutex.synchronize{
         client.puts place_name
 
         msg_client = client.recvfrom( 10000 )
         place = msg_client.first
-
-        return place.chomp
-      end
-    }
-
+        set_place_name(place)
+      } 
+      client.close
+    end
+    server.close
+    return get_place_name
   end
 end
