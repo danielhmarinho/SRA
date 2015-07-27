@@ -69,12 +69,17 @@ class ApplicationController < ActionController::Base
 
   def place_client( place_name ) 
     mutex = Mutex.new
+    client_request = request.remote_ip
 
     server = TCPServer.open(3001)
 
     Thread.start(server.accept) do |client|  
 
       mutex.synchronize{
+
+        msg_client_ip = client.recvfrom( 10000 )
+        puts msg_client_ip.first
+
         client.puts place_name
 
         msg_client = client.recvfrom( 10000 )
