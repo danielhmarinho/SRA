@@ -69,26 +69,21 @@ class ApplicationController < ActionController::Base
 
   def place_client( place_name ) 
     mutex = Mutex.new
-    client_request = request.remote_ip
+    ip_client = request.remote_ip
+    port = 3001
 
-    server = TCPServer.open(3001)
-
-    Thread.start(server.accept) do |client|  
-
-      mutex.synchronize{
-
-        msg_client_ip = client.recvfrom( 10000 )
-        puts msg_client_ip.first
-
-        client.puts place_name
-
-        msg_client = client.recvfrom( 10000 )
-        place = msg_client.first
-        set_place_name(place)
-      } 
-      client.close
+    begin
+       server = TCPSocket.open(ip_client, port)
+    rescue Errno::ECONNREFUSED
+      retry
     end
-    server.close
-    return get_place_name
+    mutex.synchronize{
+      server.puts place_name
+
+      msg_client = server.recvfrom( 10000 )
+      place = msg_client.first
+      server.close
+      return place.chomp
+    } 
   end
 end
