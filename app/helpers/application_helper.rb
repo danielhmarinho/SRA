@@ -27,16 +27,4 @@ module ApplicationHelper
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
-
-  def set_place_name(place_name)
-    @place_name = place_name
-  end
-
-  def get_place_name
-    begin
-      place = @place_name
-    end while place == nil
-
-    place.chomp
-  end
 end
