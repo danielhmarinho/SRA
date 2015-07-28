@@ -8,9 +8,7 @@
       <div class = "logged" align='right'>
         <%  if user_signed_in? %>
 
-
-            <button type="button" class="btn btn-info navbar-btn"><i class="fa fa-gear"></i>
-              <%=  current_user.name%></button>
+            <%= link_to  raw("<i class=\"fa fa-gear\"> #{current_user.name} </i>"), "/users/#{current_user.id}/edit", class: "btn btn-info navbar-btn"%>
             <%=link_to raw("<i class=\"fa fa-sign-out\"> Sair </i>"),
                        destroy_user_session_path,
                        class: "btn  btn-danger navbar-btn", :id => 'logout', method: "delete", confirm: "Deseja realmente sair?" %>

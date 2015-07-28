@@ -15,11 +15,13 @@ SRA::Application.routes.draw do
   post '/reports/save_report', to: 'reports#save_report_with_graph', as: 'save_report'
   get '/send_graph', to: 'graphs#send_graph', as: 'send_graph'
 
-  devise_for :users ,:path => '', :path_names => {:sign_in => "", :sign_out => ""}
+  devise_for :users ,:path => '', :path_names => {:sign_in => "", :sign_out => "", :edit => ""}
 
   post '/users/retrieve_password', to: 'users#retrieve_password', as: 'retrieve_password'
 
   get '/places/set_place/:id', to: 'places#check_active_place', as: 'set_place'
+
+  get '/users/:id/edit', to: 'users#edit', as:"edit_user"
 
   resources :users, :except => [:destroy]
 
