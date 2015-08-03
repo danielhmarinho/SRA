@@ -13,6 +13,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def edit_account
+    @user = User.find(params[:id])
+  end 
+
   def retrieve_password
     cpf_confirmation = params[:user][:matricula]
     user = User.where(:matricula => cpf_confirmation)
@@ -48,6 +52,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_account
+    @user = User.find(params[:id])
+    @user.encrypted_password = Digest::MD5::hexdigest params[:user][:password]
+
+    respond_to do |format|
+      respond_redirect_update_account(format)
+    end
+  end
+
+
   def respond_redirect_save(format)
     if @user.save
       redirect_as_controller(format, root_path, notice: 'Usuário Externo criado com sucesso.')
@@ -62,6 +76,16 @@ class UsersController < ApplicationController
 
     else
       format.html { render action: "edit" }
+    end
+
+  end
+
+  def respond_redirect_update_account(format)
+    if @user.update_attributes(params[:user])
+      redirect_as_controller(format, new_atendimento_path, notice: 'Usuário atualizado com sucesso.')
+
+    else
+      format.html { render action: "edit_account" }
     end
 
   end
