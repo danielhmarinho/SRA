@@ -1,0 +1,14 @@
+<%= simple_form_for user, url: {action: "update_account"} do |f| %>
+
+      <%= f.input :name, :label => 'Nome do Usuário' %>
+      <%= f.input :username, :label => 'Login' %>
+      <%= f.input :password, :label => 'Senha' %>
+
+    <%= link_to raw("<i class=\"icon-white icon-arrow-left\"> Voltar </i>"), new_atendimento_path,
+    	class: "btn btn-warning"%>
+
+    <%= button_tag :class => 'btn-success btn', :id => 'editar-usuario-externo' do %>
+        <i class='fa fa-plus-circle'></i> Atualizar Usuário
+    <% end %>
+
+<% end %>
