@@ -5,9 +5,7 @@ class Ability
   def initialize(user)
     user ||= User.new # guest user
     if user.has_role?  :student or  user.has_role? :external_user or user.has_role? :professor or user.has_role? :administrative
-
       can :create, Atendimento
-
     end
 
     if user.has_role? :manager
@@ -20,6 +18,10 @@ class Ability
 
     if user.has_role? :admin
       can :manage, :all
+    end
+
+    if user.has_role? :external_user
+      can [:edit, :update], User
     end
   end
 end

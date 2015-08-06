@@ -6,10 +6,14 @@
       </a>
       <div class = "logged" align='right'>
         <%  if user_signed_in? %>
-            <%= link_to  raw("<i class=\"fa fa-gear\"> #{current_user.name} </i>"), edit_account_path(current_user), class: "btn btn-info navbar-btn"%>
-            <%=link_to raw("<i class=\"fa fa-sign-out\"> Sair </i>"),
-            destroy_user_session_path,
-            class: "btn  btn-danger navbar-btn", :id => 'logout', method: "delete", confirm: "Deseja realmente sair?" %>
+          <% if can? :edit, User %>
+            <%= link_to  raw("<i class=\"fa fa-gear\"> #{current_user.name} </i>"), edit_user_path(current_user), class: "btn btn-info navbar-btn"%>
+          <% else %>
+            <button type="button" class="btn btn-info navbar-btn">
+              <%=  current_user.name%></button>
+          <% end %>
+          <%=link_to raw("<i class=\"fa fa-sign-out\"> Sair </i>"), destroy_user_session_path,
+          class: "btn  btn-danger navbar-btn", :id => 'logout', method: "delete", confirm: "Deseja realmente sair?" %>
         <% end %>
       </div>
 
