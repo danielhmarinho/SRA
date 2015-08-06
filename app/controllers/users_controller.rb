@@ -1,6 +1,9 @@
 # -*- encoding : utf-8 -*-
 class UsersController < ApplicationController
 
+  # Class variable to keep the html page that made the update request of user
+  @@html_update_request = "any html page"
+
   def new
     @user = User.new
   end
@@ -10,12 +13,15 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
-  end
+    @@html_update_request = request.env["HTTP_REFERER"]
 
-  def edit_account
-    @user = User.find(params[:id])
-  end 
+    if !user_signed_in? or current_user.has_role? :external_user
+      @user = User.find(params[:id])
+    else
+      flash[:error] = 'Você não possui permissão para acessar esta área'
+      redirect_as_user(current_user)
+    end
+  end
 
   def retrieve_password
     cpf_confirmation = params[:user][:matricula]
@@ -52,16 +58,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def update_account
-    @user = User.find(params[:id])
-    @user.encrypted_password = Digest::MD5::hexdigest params[:user][:password]
-
-    respond_to do |format|
-      respond_redirect_update_account(format)
-    end
-  end
-
-
   def respond_redirect_save(format)
     if @user.save
       redirect_as_controller(format, root_path, notice: 'Usuário Externo criado com sucesso.')
@@ -72,20 +68,13 @@ class UsersController < ApplicationController
 
   def respond_redirect_update(format)
     if @user.update_attributes(params[:user])
-      redirect_as_controller(format, root_path, notice: 'Usuário Externo alterado com sucesso.')
-
+      if @@html_update_request == "http://localhost:3000/users"
+        redirect_as_controller(format, root_path, notice: 'Usuário Externo alterado com sucesso.')
+      else
+        redirect_as_controller(format, new_atendimento_path, notice: 'Usuário atualizado com sucesso.')
+      end
     else
       format.html { render action: "edit" }
-    end
-
-  end
-
-  def respond_redirect_update_account(format)
-    if @user.update_attributes(params[:user])
-      redirect_as_controller(format, new_atendimento_path, notice: 'Usuário atualizado com sucesso.')
-
-    else
-      format.html { render action: "edit_account" }
     end
 
   end
