@@ -15,7 +15,7 @@ gem 'sqlite3'
 gem 'execjs'
 gem 'therubyracer'
 gem 'rmagick'
-
+gem 'bootstrap-sass'
 gem "twitter-bootstrap-rails"
 
 gem 'devise'
