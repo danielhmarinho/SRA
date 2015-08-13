@@ -6,6 +6,7 @@ build_dependencies:
   - libicu-dev
   - libmagickcore-dev
   - libmagickwand-dev
+  - libsqlite3-dev
 
 dependencies:
   - "libicu44 | libicu42"
@@ -13,4 +14,4 @@ dependencies:
   - git-core
 
 services:
-  - postgres    
+  - postgres
