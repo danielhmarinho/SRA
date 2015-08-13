@@ -1,0 +1,16 @@
+targets:
+  ubuntu-12.04:
+  debian-7:
+
+build_dependencies:
+  - libicu-dev
+  - libmagickcore-dev
+  - libmagickwand-dev
+
+dependencies:
+  - "libicu44 | libicu42"
+  - libpcre3
+  - git-core
+
+services:
+  - postgres    
