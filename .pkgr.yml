@@ -8,10 +8,5 @@ build_dependencies:
   - libmagickwand-dev
   - libsqlite3-dev
 
-dependencies:
-  - "libicu44 | libicu42"
-  - libpcre3
-  - git-core
-
 services:
   - postgres
